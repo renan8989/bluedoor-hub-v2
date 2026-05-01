@@ -574,7 +574,7 @@ function renderCasaRioMar(d) {
 // ─── RENDER OVERVIEW ─────────────────────────────────────────
 function renderOverview(crm, oceana) {
   const heroEl = document.getElementById('overviewHero');
-  [crm, oceana].forEach((d, idx) => {
+  [crm, oceana].forEach((d, idx) => { // crm=0(Casa Rio Mar), oceana=1
     const o = d.overview;
     const div = document.createElement('div');
     div.className = 'overview-campaign-card';
@@ -607,23 +607,23 @@ function renderOverview(crm, oceana) {
     { metric: 'Frequência', o: oo.frequency, c: co.frequency, fmt: v => Number(v).toFixed(2), higherBetter: false }
   ];
   const tEl = document.getElementById('comparisonTable');
-  tEl.innerHTML = `<thead><tr><th>Métrica</th><th>🏌️ Oceana Golf</th><th>🏠 Casa Rio Mar</th></tr></thead><tbody>` +
+  tEl.innerHTML = `<thead><tr><th>Métrica</th><th>🏠 Casa Rio Mar</th><th>🏌️ Oceana Golf</th></tr></thead><tbody>` +
     rows.map(r => {
       const oBetter = r.c !== null && (r.higherBetter ? r.o > r.c : r.o < r.c);
       const cBetter = r.c !== null && (r.higherBetter ? r.c > r.o : r.c < r.o);
       return `<tr>
         <td class="metric-name">${r.metric}</td>
-        <td class="${oBetter ? 'better' : cBetter ? 'worse' : 'neutral'}">${r.fmt(r.o)}${oBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
         <td class="${cBetter ? 'better' : oBetter ? 'worse' : 'neutral'}">${r.fmt(r.c)}${cBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
+        <td class="${oBetter ? 'better' : cBetter ? 'worse' : 'neutral'}">${r.fmt(r.o)}${oBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
       </tr>`;
     }).join('') + `</tbody>`;
 
-  const campaigns = ['Oceana Golf', 'Casa Rio Mar'];
-  const colors = ['#6c63ff', '#00d4ff'];
-  mkChart('ov-chartLeads', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.leads, co.leads], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-  mkChart('ov-chartSpend', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.spend, co.spend], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-  mkChart('ov-chartCPL', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.cost_per_lead, co.cost_per_lead], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-  mkChart('ov-chartCTR', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.ctr_all, co.ctr_all], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  const campaigns = ['Casa Rio Mar', 'Oceana Golf'];
+  const colors = ['#00d4ff', '#6c63ff'];
+  mkChart('ov-chartLeads', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.leads, oo.leads], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartSpend', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.spend, oo.spend], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartCPL', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.cost_per_lead, oo.cost_per_lead], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartCTR', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.ctr_all, oo.ctr_all], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
 
   const totalLeads = oo.leads + co.leads;
   const totalSpend = oo.spend + co.spend;
