@@ -1,0 +1,28 @@
+{
+  "campaign_id": "120246439732400671",
+  "campaign_name": "Casa Rio Mar",
+  "status": "ACTIVE",
+  "last_updated": "2026-05-01T00:00:00Z",
+  "date_range": { "start": "01/05/2026", "end": "01/05/2026" },
+  "overview": {
+    "impressions": 92,
+    "reach": 83,
+    "frequency": 1.11,
+    "clicks_all": 1,
+    "link_clicks": 1,
+    "ctr_all": 1.09,
+    "link_click_ctr": 1.09,
+    "spend": 4.68,
+    "cpc_all": 4.68,
+    "cost_per_link_click": 4.68,
+    "cpm": 50.87,
+    "leads": 0,
+    "cost_per_lead": 0
+  },
+  "gender_breakdown": [],
+  "age_breakdown": [],
+  "platform_breakdown": [],
+  "weekly_breakdown": [
+    { "week": "01/05 – 01/05", "impressions": 92, "spend": 4.68, "leads": 0, "cost_per_lead": 0 }
+  ]
+}

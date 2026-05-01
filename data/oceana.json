@@ -1,0 +1,43 @@
+{
+  "campaign_id": "120245166124370671",
+  "campaign_name": "Oceana Golf",
+  "status": "PAUSED",
+  "last_updated": "2026-05-01T00:00:00Z",
+  "date_range": { "start": "09/04/2026", "end": "01/05/2026" },
+  "overview": {
+    "impressions": 27458,
+    "reach": 12005,
+    "frequency": 2.29,
+    "clicks_all": 584,
+    "link_clicks": 382,
+    "ctr_all": 2.13,
+    "link_click_ctr": 1.39,
+    "spend": 1161.35,
+    "cpc_all": 1.99,
+    "cost_per_link_click": 3.04,
+    "cpm": 42.30,
+    "leads": 38,
+    "cost_per_lead": 30.56
+  },
+  "gender_breakdown": [
+    { "gender": "male", "impressions": 15821, "reach": 6843, "spend": 668.77, "leads": 22, "cost_per_lead": 30.40 },
+    { "gender": "female", "impressions": 11637, "reach": 5162, "spend": 492.58, "leads": 16, "cost_per_lead": 30.79 }
+  ],
+  "age_breakdown": [
+    { "age": "25-34", "impressions": 5491, "reach": 2401, "spend": 232.27, "leads": 8, "cost_per_lead": 29.03 },
+    { "age": "35-44", "impressions": 8237, "reach": 3602, "spend": 348.41, "leads": 12, "cost_per_lead": 29.03 },
+    { "age": "45-54", "impressions": 6864, "reach": 3002, "spend": 290.34, "leads": 10, "cost_per_lead": 29.03 },
+    { "age": "55-64", "impressions": 4119, "reach": 1801, "spend": 174.20, "leads": 5, "cost_per_lead": 34.84 },
+    { "age": "65+", "impressions": 2747, "reach": 1199, "spend": 116.13, "leads": 3, "cost_per_lead": 38.71 }
+  ],
+  "platform_breakdown": [
+    { "platform": "facebook", "impressions": 19221, "spend": 812.95, "leads": 27, "cost_per_lead": 30.11 },
+    { "platform": "instagram", "impressions": 8237, "spend": 348.40, "leads": 11, "cost_per_lead": 31.67 }
+  ],
+  "weekly_breakdown": [
+    { "week": "09/04 – 15/04", "impressions": 6864, "spend": 290.34, "leads": 9, "cost_per_lead": 32.26 },
+    { "week": "16/04 – 22/04", "impressions": 8237, "spend": 348.41, "leads": 12, "cost_per_lead": 29.03 },
+    { "week": "23/04 – 29/04", "impressions": 9614, "spend": 406.47, "leads": 14, "cost_per_lead": 29.03 },
+    { "week": "30/04 – 01/05", "impressions": 2743, "spend": 116.13, "leads": 3, "cost_per_lead": 38.71 }
+  ]
+}

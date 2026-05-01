@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Campanha + Comercial</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0d0d1a;
+    --card: #13132b;
+    --card2: #1a1a35;
+    --border: #2a2a55;
+    --accent1: #6c63ff;
+    --accent2: #00d4ff;
+    --accent3: #ff6b9d;
+    --accent4: #ffd166;
+    --green: #06d6a0;
+    --red: #ef476f;
+    --text: #e8e8f0;
+    --muted: #8888aa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  .header { background: linear-gradient(135deg, #0d0d1a 0%, #1a1a35 100%); border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .header-logo { height: 48px; width: auto; }
+  .header-title h1 { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+  .header-title p { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .live-badge { background: rgba(6,214,160,0.15); border: 1px solid var(--green); color: var(--green); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .header-right { text-align: right; }
+  .header-right .update-info { font-size: 0.75rem; color: var(--muted); }
+
+  .tabs-bar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; gap: 4px; overflow-x: auto; }
+  .tab-btn { background: none; border: none; color: var(--muted); padding: 14px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent1); border-bottom-color: var(--accent1); }
+  .tab-btn.overview-tab.active { color: var(--accent4); border-bottom-color: var(--accent4); }
+  .tab-btn.comercial-tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+  .notice { background: rgba(108,99,255,0.08); border-left: 3px solid var(--accent1); margin: 20px 32px 0; padding: 10px 16px; border-radius: 4px; font-size: 0.82rem; color: var(--muted); }
+
+  .tab-content { display: none; padding: 24px 32px 40px; }
+  .tab-content.active { display: block; }
+
+  .campaign-banner { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .campaign-banner .c-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+  .campaign-banner .c-period { font-size: 0.8rem; color: var(--muted); }
+  .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+  .status-active { background: rgba(6,214,160,0.15); border: 1px solid var(--green); color: var(--green); }
+  .status-paused { background: rgba(255,209,102,0.15); border: 1px solid var(--accent4); color: var(--accent4); }
+  .status-new { background: rgba(0,212,255,0.15); border: 1px solid var(--accent2); color: var(--accent2); }
+
+  .section-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-bottom: 8px; }
+  .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; position: relative; overflow: hidden; }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .kpi-card.c1::before { background: var(--accent1); }
+  .kpi-card.c2::before { background: var(--accent2); }
+  .kpi-card.c3::before { background: var(--accent3); }
+  .kpi-card.c4::before { background: var(--green); }
+  .kpi-card.c5::before { background: var(--accent4); }
+  .kpi-card.c6::before { background: #ff9f43; }
+  .kpi-card.c7::before { background: #a29bfe; }
+  .kpi-card.c8::before { background: #fd79a8; }
+  .kpi-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .kpi-value { font-size: 1.6rem; font-weight: 800; color: var(--text); line-height: 1; }
+  .kpi-sub { font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .chart-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .chart-card h3 { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 16px; }
+  .chart-card canvas { max-height: 260px; }
+
+  .gender-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .gender-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
+  .gender-icon { font-size: 2rem; margin-bottom: 8px; }
+  .gender-name { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .gender-leads { font-size: 2.2rem; font-weight: 800; color: var(--text); }
+  .gender-leads-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 8px; }
+  .gender-cpl { font-size: 1.1rem; font-weight: 700; color: var(--accent4); }
+  .gender-cpl-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 8px; }
+  .gender-pct { font-size: 0.85rem; color: var(--muted); }
+
+  .platform-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .platform-table th { text-align: left; padding: 8px 12px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+  .platform-table td { padding: 10px 12px; border-bottom: 1px solid rgba(42,42,85,0.5); }
+  .platform-table tr:last-child td { border-bottom: none; }
+  .platform-name { font-weight: 700; text-transform: capitalize; }
+
+  .weekly-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 16px; }
+  .weekly-table th { text-align: left; padding: 8px 12px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+  .weekly-table td { padding: 10px 12px; border-bottom: 1px solid rgba(42,42,85,0.5); }
+  .weekly-table tr:last-child td { border-bottom: none; }
+  .best-week { background: rgba(6,214,160,0.06); }
+
+  .funnel { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 20px 0; }
+  .funnel-step { text-align: center; }
+  .funnel-box { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; min-width: 110px; }
+  .funnel-num { font-size: 1.4rem; font-weight: 800; color: var(--text); }
+  .funnel-label { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+  .funnel-arrow { font-size: 1.2rem; color: var(--border); }
+  .funnel-pct { font-size: 0.7rem; color: var(--accent2); margin-top: 4px; }
+
+  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 8px; }
+  .analysis-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .analysis-card.positive { border-left: 3px solid var(--green); }
+  .analysis-card.warning { border-left: 3px solid var(--accent4); }
+  .analysis-card.action { border-left: 3px solid var(--accent1); }
+  .analysis-icon { font-size: 1.4rem; }
+  .analysis-title { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+  .analysis-text { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .analysis-badge { align-self: flex-start; padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; }
+  .badge-green { background: rgba(6,214,160,0.15); color: var(--green); }
+  .badge-yellow { background: rgba(255,209,102,0.15); color: var(--accent4); }
+  .badge-blue { background: rgba(108,99,255,0.15); color: var(--accent1); }
+
+  /* OVERVIEW */
+  .overview-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .overview-campaign-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .overview-campaign-card .oc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .overview-campaign-card .oc-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .overview-campaign-card .oc-period { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .oc-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .oc-kpi { background: var(--card2); border-radius: 8px; padding: 10px 14px; }
+  .oc-kpi-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+  .oc-kpi-value { font-size: 1.2rem; font-weight: 800; color: var(--text); }
+  .oc-kpi-value.highlight { color: var(--green); }
+
+  .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .comparison-table th { text-align: left; padding: 10px 14px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--border); }
+  .comparison-table td { padding: 12px 14px; border-bottom: 1px solid rgba(42,42,85,0.5); }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table .metric-name { font-weight: 600; color: var(--text); }
+  .comparison-table .better { color: var(--green); font-weight: 700; }
+  .comparison-table .worse { color: var(--red); }
+  .comparison-table .neutral { color: var(--muted); }
+  .winner-badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 0.65rem; font-weight: 700; margin-left: 6px; background: rgba(6,214,160,0.15); color: var(--green); }
+
+  .overview-insight { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .overview-insight h3 { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 14px; }
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .insight-item { background: var(--card2); border-radius: 8px; padding: 14px; }
+  .insight-item .i-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+  .insight-item .i-value { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+  .insight-item .i-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+
+  /* COMERCIAL */
+  .com-status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .com-status-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; position: relative; overflow: hidden; }
+  .com-status-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .com-status-card .cs-count { font-size: 2rem; font-weight: 800; color: var(--text); }
+  .com-status-card .cs-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 4px; }
+  .com-status-card .cs-pct { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+
+  .com-metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-bottom: 8px; }
+  .com-metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .com-metric-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .com-metric-value { font-size: 1.6rem; font-weight: 800; color: var(--text); }
+  .com-metric-sub { font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+
+  .com-funnel { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 20px 0; }
+  .com-funnel-step { text-align: center; }
+  .com-funnel-box { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; min-width: 110px; }
+  .com-funnel-num { font-size: 1.4rem; font-weight: 800; color: var(--text); }
+  .com-funnel-label { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+  .com-funnel-arrow { font-size: 1.2rem; color: var(--border); }
+  .com-funnel-pct { font-size: 0.7rem; color: var(--green); margin-top: 4px; }
+
+  .leads-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .leads-table th { text-align: left; padding: 10px 12px; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+  .leads-table td { padding: 10px 12px; border-bottom: 1px solid rgba(42,42,85,0.5); vertical-align: top; }
+  .leads-table tr:last-child td { border-bottom: none; }
+  .lead-badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; }
+
+  .export-section { text-align: center; padding: 32px 0 16px; }
+  .export-btn { background: linear-gradient(135deg, var(--accent1), var(--accent2)); border: none; color: #fff; padding: 14px 36px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+  .export-btn:hover { opacity: 0.85; }
+
+  .footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.75rem; border-top: 1px solid var(--border); }
+
+  .early-stage-notice { background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 10px; padding: 20px; text-align: center; color: var(--muted); font-size: 0.85rem; margin: 20px 0; }
+  .early-stage-notice strong { color: var(--accent2); display: block; font-size: 1rem; margin-bottom: 8px; }
+
+  @media (max-width: 700px) {
+    .chart-grid, .chart-grid-3, .gender-grid, .overview-hero { grid-template-columns: 1fr; }
+    .tabs-bar { padding: 0 16px; }
+    .tab-content { padding: 16px; }
+    .header { padding: 12px 16px; }
+  }
+  @media print {
+    body { background: #fff; color: #000; }
+    .header { background: #fff; border-bottom: 2px solid #ddd; }
+    .tabs-bar, .export-section { display: none; }
+    .tab-content { display: block !important; padding: 16px; }
+    .kpi-card, .chart-card, .gender-card, .analysis-card, .overview-campaign-card, .overview-insight { background: #f9f9f9; border: 1px solid #ddd; break-inside: avoid; }
+    canvas { max-height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="logo.png" alt="Blue Door" class="header-logo" onerror="this.style.display='none'">
+    <div class="header-title">
+      <h1>Dashboard Campanha + Comercial</h1>
+      <p>Conta: act_1453008295739427 · Blue Door Imóveis</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="live-badge">● AO VIVO</span>
+    <div class="update-info" style="margin-top:6px;" id="lastUpdate">Última atualização: —</div>
+  </div>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn overview-tab active" onclick="switchTab('overview', this)">📊 Visão Geral</button>
+  <button class="tab-btn" onclick="switchTab('casa_rio_mar', this)">🏠 Casa Rio Mar</button>
+  <button class="tab-btn" onclick="switchTab('oceana', this)">🏌️ Oceana Golf</button>
+  <button class="tab-btn comercial-tab" onclick="switchTab('comercial', this)">💬 Comercial</button>
+</div>
+
+<div class="notice">Os dados desta dashboard são atualizados semanalmente toda segunda-feira às 09:00 BRT via Manus.</div>
+
+<!-- ============================================================ -->
+<!-- TAB: VISÃO GERAL -->
+<!-- ============================================================ -->
+<div id="tab-overview" class="tab-content active">
+  <div class="section-title">Resumo das Campanhas Ativas</div>
+  <div class="overview-hero" id="overviewHero"></div>
+
+  <div class="section-title">Comparativo de Indicadores</div>
+  <div class="chart-card" style="margin-bottom:16px;">
+    <h3>Métricas Lado a Lado — Casa Rio Mar vs. Oceana Golf</h3>
+    <table class="comparison-table" id="comparisonTable"></table>
+  </div>
+
+  <div class="section-title">Comparativo Visual</div>
+  <div class="chart-grid" style="margin-bottom:16px;">
+    <div class="chart-card"><h3>Leads por Campanha</h3><canvas id="ov-chartLeads"></canvas></div>
+    <div class="chart-card"><h3>Investimento por Campanha (R$)</h3><canvas id="ov-chartSpend"></canvas></div>
+  </div>
+  <div class="chart-grid" style="margin-bottom:16px;">
+    <div class="chart-card"><h3>Custo por Lead (R$)</h3><canvas id="ov-chartCPL"></canvas></div>
+    <div class="chart-card"><h3>CTR (todos) por Campanha (%)</h3><canvas id="ov-chartCTR"></canvas></div>
+  </div>
+
+  <div class="section-title">Totais Consolidados</div>
+  <div class="overview-insight">
+    <h3>Soma de todas as campanhas ativas</h3>
+    <div class="insight-grid" id="consolidatedGrid"></div>
+  </div>
+
+  <div class="section-title">Funil Comercial — WhatsApp</div>
+  <div class="chart-card" style="margin-bottom:16px;">
+    <h3>Do lead ao fechamento</h3>
+    <div class="com-funnel" id="ov-comFunnel"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB: CASA RIO MAR -->
+<!-- ============================================================ -->
+<div id="tab-casa_rio_mar" class="tab-content">
+  <div class="campaign-banner" id="crm-banner"></div>
+
+  <div class="early-stage-notice" id="crm-early-notice">
+    <strong>🚀 Campanha em Fase Inicial</strong>
+    Esta campanha foi lançada em 01/05/2026. Os dados abaixo refletem apenas o primeiro dia de veiculação. Análises de gênero, faixa etária e plataforma estarão disponíveis após acumulação de dados suficientes.
+  </div>
+
+  <div class="section-title">Indicadores Principais</div>
+  <div class="kpi-grid" id="crm-kpis"></div>
+
+  <div class="section-title">Evolução Semanal</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e Investimento por Semana</h3><canvas id="crm-chartWeekly"></canvas></div>
+
+  <div class="section-title">Funil de Conversão</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Jornada do Público — Impressões até Lead</h3><div class="funnel" id="crm-funnel"></div></div>
+
+  <div class="section-title">Próximos Passos — Ações Recomendadas</div>
+  <div class="analysis-grid">
+    <div class="analysis-card action"><div class="analysis-icon">📊</div><div class="analysis-title">Aguardar Volume de Dados</div><div class="analysis-text">Com apenas 1 dia de veiculação, aguardar pelo menos 7 dias para análises de gênero, faixa etária e plataforma serem representativas.</div><span class="analysis-badge badge-blue">Monitorar</span></div>
+    <div class="analysis-card action"><div class="analysis-icon">🎯</div><div class="analysis-title">Acompanhar CPM Inicial</div><div class="analysis-text">CPM de R$ 50,87 no primeiro dia é esperado — o algoritmo ainda está na fase de aprendizado. Tende a reduzir após 50+ conversões.</div><span class="analysis-badge badge-blue">Fase de Aprendizado</span></div>
+    <div class="analysis-card action"><div class="analysis-icon">🔁</div><div class="analysis-title">Atualizar Dashboard Semanalmente</div><div class="analysis-text">Retornar toda segunda-feira para acompanhar evolução de leads, CPL e frequência desta campanha.</div><span class="analysis-badge badge-blue">Rotina</span></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB: OCEANA GOLF -->
+<!-- ============================================================ -->
+<div id="tab-oceana" class="tab-content">
+  <div class="campaign-banner" id="oceana-banner"></div>
+  <div class="section-title">Indicadores Principais</div>
+  <div class="kpi-grid" id="oceana-kpis"></div>
+  <div class="section-title">Distribuição de Métricas</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>Cliques (todos) vs. Link clicks</h3><canvas id="o-chartClicks"></canvas></div>
+    <div class="chart-card"><h3>Distribuição do Investimento</h3><canvas id="o-chartSpend"></canvas></div>
+  </div>
+  <div class="section-title">Desempenho por Gênero</div>
+  <div class="gender-grid" id="oceana-gender"></div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Comparativo por Gênero — Leads e Custo por Lead</h3><canvas id="o-chartGender"></canvas></div>
+  <div class="section-title">Distribuição por Faixa Etária</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e Investimento por Faixa Etária</h3><canvas id="o-chartAge"></canvas></div>
+  <div class="section-title">Desempenho por Plataforma</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>Investimento por Plataforma (R$)</h3><canvas id="o-chartPlatformSpend"></canvas></div>
+    <div class="chart-card"><h3>Leads por Plataforma</h3><canvas id="o-chartPlatformLeads"></canvas></div>
+  </div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Tabela de Plataformas</h3><table class="platform-table" id="o-platformTable"></table></div>
+  <div class="section-title">Evolução Semanal</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e CPL por Semana</h3><canvas id="o-chartWeekly"></canvas></div>
+  <div class="chart-card" style="margin-bottom:16px;"><table class="weekly-table" id="o-weeklyTable"></table></div>
+  <div class="section-title">Funil de Conversão</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Jornada do Público — Impressões até Lead</h3><div class="funnel" id="o-funnel"></div></div>
+  <div class="section-title">O que está funcionando — Pontos Fortes</div>
+  <div class="analysis-grid" id="o-strengths"></div>
+  <div class="section-title">O que precisa de melhoria</div>
+  <div class="analysis-grid" id="o-weaknesses"></div>
+  <div class="section-title">Próximos Passos — Ações Recomendadas</div>
+  <div class="analysis-grid" id="o-actions"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB: COMERCIAL -->
+<!-- ============================================================ -->
+<div id="tab-comercial" class="tab-content">
+  <div class="campaign-banner">
+    <div><div class="c-name">Painel Comercial — WhatsApp Business</div><div class="c-period">Blue Door Imóveis · Campanha Oceana Golf</div></div>
+    <span class="status-badge status-active">● ATIVO</span>
+  </div>
+
+  <div class="section-title">Status por Categoria</div>
+  <div class="com-status-grid" id="com-statusGrid"></div>
+
+  <div class="section-title">Métricas Comerciais</div>
+  <div class="com-metrics-grid" id="com-metricsGrid"></div>
+
+  <div class="section-title">Distribuição dos Leads</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>Leads por Categoria</h3><canvas id="com-chartDist"></canvas></div>
+    <div class="chart-card"><h3>Origem dos Leads</h3><canvas id="com-chartOrigin"></canvas></div>
+  </div>
+
+  <div class="section-title">Leads por Semana</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Quantidade de leads por semana de entrada</h3><canvas id="com-chartWeekly"></canvas></div>
+
+  <div class="section-title">Funil Comercial</div>
+  <div class="chart-card" style="margin-bottom:16px;">
+    <h3>Do lead ao fechamento</h3>
+    <div class="com-funnel" id="com-funnel"></div>
+  </div>
+
+  <div class="section-title">Detalhamento dos Leads</div>
+  <div class="chart-card" style="margin-bottom:16px;">
+    <table class="leads-table" id="com-leadsTable"></table>
+  </div>
+</div>
+
+<div class="export-section">
+  <button class="export-btn" onclick="window.print()">⬇ Exportar PDF</button>
+</div>
+
+<div class="footer">
+  Dashboard Campanha + Comercial · Blue Door Imóveis · Dados via Meta Marketing API + WhatsApp Business
+</div>
+
+<script>
+// ─── TAB SWITCH ───────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────
+const fmtN = n => n >= 1000 ? (n/1000).toFixed(1) + 'K' : String(n);
+const fmtR = n => 'R$ ' + Number(n).toFixed(2).replace('.', ',');
+const fmtP = n => Number(n).toFixed(2).replace('.', ',') + '%';
+
+const CHART_DEFAULTS = {
+  responsive: true, maintainAspectRatio: true,
+  plugins: { legend: { labels: { color: '#8888aa', font: { size: 11 } } } },
+  scales: {
+    x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+    y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } }
+  }
+};
+
+function mkChart(id, cfg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  return new Chart(el, cfg);
+}
+
+// ─── RENDER OCEANA TAB ────────────────────────────────────────
+function renderOceana(d) {
+  const o = d.overview;
+  const banner = document.getElementById('oceana-banner');
+  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-paused">⏸ PAUSADA</span>`;
+
+  const kpiEl = document.getElementById('oceana-kpis');
+  if (kpiEl) kpiEl.innerHTML = [
+    { label: 'Impressões', val: fmtN(o.impressions), sub: 'Exibições do anúncio', c: 'c1' },
+    { label: 'Alcance', val: fmtN(o.reach), sub: 'Accounts Center accounts', c: 'c2' },
+    { label: 'Frequência', val: Number(o.frequency).toFixed(2), sub: 'Visualizações por conta', c: 'c3' },
+    { label: 'Leads', val: o.leads, sub: 'Cadastros gerados', c: 'c4' },
+    { label: 'Valor Usado', val: fmtR(o.spend), sub: 'Investimento total (BRL)', c: 'c5' },
+    { label: 'Custo por Lead', val: fmtR(o.cost_per_lead), sub: 'Por cadastro (BRL)', c: 'c6' },
+    { label: 'CPM', val: fmtR(o.cpm), sub: 'Custo por 1.000 impressões', c: 'c7' },
+    { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
+  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
+
+  mkChart('o-chartClicks', { type: 'bar', data: {
+    labels: ['Cliques (todos)', 'Link clicks'],
+    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ['#6c63ff','#00d4ff'], borderRadius: 6 }]
+  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+
+  mkChart('o-chartSpend', { type: 'doughnut', data: {
+    labels: ['Investido', 'Restante estimado'],
+    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ['#6c63ff','#1a1a35'], borderWidth: 0 }]
+  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
+
+  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
+    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
+    const gEl = document.getElementById('oceana-gender');
+    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
+      const icon = g.gender === 'male' ? '♂' : '♀';
+      const name = g.gender === 'male' ? 'Masculino' : 'Feminino';
+      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
+      return `<div class="gender-card"><div class="gender-icon">${icon}</div><div class="gender-name">${name}</div><div class="gender-leads">${g.leads}</div><div class="gender-leads-label">Leads</div><div class="gender-cpl">${fmtR(g.cost_per_lead)}</div><div class="gender-cpl-label">Custo por lead</div><div class="gender-pct">${pct}% dos leads</div></div>`;
+    }).join('');
+
+    mkChart('o-chartGender', { type: 'bar', data: {
+      labels: d.gender_breakdown.map(g => g.gender === 'male' ? 'Masculino' : 'Feminino'),
+      datasets: [
+        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
+        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: '#ffd166', borderRadius: 6, yAxisID: 'y1' }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left' },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right' }
+    } } });
+  }
+
+  if (d.age_breakdown && d.age_breakdown.length > 0) {
+    mkChart('o-chartAge', { type: 'bar', data: {
+      labels: d.age_breakdown.map(a => a.age),
+      datasets: [
+        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
+        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: true }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left' },
+      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right' }
+    } } });
+  }
+
+  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
+    const plats = d.platform_breakdown;
+    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
+    mkChart('o-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: ['#6c63ff','#ff6b9d'], borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+    mkChart('o-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: ['#00d4ff','#ffd166'], borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+    const tEl = document.getElementById('o-platformTable');
+    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
+      plats.map(x => `<tr><td class="platform-name">${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`).join('') + `</tbody>`;
+  }
+
+  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
+    const wks = d.weekly_breakdown;
+    mkChart('o-chartWeekly', { type: 'bar', data: {
+      labels: wks.map(w => w.week),
+      datasets: [
+        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
+        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left' },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right' }
+    } } });
+    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
+    const wTEl = document.getElementById('o-weeklyTable');
+    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
+      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? 'best-week' : ''}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join('') + `</tbody>`;
+  }
+
+  const fEl = document.getElementById('o-funnel');
+  if (fEl) {
+    const steps = [
+      { num: fmtN(o.impressions), label: 'Impressões', pct: '' },
+      { num: fmtN(o.reach), label: 'Alcance', pct: ((o.reach/o.impressions)*100).toFixed(1) + '%' },
+      { num: o.clicks_all, label: 'Cliques', pct: fmtP(o.ctr_all) },
+      { num: o.link_clicks, label: 'Link clicks', pct: fmtP(o.link_click_ctr) },
+      { num: o.leads, label: 'Leads', pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + '%' : '—' }
+    ];
+    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
+  }
+
+  // Analysis
+  const sEl = document.getElementById('o-strengths');
+  const wEl = document.getElementById('o-weaknesses');
+  const aEl = document.getElementById('o-actions');
+  if (sEl) sEl.innerHTML = [
+    { icon: '✅', title: 'CPL Competitivo', text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: 'Positivo' },
+    { icon: '📊', title: 'CTR Acima da Média', text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: 'Eficiente' },
+    { icon: '🎯', title: '38 Leads Gerados', text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: 'Resultado' }
+  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join('');
+  if (wEl) wEl.innerHTML = [
+    { icon: '🔄', title: 'Frequência em Elevação', text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: 'Monitorar' },
+    { icon: '💸', title: 'CPM Elevado', text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: 'Otimizar' },
+    { icon: '📉', title: 'Campanha Pausada', text: 'A campanha está pausada. Avaliar retomada com novos criativos para manter o fluxo de leads.', badge: 'Atenção' }
+  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join('');
+  if (aEl) aEl.innerHTML = [
+    { icon: '🚀', title: 'Retomar com Novos Criativos', text: 'Desenvolver 2-3 novos criativos com ângulos diferentes (preço, localização, estilo de vida) para retomar a campanha com frescor.', badge: 'Ação Imediata' },
+    { icon: '📅', title: 'Restringir para Faixas de Melhor Performance', text: 'Concentrar segmentação nas faixas 25-54 anos onde estão os leads. Excluir faixas sem conversão.', badge: 'Segmentação' },
+    { icon: '🔁', title: 'Atualizar Dashboard Semanalmente', text: 'Acompanhar evolução do CPL, frequência e leads toda segunda-feira para tomada de decisão ágil.', badge: 'Rotina' }
+  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join('');
+}
+
+// ─── RENDER CASA RIO MAR TAB ──────────────────────────────────
+function renderCasaRioMar(d) {
+  const o = d.overview;
+  const banner = document.getElementById('crm-banner');
+  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-new">● NOVA</span>`;
+
+  const kpiEl = document.getElementById('crm-kpis');
+  if (kpiEl) kpiEl.innerHTML = [
+    { label: 'Impressões', val: fmtN(o.impressions), sub: 'Exibições do anúncio', c: 'c1' },
+    { label: 'Alcance', val: fmtN(o.reach), sub: 'Accounts Center accounts', c: 'c2' },
+    { label: 'Frequência', val: Number(o.frequency).toFixed(2), sub: 'Visualizações por conta', c: 'c3' },
+    { label: 'Leads', val: o.leads, sub: 'Cadastros gerados', c: 'c4' },
+    { label: 'Valor Usado', val: fmtR(o.spend), sub: 'Investimento total (BRL)', c: 'c5' },
+    { label: 'Custo por Lead', val: o.leads > 0 ? fmtR(o.cost_per_lead) : '—', sub: 'Por cadastro (BRL)', c: 'c6' },
+    { label: 'CPM', val: fmtR(o.cpm), sub: 'Custo por 1.000 impressões', c: 'c7' },
+    { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
+  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
+
+  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
+    mkChart('crm-chartWeekly', { type: 'bar', data: {
+      labels: d.weekly_breakdown.map(w => w.week),
+      datasets: [
+        { label: 'Leads', data: d.weekly_breakdown.map(w => w.leads), backgroundColor: '#00d4ff', borderRadius: 6, yAxisID: 'y' },
+        { label: 'Investimento (R$)', data: d.weekly_breakdown.map(w => w.spend), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa' } },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ffd166' } }
+    } } });
+  }
+
+  const fEl = document.getElementById('crm-funnel');
+  if (fEl) {
+    const steps = [
+      { num: fmtN(o.impressions), label: 'Impressões', pct: '' },
+      { num: fmtN(o.reach), label: 'Alcance', pct: ((o.reach/o.impressions)*100).toFixed(1) + '%' },
+      { num: o.clicks_all, label: 'Cliques', pct: fmtP(o.ctr_all) },
+      { num: o.link_clicks, label: 'Link clicks', pct: fmtP(o.link_click_ctr) },
+      { num: o.leads, label: 'Leads', pct: '—' }
+    ];
+    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
+  }
+}
+
+// ─── RENDER OVERVIEW ─────────────────────────────────────────
+function renderOverview(crm, oceana) {
+  const heroEl = document.getElementById('overviewHero');
+  [crm, oceana].forEach((d, idx) => {
+    const o = d.overview;
+    const div = document.createElement('div');
+    div.className = 'overview-campaign-card';
+    const statusHtml = idx === 0 ? '<span class="status-badge status-new">● NOVA</span>' : '<span class="status-badge status-paused">⏸ PAUSADA</span>';
+    div.innerHTML = `
+      <div class="oc-header">
+        <div><div class="oc-name">${d.campaign_name}</div><div class="oc-period">${d.date_range.start} – ${d.date_range.end}</div></div>
+        ${statusHtml}
+      </div>
+      <div class="oc-kpis">
+        <div class="oc-kpi"><div class="oc-kpi-label">Leads</div><div class="oc-kpi-value highlight">${o.leads}</div></div>
+        <div class="oc-kpi"><div class="oc-kpi-label">Investimento</div><div class="oc-kpi-value">${fmtR(o.spend)}</div></div>
+        <div class="oc-kpi"><div class="oc-kpi-label">CPL</div><div class="oc-kpi-value">${o.leads > 0 ? fmtR(o.cost_per_lead) : '—'}</div></div>
+        <div class="oc-kpi"><div class="oc-kpi-label">CTR</div><div class="oc-kpi-value">${fmtP(o.ctr_all)}</div></div>
+        <div class="oc-kpi"><div class="oc-kpi-label">Impressões</div><div class="oc-kpi-value">${fmtN(o.impressions)}</div></div>
+        <div class="oc-kpi"><div class="oc-kpi-label">CPM</div><div class="oc-kpi-value">${fmtR(o.cpm)}</div></div>
+      </div>`;
+    heroEl.appendChild(div);
+  });
+
+  const oo = oceana.overview, co = crm.overview;
+  const rows = [
+    { metric: 'Leads', o: oo.leads, c: co.leads, fmt: v => v, higherBetter: true },
+    { metric: 'Investimento', o: oo.spend, c: co.spend, fmt: fmtR, higherBetter: false },
+    { metric: 'Custo por Lead', o: oo.cost_per_lead, c: co.cost_per_lead > 0 ? co.cost_per_lead : null, fmt: v => v ? fmtR(v) : '—', higherBetter: false },
+    { metric: 'CPM', o: oo.cpm, c: co.cpm, fmt: fmtR, higherBetter: false },
+    { metric: 'CTR (todos)', o: oo.ctr_all, c: co.ctr_all, fmt: fmtP, higherBetter: true },
+    { metric: 'Impressões', o: oo.impressions, c: co.impressions, fmt: fmtN, higherBetter: true },
+    { metric: 'Alcance', o: oo.reach, c: co.reach, fmt: fmtN, higherBetter: true },
+    { metric: 'Frequência', o: oo.frequency, c: co.frequency, fmt: v => Number(v).toFixed(2), higherBetter: false }
+  ];
+  const tEl = document.getElementById('comparisonTable');
+  tEl.innerHTML = `<thead><tr><th>Métrica</th><th>🏌️ Oceana Golf</th><th>🏠 Casa Rio Mar</th></tr></thead><tbody>` +
+    rows.map(r => {
+      const oBetter = r.c !== null && (r.higherBetter ? r.o > r.c : r.o < r.c);
+      const cBetter = r.c !== null && (r.higherBetter ? r.c > r.o : r.c < r.o);
+      return `<tr>
+        <td class="metric-name">${r.metric}</td>
+        <td class="${oBetter ? 'better' : cBetter ? 'worse' : 'neutral'}">${r.fmt(r.o)}${oBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
+        <td class="${cBetter ? 'better' : oBetter ? 'worse' : 'neutral'}">${r.fmt(r.c)}${cBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
+      </tr>`;
+    }).join('') + `</tbody>`;
+
+  const campaigns = ['Oceana Golf', 'Casa Rio Mar'];
+  const colors = ['#6c63ff', '#00d4ff'];
+  mkChart('ov-chartLeads', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.leads, co.leads], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartSpend', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.spend, co.spend], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartCPL', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.cost_per_lead, co.cost_per_lead], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartCTR', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [oo.ctr_all, co.ctr_all], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+
+  const totalLeads = oo.leads + co.leads;
+  const totalSpend = oo.spend + co.spend;
+  const cGrid = document.getElementById('consolidatedGrid');
+  if (cGrid) cGrid.innerHTML = [
+    { label: 'Total de Leads', value: totalLeads, sub: 'Todas as campanhas' },
+    { label: 'Total Investido', value: fmtR(totalSpend), sub: 'Todas as campanhas' },
+    { label: 'CPL Médio Geral', value: totalLeads > 0 ? fmtR(totalSpend / totalLeads) : '—', sub: 'Média ponderada' },
+    { label: 'Total de Impressões', value: fmtN(oo.impressions + co.impressions), sub: 'Todas as campanhas' },
+    { label: 'Alcance Total', value: fmtN(oo.reach + co.reach), sub: 'Accounts Center accounts' },
+    { label: 'Campanhas Ativas', value: '2', sub: 'Casa Rio Mar + Oceana Golf' }
+  ].map(i => `<div class="insight-item"><div class="i-label">${i.label}</div><div class="i-value">${i.value}</div><div class="i-sub">${i.sub}</div></div>`).join('');
+}
+
+// ─── RENDER COMERCIAL ─────────────────────────────────────────
+function renderComercial(leads) {
+  const STATUS_CONFIG = {
+    'Visita':       { color: '#7c3aed', bg: 'rgba(124,58,237,0.15)', label: 'Visita Marcada' },
+    'Quente':       { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   label: 'Quente' },
+    'Morno':        { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  label: 'Morno' },
+    'Redirecionado':{ color: '#eab308', bg: 'rgba(234,179,8,0.15)',   label: 'Redirecionado' },
+    'Frio':         { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  label: 'Frio' },
+    'Perdido':      { color: '#6b7280', bg: 'rgba(107,114,128,0.15)', label: 'Perdido' },
+    'Vendido':      { color: '#06d6a0', bg: 'rgba(6,214,160,0.15)',   label: 'Vendido' }
+  };
+  const ORDER = ['Visita','Quente','Morno','Redirecionado','Frio','Perdido','Vendido'];
+  const total = leads.length;
+
+  const counts = {};
+  ORDER.forEach(s => counts[s] = 0);
+  leads.forEach(l => { if (counts[l.categoria] !== undefined) counts[l.categoria]++; });
+
+  // Status cards
+  const sgEl = document.getElementById('com-statusGrid');
+  if (sgEl) {
+    sgEl.innerHTML = `<div class="com-status-card" style="border-top:3px solid #8888aa"><div class="cs-count">${total}</div><div class="cs-label">Total</div><div class="cs-pct">100%</div></div>` +
+      ORDER.map(s => {
+        const cfg = STATUS_CONFIG[s];
+        const cnt = counts[s];
+        const pct = total > 0 ? ((cnt/total)*100).toFixed(0) : 0;
+        return `<div class="com-status-card" style="border-top:3px solid ${cfg.color}"><div class="cs-count" style="color:${cfg.color}">${cnt}</div><div class="cs-label">${cfg.label}</div><div class="cs-pct">${pct}%</div></div>`;
+      }).join('');
+  }
+
+  // Métricas
+  const responderam = leads.filter(l => !['Frio'].includes(l.categoria)).length;
+  const qualificados = leads.filter(l => ['Visita','Quente','Morno'].includes(l.categoria)).length;
+  const visitas = counts['Visita'];
+  const vendidos = counts['Vendido'];
+  const mgEl = document.getElementById('com-metricsGrid');
+  if (mgEl) mgEl.innerHTML = [
+    { label: 'Taxa de Resposta', val: fmtP((responderam/total)*100), sub: `${responderam} de ${total} leads responderam` },
+    { label: 'Qualificados', val: fmtP((qualificados/total)*100), sub: `${qualificados} leads com interesse real` },
+    { label: 'Taxa de Visita', val: fmtP((visitas/total)*100), sub: `${visitas} visita(s) marcada(s)` },
+    { label: 'Redirecionados', val: fmtP((counts['Redirecionado']/total)*100), sub: `${counts['Redirecionado']} leads para outros produtos` },
+    { label: 'Perdidos', val: fmtP((counts['Perdido']/total)*100), sub: `${counts['Perdido']} leads fora do funil` },
+    { label: 'Vendidos', val: vendidos > 0 ? vendidos : '—', sub: vendidos > 0 ? `${fmtP((vendidos/total)*100)} de conversão` : 'Nenhum fechamento ainda' }
+  ].map(m => `<div class="com-metric-card"><div class="com-metric-label">${m.label}</div><div class="com-metric-value">${m.val}</div><div class="com-metric-sub">${m.sub}</div></div>`).join('');
+
+  // Gráfico distribuição
+  mkChart('com-chartDist', { type: 'doughnut', data: {
+    labels: ORDER.map(s => STATUS_CONFIG[s].label),
+    datasets: [{ data: ORDER.map(s => counts[s]), backgroundColor: ORDER.map(s => STATUS_CONFIG[s].color), borderWidth: 0 }]
+  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
+
+  // Gráfico origem
+  const origens = {};
+  leads.forEach(l => { origens[l.campanha] = (origens[l.campanha] || 0) + 1; });
+  mkChart('com-chartOrigin', { type: 'doughnut', data: {
+    labels: Object.keys(origens),
+    datasets: [{ data: Object.values(origens), backgroundColor: ['#6c63ff','#00d4ff','#ff6b9d','#ffd166','#06d6a0'], borderWidth: 0 }]
+  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
+
+  // Gráfico semanal
+  const weekMap = {};
+  leads.forEach(l => {
+    if (!l.data_entrada) return;
+    const [d, m, y] = l.data_entrada.split('/');
+    const date = new Date(y, m-1, d);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+    const monday = new Date(date.setDate(diff));
+    const key = monday.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' });
+    weekMap[key] = (weekMap[key] || 0) + 1;
+  });
+  const sortedWeeks = Object.keys(weekMap).sort((a,b) => {
+    const [da,ma] = a.split('/'); const [db,mb] = b.split('/');
+    return new Date(2026, ma-1, da) - new Date(2026, mb-1, db);
+  });
+  mkChart('com-chartWeekly', { type: 'bar', data: {
+    labels: sortedWeeks.map(w => 'Semana ' + w),
+    datasets: [{ label: 'Leads', data: sortedWeeks.map(w => weekMap[w]), backgroundColor: '#6c63ff', borderRadius: 6 }]
+  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+
+  // Funil comercial
+  const fEl = document.getElementById('com-funnel');
+  if (fEl) {
+    const steps = [
+      { num: total, label: 'Total de Leads', pct: '' },
+      { num: responderam, label: 'Responderam', pct: fmtP((responderam/total)*100) },
+      { num: qualificados, label: 'Qualificados', pct: fmtP((qualificados/responderam)*100) },
+      { num: visitas, label: 'Visita Marcada', pct: visitas > 0 ? fmtP((visitas/qualificados)*100) : '0%' },
+      { num: vendidos, label: 'Vendidos', pct: vendidos > 0 ? fmtP((vendidos/visitas)*100) : '0%' }
+    ];
+    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="com-funnel-arrow">›</div>' : ''}<div class="com-funnel-step"><div class="com-funnel-box"><div class="com-funnel-num">${s.num}</div><div class="com-funnel-label">${s.label}</div></div>${s.pct ? `<div class="com-funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
+  }
+
+  // Funil na visão geral também
+  const ovFEl = document.getElementById('ov-comFunnel');
+  if (ovFEl) {
+    const steps = [
+      { num: total, label: 'Total de Leads', pct: '' },
+      { num: responderam, label: 'Responderam', pct: fmtP((responderam/total)*100) },
+      { num: qualificados, label: 'Qualificados', pct: fmtP((qualificados/responderam)*100) },
+      { num: visitas, label: 'Visita Marcada', pct: visitas > 0 ? fmtP((visitas/qualificados)*100) : '0%' },
+      { num: vendidos, label: 'Vendidos', pct: vendidos > 0 ? fmtP((vendidos/visitas)*100) : '0%' }
+    ];
+    ovFEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="com-funnel-arrow">›</div>' : ''}<div class="com-funnel-step"><div class="com-funnel-box"><div class="com-funnel-num">${s.num}</div><div class="com-funnel-label">${s.label}</div></div>${s.pct ? `<div class="com-funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
+  }
+
+  // Tabela
+  const tEl = document.getElementById('com-leadsTable');
+  if (tEl) {
+    tEl.innerHTML = `<thead><tr><th>Nome</th><th>Categoria</th><th>Interesse</th><th>Data de Entrada</th><th>Campanha</th><th>Resumo</th></tr></thead><tbody>` +
+      [...leads].sort((a,b) => ORDER.indexOf(a.categoria) - ORDER.indexOf(b.categoria)).map(l => {
+        const cfg = STATUS_CONFIG[l.categoria] || { color: '#8888aa', bg: 'rgba(136,136,170,0.15)', label: l.categoria };
+        return `<tr>
+          <td style="font-weight:700">${l.nome}</td>
+          <td><span class="lead-badge" style="background:${cfg.bg};color:${cfg.color}">${cfg.label}</span></td>
+          <td>${l.interesse || '—'}</td>
+          <td>${l.data_entrada || '—'}</td>
+          <td style="font-size:0.75rem;color:var(--muted)">${l.campanha || '—'}</td>
+          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td>
+        </tr>`;
+      }).join('') + `</tbody>`;
+  }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+async function init() {
+  try {
+    const [crm, oceana, leadsData] = await Promise.all([
+      fetch('data/casa_rio_mar.json').then(r => r.json()),
+      fetch('data/oceana.json').then(r => r.json()),
+      fetch('data/leads.json').then(r => r.json())
+    ]);
+    document.getElementById('lastUpdate').textContent = 'Última atualização: ' + new Date().toLocaleDateString('pt-BR');
+    renderCasaRioMar(crm);
+    renderOceana(oceana);
+    renderOverview(crm, oceana);
+    const leads = leadsData.leads || leadsData;
+    renderComercial(leads);
+  } catch(e) {
+    console.error('Erro ao carregar dados:', e);
+  }
+}
+init();
+</script>
+</body>
+</html>
