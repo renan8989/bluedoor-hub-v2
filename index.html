@@ -458,7 +458,7 @@ function renderOceana(d) {
       labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
       datasets: [
         { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: 'rgba(136, 136, 170, 0.3)', borderColor: '#8888aa', borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
+        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'rgba(74, 222, 128, 0.3)' : 'rgba(255, 209, 102, 0.3)'), borderColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
@@ -471,7 +471,7 @@ function renderOceana(d) {
     mkChart('o-chartAge', { type: 'bar', data: {
       labels: d.age_breakdown.map(a => a.age),
       datasets: [
-        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y', order: 2 },
+        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
         { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ff6b9d', pointBorderColor: '#ff6b9d', pointBorderWidth: 2, order: 1 }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
@@ -518,7 +518,7 @@ function renderOceana(d) {
     mkChart('o-chartWeekly', { type: 'bar', data: {
       labels: wks.map(w => w.week),
       datasets: [
-        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y', order: 2 },
+        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
         { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ffd166', pointBorderColor: '#ffd166', pointBorderWidth: 2, order: 1 }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
