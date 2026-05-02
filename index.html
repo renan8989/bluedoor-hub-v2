@@ -503,7 +503,7 @@ function renderOceana(d) {
     mkChart('o-chartCreativeBar', { type: 'bar', data: {
       labels: crvs.map(c => c.name),
       datasets: [
-        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
+        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y' },
         { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
