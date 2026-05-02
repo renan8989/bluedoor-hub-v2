@@ -431,14 +431,14 @@ function renderOceana(d) {
     const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
     const gEl = document.getElementById('oceana-gender');
     if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const icon = g.gender === 'male' ? '♂' : '♀';
-      const name = g.gender === 'male' ? 'Masculino' : 'Feminino';
+      const icon = (g.gender === 'Masculino' || g.gender === 'male') ? '♂' : '♀';
+      const name = (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino';
       const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
       return `<div class="gender-card"><div class="gender-icon">${icon}</div><div class="gender-name">${name}</div><div class="gender-leads">${g.leads}</div><div class="gender-leads-label">Leads</div><div class="gender-cpl">${fmtR(g.cost_per_lead)}</div><div class="gender-cpl-label">Custo por lead</div><div class="gender-pct">${pct}% dos leads</div></div>`;
     }).join('');
 
     mkChart('o-chartGender', { type: 'bar', data: {
-      labels: d.gender_breakdown.map(g => g.gender === 'male' ? 'Masculino' : 'Feminino'),
+      labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
       datasets: [
         { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
         { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: '#ffd166', borderRadius: 6, yAxisID: 'y1' }
@@ -467,8 +467,9 @@ function renderOceana(d) {
   if (d.platform_breakdown && d.platform_breakdown.length > 0) {
     const plats = d.platform_breakdown;
     const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
-    mkChart('o-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: ['#6c63ff','#ff6b9d'], borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    mkChart('o-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: ['#00d4ff','#ffd166'], borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+    const pColors = plats.map(p => p.platform === 'Facebook' ? '#1877F2' : '#E1306C');
+    mkChart('o-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+    mkChart('o-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
     const tEl = document.getElementById('o-platformTable');
     if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
       plats.map(x => `<tr><td class="platform-name">${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`).join('') + `</tbody>`;

@@ -4,7 +4,6 @@
   "status": "PAUSED",
   "last_updated": "2026-05-02",
   "date_range": { "start": "09/04/2026", "end": "02/05/2026" },
-  "partial_data": true,
   "overview": {
     "impressions": 27458,
     "reach": 12005,
@@ -21,15 +20,14 @@
     "cost_per_lead": 30.56
   },
   "gender_breakdown": [
-    { "gender": "Masculino", "impressions": 16127, "reach": 7335, "spend": 692.43, "link_clicks": 325, "leads": 32, "cost_per_lead": 21.64 },
-    { "gender": "Feminino", "impressions": 11298, "reach": 4836, "spend": 467.92, "link_clicks": 57, "leads": 6, "cost_per_lead": 77.99 },
-    { "gender": "Desconhecido", "impressions": 33, "reach": 24, "spend": 1.00, "link_clicks": 0, "leads": 0, "cost_per_lead": null }
+    { "gender": "Masculino", "impressions": 16127, "reach": 7335, "spend": 692.43, "link_clicks": 325, "leads": 29, "cost_per_lead": 23.88 },
+    { "gender": "Feminino", "impressions": 11298, "reach": 4836, "spend": 467.92, "link_clicks": 57, "leads": 9, "cost_per_lead": 51.99 }
   ],
   "age_breakdown": [
-    { "age": "25-34", "impressions": 6857, "reach": 3030, "spend": 199.32, "link_clicks": 123 },
-    { "age": "35-44", "impressions": 12137, "reach": 5139, "spend": 539.70, "link_clicks": 267 },
-    { "age": "45-54", "impressions": 7679, "reach": 3513, "spend": 374.35, "link_clicks": 181 },
-    { "age": "55-64", "impressions": 784, "reach": 355, "spend": 47.80, "link_clicks": 13 }
+    { "age": "25-34", "impressions": 6857, "reach": 3030, "spend": 199.32, "link_clicks": 123, "leads": 9 },
+    { "age": "35-44", "impressions": 12137, "reach": 5139, "spend": 539.70, "link_clicks": 267, "leads": 16 },
+    { "age": "45-54", "impressions": 7679, "reach": 3513, "spend": 374.35, "link_clicks": 181, "leads": 13 },
+    { "age": "55-64", "impressions": 784, "reach": 355, "spend": 47.80, "link_clicks": 13, "leads": 0 }
   ],
   "platform_breakdown": [
     { "platform": "Instagram", "impressions": 22990, "reach": 10040, "spend": 1004.15, "link_clicks": 325, "leads": 32, "cost_per_lead": 31.38 },
