@@ -1627,9 +1627,8 @@ async function init() {
       fetch('data/leads.json').then(r => r.json())
     ]);
     document.getElementById('lastUpdate').textContent = 'Última atualização: ' + new Date().toLocaleDateString('pt-BR');
-    renderCasaRioMar(crm);
-renderOceana(oceanaData);
-  renderCasaRioMar(casaRioMarData);
+   renderCasaRioMar(crm);
+    renderOceana(oceana);
     renderOverview(crm, oceana);
     const leads = leadsData.leads || leadsData;
     renderComercial(leads);
