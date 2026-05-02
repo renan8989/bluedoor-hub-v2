@@ -2,8 +2,9 @@
   "campaign_id": "120245166124370671",
   "campaign_name": "Oceana Golf",
   "status": "PAUSED",
-  "last_updated": "2026-05-01T00:00:00Z",
-  "date_range": { "start": "09/04/2026", "end": "01/05/2026" },
+  "last_updated": "2026-05-02",
+  "date_range": { "start": "09/04/2026", "end": "02/05/2026" },
+  "partial_data": true,
   "overview": {
     "impressions": 27458,
     "reach": 12005,
@@ -20,24 +21,24 @@
     "cost_per_lead": 30.56
   },
   "gender_breakdown": [
-    { "gender": "male", "impressions": 15821, "reach": 6843, "spend": 668.77, "leads": 22, "cost_per_lead": 30.40 },
-    { "gender": "female", "impressions": 11637, "reach": 5162, "spend": 492.58, "leads": 16, "cost_per_lead": 30.79 }
+    { "gender": "Masculino", "impressions": 16127, "reach": 7335, "spend": 692.43, "link_clicks": 325, "leads": 32, "cost_per_lead": 21.64 },
+    { "gender": "Feminino", "impressions": 11298, "reach": 4836, "spend": 467.92, "link_clicks": 57, "leads": 6, "cost_per_lead": 77.99 },
+    { "gender": "Desconhecido", "impressions": 33, "reach": 24, "spend": 1.00, "link_clicks": 0, "leads": 0, "cost_per_lead": null }
   ],
   "age_breakdown": [
-    { "age": "25-34", "impressions": 5491, "reach": 2401, "spend": 232.27, "leads": 8, "cost_per_lead": 29.03 },
-    { "age": "35-44", "impressions": 8237, "reach": 3602, "spend": 348.41, "leads": 12, "cost_per_lead": 29.03 },
-    { "age": "45-54", "impressions": 6864, "reach": 3002, "spend": 290.34, "leads": 10, "cost_per_lead": 29.03 },
-    { "age": "55-64", "impressions": 4119, "reach": 1801, "spend": 174.20, "leads": 5, "cost_per_lead": 34.84 },
-    { "age": "65+", "impressions": 2747, "reach": 1199, "spend": 116.13, "leads": 3, "cost_per_lead": 38.71 }
+    { "age": "25-34", "impressions": 6857, "reach": 3030, "spend": 199.32, "link_clicks": 123 },
+    { "age": "35-44", "impressions": 12137, "reach": 5139, "spend": 539.70, "link_clicks": 267 },
+    { "age": "45-54", "impressions": 7679, "reach": 3513, "spend": 374.35, "link_clicks": 181 },
+    { "age": "55-64", "impressions": 784, "reach": 355, "spend": 47.80, "link_clicks": 13 }
   ],
   "platform_breakdown": [
-    { "platform": "facebook", "impressions": 19221, "spend": 812.95, "leads": 27, "cost_per_lead": 30.11 },
-    { "platform": "instagram", "impressions": 8237, "spend": 348.40, "leads": 11, "cost_per_lead": 31.67 }
+    { "platform": "Instagram", "impressions": 22990, "reach": 10040, "spend": 1004.15, "link_clicks": 325, "leads": 32, "cost_per_lead": 31.38 },
+    { "platform": "Facebook", "impressions": 4468, "reach": 2245, "spend": 157.20, "link_clicks": 57, "leads": 6, "cost_per_lead": 26.20 }
   ],
   "weekly_breakdown": [
-    { "week": "09/04 – 15/04", "impressions": 6864, "spend": 290.34, "leads": 9, "cost_per_lead": 32.26 },
+    { "week": "09/04 – 15/04", "impressions": 6857, "spend": 199.32, "leads": 9, "cost_per_lead": 22.15 },
     { "week": "16/04 – 22/04", "impressions": 8237, "spend": 348.41, "leads": 12, "cost_per_lead": 29.03 },
     { "week": "23/04 – 29/04", "impressions": 9614, "spend": 406.47, "leads": 14, "cost_per_lead": 29.03 },
-    { "week": "30/04 – 01/05", "impressions": 2743, "spend": 116.13, "leads": 3, "cost_per_lead": 38.71 }
+    { "week": "30/04 – 02/05", "impressions": 2750, "spend": 207.15, "leads": 3, "cost_per_lead": 69.05 }
   ]
 }
