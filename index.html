@@ -324,6 +324,8 @@
   <div class="analysis-grid" id="o-weaknesses"></div>
   <div class="section-title">Próximos Passos — Ações Recomendadas</div>
   <div class="analysis-grid" id="o-actions"></div>
+  <div class="section-title">Métricas Detalhadas</div>
+  <div class="chart-card" style="margin-bottom:16px;"><table class="platform-table" id="o-metricsTable"></table></div>
 </div>
 
 <!-- ============================================================ -->
@@ -455,7 +457,7 @@ function renderOceana(d) {
       labels: d.age_breakdown.map(a => a.age),
       datasets: [
         { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
-        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: true }
+        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: true, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#ff6b9d' }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
@@ -472,7 +474,7 @@ function renderOceana(d) {
     mkChart('o-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
     const tEl = document.getElementById('o-platformTable');
     if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
-      plats.map(x => `<tr><td class="platform-name">${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`).join('') + `</tbody>`;
+      plats.map(x => { const c = x.platform === 'Facebook' ? '#1877F2' : '#E1306C'; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join('') + `</tbody>`;
   }
 
   if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
@@ -481,7 +483,7 @@ function renderOceana(d) {
       labels: wks.map(w => w.week),
       datasets: [
         { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false }
+        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#ffd166' }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
@@ -520,6 +522,23 @@ function renderOceana(d) {
     { icon: '💸', title: 'CPM Elevado', text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: 'Otimizar' },
     { icon: '📉', title: 'Campanha Pausada', text: 'A campanha está pausada. Avaliar retomada com novos criativos para manter o fluxo de leads.', badge: 'Atenção' }
   ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join('');
+  const mEl = document.getElementById('o-metricsTable');
+  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>
+    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>
+    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>
+    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>
+    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${fmtN(o.clicks_all)}</strong></td><td>Cliques, toques ou deslizamentos no anúncio</td></tr>
+    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${fmtN(o.link_clicks)}</strong></td><td>Cliques em links que levaram a destinos do anunciante</td></tr>
+    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Porcentagem de impressões com clique (todos)</td></tr>
+    <tr><td style="color:#7c7cff">CTR Link clicks</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Porcentagem de impressões com link click</td></tr>
+    <tr><td style="color:#7c7cff">Valor usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Investimento total estimado no período</td></tr>
+    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo médio por 1.000 impressões</td></tr>
+    <tr><td style="color:#7c7cff">CPC (todos)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (todos)</td></tr>
+    <tr><td style="color:#7c7cff">Custo por link click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por link click</td></tr>
+    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Cadastros gerados pela campanha</td></tr>
+    <tr><td style="color:#7c7cff">Custo por lead</td><td><strong>${fmtR(o.cost_per_lead)}</strong></td><td>Custo médio por lead gerado</td></tr>
+  </tbody>`;
+
   if (aEl) aEl.innerHTML = [
     { icon: '🚀', title: 'Retomar com Novos Criativos', text: 'Desenvolver 2-3 novos criativos com ângulos diferentes (preço, localização, estilo de vida) para retomar a campanha com frescor.', badge: 'Ação Imediata' },
     { icon: '📅', title: 'Restringir para Faixas de Melhor Performance', text: 'Concentrar segmentação nas faixas 25-54 anos onde estão os leads. Excluir faixas sem conversão.', badge: 'Segmentação' },
