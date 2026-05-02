@@ -283,47 +283,28 @@
   <div class="chart-grid">
     <div class="chart-card"><h3>Investimento por Plataforma (R$)</h3><canvas id="crm-chartPlatformSpend"></canvas></div>
     <div class="chart-card"><h3>Leads por Plataforma</h3><canvas id="crm-chartPlatformLeads"></canvas></div>
-  </div<!-- TAB: CASA RIO MAR -->
-    <!-- ============================================================ -->
-    <div id="tab-casa-rio-mar" class="tab-content active">
-      <div class="campaign-banner" id="crm-banner"></div>
-      <div class="section-title">Indicadores Principais</div>
-      <div class="kpi-grid" id="crm-kpis"></div>
-      <div class="section-title">Distribuição de Métricas</div>
-      <div class="chart-grid">
-        <div class="chart-card"><h3>Cliques (todos) vs. Link clicks</h3><canvas id="crm-chartClicks"></canvas></div>
-        <div class="chart-card"><h3>Distribuição do Investimento</h3><canvas id="crm-chartSpend"></canvas></div>
-      </div>
-      <div class="section-title">Desempenho por Gênero</div>
-      <div class="gender-grid" id="crm-gender"></div>
-      <div class="chart-card" style="margin-bottom:16px;"><h3>Comparativo por Gênero — Leads e Custo por Lead</h3><canvas id="crm-chartGender"></canvas></div>
-      <div class="section-title">Distribuição por Faixa Etária</div>
-      <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e Investimento por Faixa Etária</h3><canvas id="crm-chartAge"></canvas></div>
-      <div class="section-title">Desempenho por Plataforma</div>
-      <div class="chart-grid">
-        <div class="chart-card"><h3>Investimento por Plataforma (R$)</h3><canvas id="crm-chartPlatformSpend"></canvas></div>
-        <div class="chart-card"><h3>Leads por Plataforma</h3><canvas id="crm-chartPlatformLeads"></canvas></div>
-      </div>
-      <div class="chart-card" style="margin-bottom:16px;"><h3>Tabela de Plataformas</h3><table class="platform-table" id="crm-platformTable"></table></div>
-      <div class="section-title">Distribuição de Orçamento por Criativo</div>
-      <div class="chart-grid">
-        <div class="chart-card"><h3>% do Investimento por Criativo</h3><canvas id="crm-chartCreativePie"></canvas></div>
-        <div class="chart-card"><h3>Investimento vs. Leads por Criativo</h3><canvas id="crm-chartCreativeBar"></canvas></div>
-      </div>
-      <div class="section-title">Evolução Semanal</div>
-      <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e Custo por Lead por Semana</h3><canvas id="crm-chartWeekly"></canvas></div>
-      <div class="chart-card" style="margin-bottom:16px;"><table class="weekly-table" id="crm-weeklyTable"></table></div>
-      <div class="section-title">Funil de Conversão</div>
-      <div class="chart-card" style="margin-bottom:16px;"><h3>Jornada do Público — Impressões até Lead</h3><div class="funnel" id="crm-funnel"></div></div>
-      <div class="section-title">O que está funcionando — Pontos Fortes</div>
-      <div class="analysis-grid" id="crm-strengths"></div>
-      <div class="section-title">O que precisa de melhoria</div>
-      <div class="analysis-grid" id="crm-weaknesses"></div>
-      <div class="section-title">Próximos Passos — Ações Recomendadas</div>
-      <div class="analysis-grid" id="crm-actions"></div>
-      <div class="section-title">Métricas Detalhadas</div>
-      <div class="chart-card" style="margin-bottom:16px;"><table class="platform-table" id="crm-metricsTable"></table></div>
-    </div>
+  </div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Tabela de Plataformas</h3><table class="platform-table" id="crm-platformTable"></table></div>
+  <div class="section-title">Distribuição de Orçamento por Criativo</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>% do Investimento por Criativo</h3><canvas id="crm-chartCreativePie"></canvas></div>
+    <div class="chart-card"><h3>Investimento vs. Leads por Criativo</h3><canvas id="crm-chartCreativeBar"></canvas></div>
+  </div>
+  <div class="section-title">Evolução Semanal</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e CPL por Semana</h3><canvas id="crm-chartWeekly"></canvas></div>
+  <div class="chart-card" style="margin-bottom:16px;"><table class="weekly-table" id="crm-weeklyTable"></table></div>
+  <div class="section-title">Funil de Conversão</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Jornada do Público — Impressões até Lead</h3><div class="funnel" id="crm-funnel"></div></div>
+  <div class="section-title">O que está funcionando — Pontos Fortes</div>
+  <div class="analysis-grid" id="crm-strengths"></div>
+  <div class="section-title">O que precisa de melhoria</div>
+  <div class="analysis-grid" id="crm-weaknesses"></div>
+  <div class="section-title">Próximos Passos — Ações Recomendadas</div>
+  <div class="analysis-grid" id="crm-actions"></div>
+  <div class="section-title">Métricas Detalhadas</div>
+  <div class="chart-card" style="margin-bottom:16px;"><table class="platform-table" id="crm-metricsTable"></table></div>
+</div>
+
 <!-- ============================================================ -->
 <!-- TAB: OCEANA GOLF -->
 <!-- ============================================================ -->
@@ -442,772 +423,6 @@ function mkChart(id, cfg) {
 
 // ─── RENDER OCEANA TAB ────────────────────────────────────────
 function renderOceana(d) {
-  const o = d.overview;
-  const banner = document.getElementById('oceana-banner');
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-paused">⏸ PAUSADA</span>`;
-
-  const kpiEl = document.getElementById('oceana-kpis');
-  if (kpiEl) kpiEl.innerHTML = [
-    { label: 'Impressões', val: fmtN(o.impressions), sub: 'Exibições do anúncio', c: 'c1' },
-    { label: 'Alcance', val: fmtN(o.reach), sub: 'Accounts Center accounts', c: 'c2' },
-    { label: 'Frequência', val: Number(o.frequency).toFixed(2), sub: 'Visualizações por conta', c: 'c3' },
-    { label: 'Leads', val: o.leads, sub: 'Cadastros gerados', c: 'c4' },
-    { label: 'Valor Usado', val: fmtR(o.spend), sub: 'Investimento total (BRL)', c: 'c5' },
-    { label: 'Custo por Lead', val: fmtR(o.cost_per_lead), sub: 'Por cadastro (BRL)', c: 'c6' },
-    { label: 'CPM', val: fmtR(o.cpm), sub: 'Custo por 1.000 impressões', c: 'c7' },
-    { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
-  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
-
-  mkChart('o-chartClicks', { type: 'bar', data: {
-    labels: ['Cliques (todos)', 'Link clicks'],
-    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ['#6c63ff','#00d4ff'], borderRadius: 6 }]
-  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-
-  mkChart('o-chartSpend', { type: 'doughnut', data: {
-    labels: ['Investido', 'Restante estimado'],
-    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ['#6c63ff','#1a1a35'], borderWidth: 0 }]
-  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
-
-  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
-    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
-    const gEl = document.getElementById('oceana-gender');
-    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const isM = (g.gender === 'Masculino' || g.gender === 'male');
-      const icon = isM ? '♂' : '♀';
-      const name = isM ? 'Masculino' : 'Feminino';
-      const color = isM ? '#4ade80' : '#ffd166';
-      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
-      return `<div class="gender-card" style="border-top: 3px solid ${color}">\n        <div class="gender-icon" style="color: ${color}">${icon}</div>\n        <div class="gender-name" style="color: ${color}">${name}</div>\n        <div class="gender-leads" style="color: ${color}">${g.leads}</div>\n        <div class="gender-leads-label">Leads</div>\n        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>\n        <div class="gender-cpl-label">Custo por lead</div>\n        <div class="gender-pct">${pct}% dos leads</div>\n      </div>`;
-    }).join('');
-
-    mkChart('o-chartGender', { type: 'bar', data: {
-      labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
-      datasets: [
-        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'rgba(74, 222, 128, 0.3)' : 'rgba(255, 209, 102, 0.3)'), borderColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Custo/Lead (R$)', color: '#ffd166', font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.age_breakdown && d.age_breakdown.length > 0) {
-    mkChart('o-chartAge', { type: 'bar', data: {
-      labels: d.age_breakdown.map(a => a.age),
-      datasets: [
-        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
-        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ff6b9d', pointBorderColor: '#ff6b9d', pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ff6b9d', font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
-    const plats = d.platform_breakdown;
-    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
-    const pColors = plats.map(p => p.platform === 'Facebook' ? '#1877F2' : '#E1306C');
-    mkChart('o-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    mkChart('o-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    const tEl = document.getElementById('o-platformTable');
-    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
-      plats.map(x => { const c = x.platform === 'Facebook' ? '#1877F2' : '#E1306C'; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join('') + `</tbody>`;
-  }
-
-  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
-    const crvs = d.creative_breakdown;
-    const crvColors = ['#6c63ff','#a855f7','#22c55e','#eab308','#ef4444'];
-    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
-    mkChart('o-chartCreativePie', { type: 'pie', data: {
-      labels: crvs.map(c => c.name),
-      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: '#1a1a3e' }]
-    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'right', labels: { color: '#ccc', font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace('.',',')} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
-    mkChart('o-chartCreativeBar', { type: 'bar', data: {
-      labels: crvs.map(c => c.name),
-      datasets: [
-        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y' },
-        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Investimento (R$)', color: '#8888aa' } },
-      y1: { ticks: { color: '#22c55e' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Leads', color: '#22c55e' } }
-    } } });
-  }
-
-  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
-    const wks = d.weekly_breakdown;
-    mkChart('o-chartWeekly', { type: 'bar', data: {
-      labels: wks.map(w => w.week),
-      datasets: [
-        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
-        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ffd166', pointBorderColor: '#ffd166', pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'CPL (R$)', color: '#ffd166', font: { size: 11 } } }
-    } } });
-    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
-    const wTEl = document.getElementById('o-weeklyTable');
-    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
-      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? 'best-week' : ''}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join('') + `</tbody>`;
-  }
-
-  const fEl = document.getElementById('o-funnel');
-  if (fEl) {
-    const steps = [
-      { num: fmtN(o.impressions), label: 'Impressões', pct: '' },
-      { num: fmtN(o.reach), label: 'Alcance', pct: ((o.reach/o.impressions)*100).toFixed(1) + '%' },
-      { num: o.clicks_all, label: 'Cliques', pct: fmtP(o.ctr_all) },
-      { num: o.link_clicks, label: 'Link clicks', pct: fmtP(o.link_click_ctr) },
-      { num: o.leads, label: 'Leads', pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + '%' : '—' }
-    ];
-    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
-  }
-
-  // Analysis
-  const sEl = document.getElementById('o-strengths');
-  const wEl = document.getElementById('o-weaknesses');
-  const aEl = document.getElementById('o-actions');
-  if (sEl) sEl.innerHTML = [
-    { icon: '✅', title: 'CPL Competitivo', text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: 'Positivo' },
-    { icon: '📊', title: 'CTR Acima da Média', text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: 'Eficiente' },
-    { icon: '🎯', title: '38 Leads Gerados', text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: 'Resultado' }
-  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join('');
-  if (wEl) wEl.innerHTML = [
-    { icon: '🔄', title: 'Frequência em Elevação', text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: 'Monitorar' },
-    { icon: '💸', title: 'CPM Elevado', text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: 'Otimizar' },
-    { icon: '📉', title: 'Campanha Pausada', text: 'A campanha está pausada. Avaliar retomada com novos criativos para manter o fluxo de leads.', badge: 'Atenção' }
-  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join('');
-  if (aEl) aEl.innerHTML = [
-    { icon: '💡', title: 'Reativar Campanha', text: 'Considerar reativar a campanha com foco em novos criativos e segmentações para explorar novas oportunidades de leads.', badge: 'Ação' },
-    { icon: '📈', title: 'Testar Novos Criativos', text: 'Desenvolver e testar novos criativos (vídeos, imagens) para combater a fadiga de anúncios e otimizar o CTR.', badge: 'Ação' },
-    { icon: '🔄', title: 'Otimizar Segmentação', text: 'Revisar e refinar a segmentação de público para alcançar usuários com maior probabilidade de conversão e reduzir o CPM.', badge: 'Ação' }
-  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join('');
-
-  const mEl = document.getElementById('o-metricsTable');
-  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>\n    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>\n    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>\n    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>\n    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${o.clicks_all}</strong></td><td>Número total de cliques no anúncio</td></tr>\n    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${o.link_clicks}</strong></td><td>Cliques que levaram ao destino do anúncio</td></tr>\n    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Taxa de cliques (todos os cliques / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Link Click CTR</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Taxa de cliques no link (link clicks / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Valor Usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Valor total gasto na campanha</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Clique (CPC)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (valor usado / cliques)</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Link Click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por clique no link (valor usado / link clicks)</td></tr>\n    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo por mil impressões</td></tr>\n    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Número de leads gerados</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Lead</td><td><strong>${fmtR(o.cost_per_lead)}</strong></td><td>Custo médio por lead (valor usado / leads)</td></tr>\n  </tbody>`;
-  }
-}
-
-function renderCasaRioMar(d) {
-  const o = d.overview;
-  const banner = document.getElementById('crm-banner');
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-active">● ATIVA</span>`;
-
-  const kpiEl = document.getElementById('crm-kpis');
-  if (kpiEl) kpiEl.innerHTML = [
-    { label: 'Impressões', val: fmtN(o.impressions), sub: 'Exibições do anúncio', c: 'c1' },
-    { label: 'Alcance', val: fmtN(o.reach), sub: 'Accounts Center accounts', c: 'c2' },
-    { label: 'Frequência', val: Number(o.frequency).toFixed(2), sub: 'Visualizações por conta', c: 'c3' },
-    { label: 'Leads', val: o.leads, sub: 'Cadastros gerados', c: 'c4' },
-    { label: 'Valor Usado', val: fmtR(o.spend), sub: 'Investimento total (BRL)', c: 'c5' },
-    { label: 'Custo por Lead', val: fmtR(o.cost_per_lead), sub: 'Por cadastro (BRL)', c: 'c6' },
-    { label: 'CPM', val: fmtR(o.cpm), sub: 'Custo por 1.000 impressões', c: 'c7' },
-    { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
-  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
-
-  mkChart('crm-chartClicks', { type: 'bar', data: {
-    labels: ['Cliques (todos)', 'Link clicks'],
-    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ['#6c63ff','#00d4ff'], borderRadius: 6 }]
-  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-
-  mkChart('crm-chartSpend', { type: 'doughnut', data: {
-    labels: ['Investido', 'Restante estimado'],
-    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ['#6c63ff','#1a1a35'], borderWidth: 0 }]
-  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
-
-  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
-    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
-    const gEl = document.getElementById('crm-gender');
-    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const isM = (g.gender === 'Masculino' || g.gender === 'male');
-      const icon = isM ? '♂' : '♀';
-      const name = isM ? 'Masculino' : 'Feminino';
-      const color = isM ? '#4ade80' : '#ffd166';
-      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
-      return `<div class="gender-card" style="border-top: 3px solid ${color}">\n        <div class="gender-icon" style="color: ${color}">${icon}</div>\n        <div class="gender-name" style="color: ${color}">${name}</div>\n        <div class="gender-leads" style="color: ${color}">${g.leads}</div>\n        <div class="gender-leads-label">Leads</div>\n        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>\n        <div class="gender-cpl-label">Custo por lead</div>\n        <div class="gender-pct">${pct}% dos leads</div>\n      </div>`;
-    }).join('');
-
-    mkChart('crm-chartGender', { type: 'bar', data: {
-      labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
-      datasets: [
-        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'rgba(74, 222, 128, 0.3)' : 'rgba(255, 209, 102, 0.3)'), borderColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Custo/Lead (R$)', color: '#ffd166', font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.age_breakdown && d.age_breakdown.length > 0) {
-    mkChart('crm-chartAge', { type: 'bar', data: {
-      labels: d.age_breakdown.map(a => a.age),
-      datasets: [
-        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
-        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ff6b9d', pointBorderColor: '#ff6b9d', pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ff6b9d', font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
-    const plats = d.platform_breakdown;
-    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
-    const pColors = plats.map(p => p.platform === 'Facebook' ? '#1877F2' : '#E1306C');
-    mkChart('crm-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    mkChart('crm-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    const tEl = document.getElementById('crm-platformTable');
-    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
-      plats.map(x => { const c = x.platform === 'Facebook' ? '#1877F2' : '#E1306C'; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join('') + `</tbody>`;
-  }
-
-  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
-    const crvs = d.creative_breakdown;
-    const crvColors = ['#6c63ff','#a855f7','#22c55e','#eab308','#ef4444'];
-    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
-    mkChart('crm-chartCreativePie', { type: 'pie', data: {
-      labels: crvs.map(c => c.name),
-      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: '#1a1a3e' }]
-    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'right', labels: { color: '#ccc', font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace('.',',')} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
-    mkChart('crm-chartCreativeBar', { type: 'bar', data: {
-      labels: crvs.map(c => c.name),
-      datasets: [
-        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y' },
-        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Investimento (R$)', color: '#8888aa' } },
-      y1: { ticks: { color: '#22c55e' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Leads', color: '#22c55e' } }
-    } } });
-  }
-
-  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
-    const wks = d.weekly_breakdown;
-    mkChart('crm-chartWeekly', { type: 'bar', data: {
-      labels: wks.map(w => w.week),
-      datasets: [
-        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
-        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ffd166', pointBorderColor: '#ffd166', pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'CPL (R$)', color: '#ffd166', font: { size: 11 } } }
-    } } });
-    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
-    const wTEl = document.getElementById('crm-weeklyTable');
-    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
-      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? 'best-week' : ''}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join('') + `</tbody>`;
-  }
-
-  const fEl = document.getElementById('crm-funnel');
-  if (fEl) {
-    const steps = [
-      { num: fmtN(o.impressions), label: 'Impressões', pct: '' },
-      { num: fmtN(o.reach), label: 'Alcance', pct: ((o.reach/o.impressions)*100).toFixed(1) + '%' },
-      { num: o.clicks_all, label: 'Cliques', pct: fmtP(o.ctr_all) },
-      { num: o.link_clicks, label: 'Link clicks', pct: fmtP(o.link_click_ctr) },
-      { num: o.leads, label: 'Leads', pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + '%' : '—' }
-    ];
-    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
-  }
-
-  // Analysis
-  const sEl = document.getElementById('crm-strengths');
-  const wEl = document.getElementById('crm-weaknesses');
-  const aEl = document.getElementById('crm-actions');
-  if (sEl) sEl.innerHTML = [
-    { icon: '✅', title: 'CPL Competitivo', text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: 'Positivo' },
-    { icon: '📊', title: 'CTR Acima da Média', text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: 'Eficiente' },
-    { icon: '🎯', title: `${o.leads} Leads Gerados`, text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: 'Resultado' }
-  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join('');
-  if (wEl) wEl.innerHTML = [
-    { icon: '🔄', title: 'Frequência em Elevação', text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: 'Monitorar' },
-    { icon: '💸', title: 'CPM Elevado', text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: 'Otimizar' },
-    { icon: '📉', title: 'Campanha em Fase Inicial', text: 'A campanha está em fase inicial. Aguardar mais dados para análises aprofundadas.', badge: 'Atenção' }
-  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join('');
-  if (aEl) aEl.innerHTML = [
-    { icon: '💡', title: 'Monitorar Desempenho', text: 'Acompanhar de perto as métricas nos próximos dias para identificar tendências e oportunidades de otimização.', badge: 'Ação' },
-    { icon: '📈', title: 'Otimizar Criativos', text: 'Testar diferentes variações de criativos (vídeos, imagens) para encontrar os que geram maior engajamento e leads.', badge: 'Ação' },
-    { icon: '🔄', title: 'Refinar Segmentação', text: 'Com base nos primeiros resultados, ajustar a segmentação de público para focar em perfis com maior probabilidade de conversão.', badge: 'Ação' }
-  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join('');
-
-  const mEl = document.getElementById('crm-metricsTable');
-  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>\n    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>\n    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>\n    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>\n    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${o.clicks_all}</strong></td><td>Número total de cliques no anúncio</td></tr>\n    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${o.link_clicks}</strong></td><td>Cliques que levaram ao destino do anúncio</td></tr>\n    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Taxa de cliques (todos os cliques / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Link Click CTR</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Taxa de cliques no link (link clicks / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Valor Usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Valor total gasto na campanha</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Clique (CPC)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (valor usado / cliques)</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Link Click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por clique no link (valor usado / link clicks)</td></tr>\n    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo por mil impressões</td></tr>\n    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Número de leads gerados</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Lead</td><td><strong>${fmtR(o.cost_per_lead)}</strong></td><td>Custo médio por lead (valor usado / leads)</td></tr>\n  </tbody>`;
-  }
-}
-
-function renderCasaRioMar(d) {
-  const o = d.overview;
-  const banner = document.getElementById('crm-banner');
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-active">● ATIVA</span>`;
-
-  const kpiEl = document.getElementById('crm-kpis');
-  if (kpiEl) kpiEl.innerHTML = [
-    { label: 'Impressões', val: fmtN(o.impressions), sub: 'Exibições do anúncio', c: 'c1' },
-    { label: 'Alcance', val: fmtN(o.reach), sub: 'Accounts Center accounts', c: 'c2' },
-    { label: 'Frequência', val: Number(o.frequency).toFixed(2), sub: 'Visualizações por conta', c: 'c3' },
-    { label: 'Leads', val: o.leads, sub: 'Cadastros gerados', c: 'c4' },
-    { label: 'Valor Usado', val: fmtR(o.spend), sub: 'Investimento total (BRL)', c: 'c5' },
-    { label: 'Custo por Lead', val: fmtR(o.cost_per_lead), sub: 'Por cadastro (BRL)', c: 'c6' },
-    { label: 'CPM', val: fmtR(o.cpm), sub: 'Custo por 1.000 impressões', c: 'c7' },
-    { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
-  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
-
-  mkChart('crm-chartClicks', { type: 'bar', data: {
-    labels: ['Cliques (todos)', 'Link clicks'],
-    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ['#6c63ff','#00d4ff'], borderRadius: 6 }]
-  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-
-  mkChart('crm-chartSpend', { type: 'doughnut', data: {
-    labels: ['Investido', 'Restante estimado'],
-    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ['#6c63ff','#1a1a35'], borderWidth: 0 }]
-  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
-
-  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
-    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
-    const gEl = document.getElementById('crm-gender');
-    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const isM = (g.gender === 'Masculino' || g.gender === 'male');
-      const icon = isM ? '♂' : '♀';
-      const name = isM ? 'Masculino' : 'Feminino';
-      const color = isM ? '#4ade80' : '#ffd166';
-      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
-      return `<div class="gender-card" style="border-top: 3px solid ${color}">\n        <div class="gender-icon" style="color: ${color}">${icon}</div>\n        <div class="gender-name" style="color: ${color}">${name}</div>\n        <div class="gender-leads" style="color: ${color}">${g.leads}</div>\n        <div class="gender-leads-label">Leads</div>\n        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>\n        <div class="gender-cpl-label">Custo por lead</div>\n        <div class="gender-pct">${pct}% dos leads</div>\n      </div>`;
-    }).join('');
-
-    mkChart('crm-chartGender', { type: 'bar', data: {
-      labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
-      datasets: [
-        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'rgba(74, 222, 128, 0.3)' : 'rgba(255, 209, 102, 0.3)'), borderColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Custo/Lead (R$)', color: '#ffd166', font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.age_breakdown && d.age_breakdown.length > 0) {
-    mkChart('crm-chartAge', { type: 'bar', data: {
-      labels: d.age_breakdown.map(a => a.age),
-      datasets: [
-        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
-        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ff6b9d', pointBorderColor: '#ff6b9d', pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ff6b9d', font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
-    const plats = d.platform_breakdown;
-    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
-    const pColors = plats.map(p => p.platform === 'Facebook' ? '#1877F2' : '#E1306C');
-    mkChart('crm-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    mkChart('crm-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    const tEl = document.getElementById('crm-platformTable');
-    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
-      plats.map(x => { const c = x.platform === 'Facebook' ? '#1877F2' : '#E1306C'; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join('') + `</tbody>`;
-  }
-
-  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
-    const crvs = d.creative_breakdown;
-    const crvColors = ['#6c63ff','#a855f7','#22c55e','#eab308','#ef4444'];
-    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
-    mkChart('crm-chartCreativePie', { type: 'pie', data: {
-      labels: crvs.map(c => c.name),
-      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: '#1a1a3e' }]
-    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'right', labels: { color: '#ccc', font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace('.',',')} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
-    mkChart('crm-chartCreativeBar', { type: 'bar', data: {
-      labels: crvs.map(c => c.name),
-      datasets: [
-        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y' },
-        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Investimento (R$)', color: '#8888aa' } },
-      y1: { ticks: { color: '#22c55e' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Leads', color: '#22c55e' } }
-    } } });
-  }
-
-  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
-    const wks = d.weekly_breakdown;
-    mkChart('crm-chartWeekly', { type: 'bar', data: {
-      labels: wks.map(w => w.week),
-      datasets: [
-        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: ['#6c63ff', '#4ade80', '#ffd166', '#ff6b9d', '#00d4ff', '#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
-        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ffd166', pointBorderColor: '#ffd166', pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'CPL (R$)', color: '#ffd166', font: { size: 11 } } }
-    } } });
-    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
-    const wTEl = document.getElementById('crm-weeklyTable');
-    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
-      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? 'best-week' : ''}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join('') + `</tbody>`;
-  }
-
-  const fEl = document.getElementById('crm-funnel');
-  if (fEl) {
-    const steps = [
-      { num: fmtN(o.impressions), label: 'Impressões', pct: '' },
-      { num: fmtN(o.reach), label: 'Alcance', pct: ((o.reach/o.impressions)*100).toFixed(1) + '%' },
-      { num: o.clicks_all, label: 'Cliques', pct: fmtP(o.ctr_all) },
-      { num: o.link_clicks, label: 'Link clicks', pct: fmtP(o.link_click_ctr) },
-      { num: o.leads, label: 'Leads', pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + '%' : '—' }
-    ];
-    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
-  }
-
-  // Analysis
-  const sEl = document.getElementById('crm-strengths');
-  const wEl = document.getElementById('crm-weaknesses');
-  const aEl = document.getElementById('crm-actions');
-  if (sEl) sEl.innerHTML = [
-    { icon: '✅', title: 'CPL Competitivo', text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: 'Positivo' },
-    { icon: '📊', title: 'CTR Acima da Média', text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: 'Eficiente' },
-    { icon: '🎯', title: `${o.leads} Leads Gerados`, text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: 'Resultado' }
-  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join('');
-  if (wEl) wEl.innerHTML = [
-    { icon: '🔄', title: 'Frequência em Elevação', text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: 'Monitorar' },
-    { icon: '💸', title: 'CPM Elevado', text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: 'Otimizar' },
-    { icon: '📉', title: 'Campanha em Fase Inicial', text: 'A campanha está em fase inicial. Aguardar mais dados para análises aprofundadas.', badge: 'Atenção' }
-  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join('');
-  if (aEl) aEl.innerHTML = [
-    { icon: '💡', title: 'Monitorar Desempenho', text: 'Acompanhar de perto as métricas nos próximos dias para identificar tendências e oportunidades de otimização.', badge: 'Ação' },
-    { icon: '📈', title: 'Otimizar Criativos', text: 'Testar diferentes variações de criativos (vídeos, imagens) para encontrar os que geram maior engajamento e leads.', badge: 'Ação' },
-    { icon: '🔄', title: 'Refinar Segmentação', text: 'Com base nos primeiros resultados, ajustar a segmentação de público para focar em perfis com maior probabilidade de conversão.', badge: 'Ação' }
-  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join('');
-
-  const mEl = document.getElementById('crm-metricsTable');
-  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>\n    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>\n    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>\n    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>\n    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${o.clicks_all}</strong></td><td>Número total de cliques no anúncio</td></tr>\n    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${o.link_clicks}</strong></td><td>Cliques que levaram ao destino do anúncio</td></tr>\n    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Taxa de cliques (todos os cliques / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Link Click CTR</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Taxa de cliques no link (link clicks / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Valor Usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Valor total gasto na campanha</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Clique (CPC)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (valor usado / cliques)</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Link Click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por clique no link (valor usado / link clicks)</td></tr>\n    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo por mil impressões</td></tr>\n    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Número de leads gerados</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Lead</td><td><strong>${fmtR(o.cost_per_lead)}</strong></td><td>Custo médio por lead (valor usado / leads)</td></tr>\n  </tbody>`;
-  }
-}
-  const o = d.overview;
-  const banner = document.getElementById("oceana-banner");
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-paused">⏸ PAUSADA</span>`;
-
-  const kpiEl = document.getElementById("oceana-kpis");
-  if (kpiEl) kpiEl.innerHTML = [
-    { label: "Impressões", val: fmtN(o.impressions), sub: "Exibições do anúncio", c: "c1" },
-    { label: "Alcance", val: fmtN(o.reach), sub: "Accounts Center accounts", c: "c2" },
-    { label: "Frequência", val: Number(o.frequency).toFixed(2), sub: "Visualizações por conta", c: "c3" },
-    { label: "Leads", val: o.leads, sub: "Cadastros gerados", c: "c4" },
-    { label: "Valor Usado", val: fmtR(o.spend), sub: "Investimento total (BRL)", c: "c5" },
-    { label: "Custo por Lead", val: fmtR(o.cost_per_lead), sub: "Por cadastro (BRL)", c: "c6" },
-    { label: "CPM", val: fmtR(o.cpm), sub: "Custo por 1.000 impressões", c: "c7" },
-    { label: "CTR (todos)", val: fmtP(o.ctr_all), sub: "Taxa de cliques", c: "c8" }
-  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join("");
-
-  mkChart("o-chartClicks", { type: "bar", data: {
-    labels: ["Cliques (todos)", "Link clicks"],
-    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ["#6c63ff","#00d4ff"], borderRadius: 6 }]
-  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-
-  mkChart("o-chartSpend", { type: "doughnut", data: {
-    labels: ["Investido", "Restante estimado"],
-    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ["#6c63ff","#1a1a35"], borderWidth: 0 }]
-  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: "#8888aa" } } } } });
-
-  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
-    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
-    const gEl = document.getElementById("oceana-gender");
-    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const isM = (g.gender === "Masculino" || g.gender === "male");
-      const icon = isM ? "♂" : "♀";
-      const name = isM ? "Masculino" : "Feminino";
-      const color = isM ? "#4ade80" : "#ffd166";
-      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
-      return `<div class="gender-card" style="border-top: 3px solid ${color}">\n        <div class="gender-icon" style="color: ${color}">${icon}</div>\n        <div class="gender-name" style="color: ${color}">${name}</div>\n        <div class="gender-leads" style="color: ${color}">${g.leads}</div>\n        <div class="gender-leads-label">Leads</div>\n        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>\n        <div class="gender-cpl-label">Custo por lead</div>\n        <div class="gender-pct">${pct}% dos leads</div>\n      </div>`;
-    }).join("");
-
-    mkChart("o-chartGender", { type: "bar", data: {
-      labels: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "Masculino" : "Feminino"),
-      datasets: [
-        { label: "Leads", data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "#4ade80" : "#ffd166"), borderRadius: 6, yAxisID: "y" },
-        { label: "CPL (R$)", data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "rgba(74, 222, 128, 0.3)" : "rgba(255, 209, 102, 0.3)"), borderColor: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "#4ade80" : "#ffd166"), borderWidth: 1, borderRadius: 6, yAxisID: "y1" }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Leads", color: "#8888aa", font: { size: 11 } } },
-      y1: { ticks: { color: "#ffd166" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "Custo/Lead (R$)", color: "#ffd166", font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.age_breakdown && d.age_breakdown.length > 0) {
-    mkChart("o-chartAge", { type: "bar", data: {
-      labels: d.age_breakdown.map(a => a.age),
-      datasets: [
-        { label: "Leads", data: d.age_breakdown.map(a => a.leads), backgroundColor: ["#6c63ff", "#4ade80", "#ffd166", "#ff6b9d", "#00d4ff", "#a855f7"], borderRadius: 6, yAxisID: "y", order: 2 },
-        { label: "Investimento (R$)", data: d.age_breakdown.map(a => a.spend), type: "line", borderColor: "#ff6b9d", backgroundColor: "rgba(255,107,157,0.1)", tension: 0.4, yAxisID: "y1", fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: "#ff6b9d", pointBorderColor: "#ff6b9d", pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Leads", color: "#8888aa", font: { size: 11 } } },
-      y1: { ticks: { color: "#ff6b9d" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "Investimento (R$)", color: "#ff6b9d", font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
-    const plats = d.platform_breakdown;
-    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
-    const pColors = plats.map(p => p.platform === "Facebook" ? "#1877F2" : "#E1306C");
-    mkChart("o-chartPlatformSpend", { type: "bar", data: { labels: pLabels, datasets: [{ label: "Investimento (R$)", data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    mkChart("o-chartPlatformLeads", { type: "bar", data: { labels: pLabels, datasets: [{ label: "Leads", data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    const tEl = document.getElementById("o-platformTable");
-    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
-      plats.map(x => { const c = x.platform === "Facebook" ? "#1877F2" : "#E1306C"; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join("") + `</tbody>`;
-  }
-
-  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
-    const crvs = d.creative_breakdown;
-    const crvColors = ["#6c63ff","#a855f7","#22c55e","#eab308","#ef4444"];
-    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
-    mkChart("o-chartCreativePie", { type: "pie", data: {
-      labels: crvs.map(c => c.name),
-      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: "#1a1a3e" }]
-    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: "right", labels: { color: "#ccc", font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace(".",",")} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
-    mkChart("o-chartCreativeBar", { type: "bar", data: {
-      labels: crvs.map(c => c.name),
-      datasets: [
-        { label: "Investimento (R$)", data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: "y" },
-        { label: "Leads", data: crvs.map(c => c.leads), type: "line", borderColor: "#22c55e", backgroundColor: "rgba(34,197,94,0.15)", tension: 0.4, yAxisID: "y1", fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: "#22c55e", pointBorderColor: "#22c55e", pointBorderWidth: 2 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Investimento (R$)", color: "#8888aa" } },
-      y1: { ticks: { color: "#22c55e" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "Leads", color: "#22c55e" } }
-    } } });
-  }
-
-  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
-    const wks = d.weekly_breakdown;
-    mkChart("o-chartWeekly", { type: "bar", data: {
-      labels: wks.map(w => w.week),
-      datasets: [
-        { label: "Leads", data: wks.map(w => w.leads), backgroundColor: ["#6c63ff", "#4ade80", "#ffd166", "#ff6b9d", "#00d4ff", "#a855f7"], borderRadius: 6, yAxisID: "y", order: 2 },
-        { label: "CPL (R$)", data: wks.map(w => w.cost_per_lead), type: "line", borderColor: "#ffd166", backgroundColor: "rgba(255,209,102,0.1)", tension: 0.4, yAxisID: "y1", fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: "#ffd166", pointBorderColor: "#ffd166", pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Leads", color: "#8888aa", font: { size: 11 } } },
-      y1: { ticks: { color: "#ffd166" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "CPL (R$)", color: "#ffd166", font: { size: 11 } } }
-    } } });
-    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
-    const wTEl = document.getElementById("o-weeklyTable");
-    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
-      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? "best-week" : ""}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join("") + `</tbody>`;
-  }
-
-  const fEl = document.getElementById("o-funnel");
-  if (fEl) {
-    const steps = [
-      { num: fmtN(o.impressions), label: "Impressões", pct: "" },
-      { num: fmtN(o.reach), label: "Alcance", pct: ((o.reach/o.impressions)*100).toFixed(1) + "%" },
-      { num: o.clicks_all, label: "Cliques", pct: fmtP(o.ctr_all) },
-      { num: o.link_clicks, label: "Link clicks", pct: fmtP(o.link_click_ctr) },
-      { num: o.leads, label: "Leads", pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + "%" : "—" }
-    ];
-    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? "<div class=\"funnel-arrow\">›</div>" : ""}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ""}</div>`).join("");
-  }
-
-  // Analysis
-  const sEl = document.getElementById("o-strengths");
-  const wEl = document.getElementById("o-weaknesses");
-  const aEl = document.getElementById("o-actions");
-  if (sEl) sEl.innerHTML = [
-    { icon: "✅", title: "CPL Competitivo", text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: "Positivo" },
-    { icon: "📊", title: "CTR Acima da Média", text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: "Eficiente" },
-    { icon: "🎯", title: "38 Leads Gerados", text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: "Resultado" }
-  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join("");
-  if (wEl) wEl.innerHTML = [
-    { icon: "🔄", title: "Frequência em Elevação", text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: "Monitorar" },
-    { icon: "💸", title: "CPM Elevado", text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: "Otimizar" },
-    { icon: "📉", title: "Campanha Pausada", text: "A campanha está pausada. Avaliar retomada com novos criativos para manter o fluxo de leads.", badge: "Atenção" }
-  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join("");
-  if (aEl) aEl.innerHTML = [
-    { icon: "💡", title: "Reativar Campanha", text: "Considerar reativar a campanha com foco em novos criativos e segmentações para explorar novas oportunidades de leads.", badge: "Ação" },
-    { icon: "📈", title: "Testar Novos Criativos", text: "Desenvolver e testar novos criativos (vídeos, imagens) para combater a fadiga de anúncios e otimizar o CTR.", badge: "Ação" },
-    { icon: "🔄", title: "Otimizar Segmentação", text: "Revisar e refinar a segmentação de público para alcançar usuários com maior probabilidade de conversão e reduzir o CPM.", badge: "Ação" }
-  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join("");
-
-  const mEl = document.getElementById("o-metricsTable");
-  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>\n    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>\n    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>\n    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>\n    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${o.clicks_all}</strong></td><td>Número total de cliques no anúncio</td></tr>\n    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${o.link_clicks}</strong></td><td>Cliques que levaram ao destino do anúncio</td></tr>\n    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Taxa de cliques (todos os cliques / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Link Click CTR</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Taxa de cliques no link (link clicks / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Valor Usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Valor total gasto na campanha</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Clique (CPC)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (valor usado / cliques)</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Link Click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por clique no link (valor usado / link clicks)</td></tr>\n    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo por mil impressões</td></tr>\n    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Número de leads gerados</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Lead</td><td><strong>${fmtR(o.cost_per_lead)}</strong></td><td>Custo médio por lead (valor usado / leads)</td></tr>\n  </tbody>`;
-  }
-}
-
-function renderCasaRioMar(d) {
-  const o = d.overview;
-  const banner = document.getElementById("crm-banner");
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-active">● ATIVA</span>`;
-
-  const kpiEl = document.getElementById("crm-kpis");
-  if (kpiEl) kpiEl.innerHTML = [
-    { label: "Impressões", val: fmtN(o.impressions), sub: "Exibições do anúncio", c: "c1" },
-    { label: "Alcance", val: fmtN(o.reach), sub: "Accounts Center accounts", c: "c2" },
-    { label: "Frequência", val: Number(o.frequency).toFixed(2), sub: "Visualizações por conta", c: "c3" },
-    { label: "Leads", val: o.leads, sub: "Cadastros gerados", c: "c4" },
-    { label: "Valor Usado", val: fmtR(o.spend), sub: "Investimento total (BRL)", c: "c5" },
-    { label: "Custo por Lead", val: fmtR(o.cost_per_lead), sub: "Por cadastro (BRL)", c: "c6" },
-    { label: "CPM", val: fmtR(o.cpm), sub: "Custo por 1.000 impressões", c: "c7" },
-    { label: "CTR (todos)", val: fmtP(o.ctr_all), sub: "Taxa de cliques", c: "c8" }
-  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join("");
-
-  mkChart("crm-chartClicks", { type: "bar", data: {
-    labels: ["Cliques (todos)", "Link clicks"],
-    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ["#6c63ff","#00d4ff"], borderRadius: 6 }]
-  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-
-  mkChart("crm-chartSpend", { type: "doughnut", data: {
-    labels: ["Investido", "Restante estimado"],
-    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ["#6c63ff","#1a1a35"], borderWidth: 0 }]
-  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: "#8888aa" } } } } });
-
-  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
-    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
-    const gEl = document.getElementById("crm-gender");
-    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const isM = (g.gender === "Masculino" || g.gender === "male");
-      const icon = isM ? "♂" : "♀";
-      const name = isM ? "Masculino" : "Feminino";
-      const color = isM ? "#4ade80" : "#ffd166";
-      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
-      return `<div class="gender-card" style="border-top: 3px solid ${color}">\n        <div class="gender-icon" style="color: ${color}">${icon}</div>\n        <div class="gender-name" style="color: ${color}">${name}</div>\n        <div class="gender-leads" style="color: ${color}">${g.leads}</div>\n        <div class="gender-leads-label">Leads</div>\n        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>\n        <div class="gender-cpl-label">Custo por lead</div>\n        <div class="gender-pct">${pct}% dos leads</div>\n      </div>`;
-    }).join("");
-
-    mkChart("crm-chartGender", { type: "bar", data: {
-      labels: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "Masculino" : "Feminino"),
-      datasets: [
-        { label: "Leads", data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "#4ade80" : "#ffd166"), borderRadius: 6, yAxisID: "y" },
-        { label: "CPL (R$)", data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "rgba(74, 222, 128, 0.3)" : "rgba(255, 209, 102, 0.3)"), borderColor: d.gender_breakdown.map(g => (g.gender === "Masculino" || g.gender === "male") ? "#4ade80" : "#ffd166"), borderWidth: 1, borderRadius: 6, yAxisID: "y1" }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Leads", color: "#8888aa", font: { size: 11 } } },
-      y1: { ticks: { color: "#ffd166" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "Custo/Lead (R$)", color: "#ffd166", font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.age_breakdown && d.age_breakdown.length > 0) {
-    mkChart("crm-chartAge", { type: "bar", data: {
-      labels: d.age_breakdown.map(a => a.age),
-      datasets: [
-        { label: "Leads", data: d.age_breakdown.map(a => a.leads), backgroundColor: ["#6c63ff", "#4ade80", "#ffd166", "#ff6b9d", "#00d4ff", "#a855f7"], borderRadius: 6, yAxisID: "y", order: 2 },
-        { label: "Investimento (R$)", data: d.age_breakdown.map(a => a.spend), type: "line", borderColor: "#ff6b9d", backgroundColor: "rgba(255,107,157,0.1)", tension: 0.4, yAxisID: "y1", fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: "#ff6b9d", pointBorderColor: "#ff6b9d", pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Leads", color: "#8888aa", font: { size: 11 } } },
-      y1: { ticks: { color: "#ff6b9d" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "Investimento (R$)", color: "#ff6b9d", font: { size: 11 } } }
-    } } });
-  }
-
-  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
-    const plats = d.platform_breakdown;
-    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
-    const pColors = plats.map(p => p.platform === "Facebook" ? "#1877F2" : "#E1306C");
-    mkChart("crm-chartPlatformSpend", { type: "bar", data: { labels: pLabels, datasets: [{ label: "Investimento (R$)", data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    mkChart("crm-chartPlatformLeads", { type: "bar", data: { labels: pLabels, datasets: [{ label: "Leads", data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-    const tEl = document.getElementById("crm-platformTable");
-    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
-      plats.map(x => { const c = x.platform === "Facebook" ? "#1877F2" : "#E1306C"; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join("") + `</tbody>`;
-  }
-
-  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
-    const crvs = d.creative_breakdown;
-    const crvColors = ["#6c63ff","#a855f7","#22c55e","#eab308","#ef4444"];
-    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
-    mkChart("crm-chartCreativePie", { type: "pie", data: {
-      labels: crvs.map(c => c.name),
-      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: "#1a1a3e" }]
-    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: "right", labels: { color: "#ccc", font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace(".",",")} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
-    mkChart("crm-chartCreativeBar", { type: "bar", data: {
-      labels: crvs.map(c => c.name),
-      datasets: [
-        { label: "Investimento (R$)", data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: "y" },
-        { label: "Leads", data: crvs.map(c => c.leads), type: "line", borderColor: "#22c55e", backgroundColor: "rgba(34,197,94,0.15)", tension: 0.4, yAxisID: "y1", fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: "#22c55e", pointBorderColor: "#22c55e", pointBorderWidth: 2 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Investimento (R$)", color: "#8888aa" } },
-      y1: { ticks: { color: "#22c55e" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "Leads", color: "#22c55e" } }
-    } } });
-  }
-
-  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
-    const wks = d.weekly_breakdown;
-    mkChart("crm-chartWeekly", { type: "bar", data: {
-      labels: wks.map(w => w.week),
-      datasets: [
-        { label: "Leads", data: wks.map(w => w.leads), backgroundColor: ["#6c63ff", "#4ade80", "#ffd166", "#ff6b9d", "#00d4ff", "#a855f7"], borderRadius: 6, yAxisID: "y", order: 2 },
-        { label: "CPL (R$)", data: wks.map(w => w.cost_per_lead), type: "line", borderColor: "#ffd166", backgroundColor: "rgba(255,209,102,0.1)", tension: 0.4, yAxisID: "y1", fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: "#ffd166", pointBorderColor: "#ffd166", pointBorderWidth: 2, order: 1 }
-      ]
-    }, options: { ...CHART_DEFAULTS, scales: {
-      x: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" } },
-      y: { ticks: { color: "#8888aa" }, grid: { color: "rgba(42,42,85,0.5)" }, position: "left", title: { display: true, text: "Leads", color: "#8888aa", font: { size: 11 } } },
-      y1: { ticks: { color: "#ffd166" }, grid: { drawOnChartArea: false }, position: "right", title: { display: true, text: "CPL (R$)", color: "#ffd166", font: { size: 11 } } }
-    } } });
-    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
-    const wTEl = document.getElementById("crm-weeklyTable");
-    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
-      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? "best-week" : ""}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join("") + `</tbody>`;
-  }
-
-  const fEl = document.getElementById("crm-funnel");
-  if (fEl) {
-    const steps = [
-      { num: fmtN(o.impressions), label: "Impressões", pct: "" },
-      { num: fmtN(o.reach), label: "Alcance", pct: ((o.reach/o.impressions)*100).toFixed(1) + "%" },
-      { num: o.clicks_all, label: "Cliques", pct: fmtP(o.ctr_all) },
-      { num: o.link_clicks, label: "Link clicks", pct: fmtP(o.link_click_ctr) },
-      { num: o.leads, label: "Leads", pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + "%" : "—" }
-    ];
-    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? "<div class=\"funnel-arrow\">›</div>" : ""}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ""}</div>`).join("");
-  }
-
-  // Analysis
-  const sEl = document.getElementById("crm-strengths");
-  const wEl = document.getElementById("crm-weaknesses");
-  const aEl = document.getElementById("crm-actions");
-  if (sEl) sEl.innerHTML = [
-    { icon: "✅", title: "CPL Competitivo", text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: "Positivo" },
-    { icon: "📊", title: "CTR Acima da Média", text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: "Eficiente" },
-    { icon: "🎯", title: "${o.leads} Leads Gerados", text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: "Resultado" }
-  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join("");
-  if (wEl) wEl.innerHTML = [
-    { icon: "🔄", title: "Frequência em Elevação", text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: "Monitorar" },
-    { icon: "💸", title: "CPM Elevado", text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: "Otimizar" },
-    { icon: "📉", title: "Campanha em Fase Inicial", text: "A campanha está em fase inicial. Aguardar mais dados para análises aprofundadas.", badge: "Atenção" }
-  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join("");
-  if (aEl) aEl.innerHTML = [
-    { icon: "💡", title: "Monitorar Desempenho", text: "Acompanhar de perto as métricas nos próximos dias para identificar tendências e oportunidades de otimização.", badge: "Ação" },
-    { icon: "📈", title: "Otimizar Criativos", text: "Testar diferentes variações de criativos (vídeos, imagens, textos) para encontrar os que geram maior engajamento e leads.", badge: "Ação" },
-    { icon: "🔄", title: "Refinar Segmentação", text: "Com base nos primeiros resultados, ajustar a segmentação de público para focar em perfis com maior probabilidade de conversão.", badge: "Ação" }
-  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join("");
-
-  const mEl = document.getElementById("crm-metricsTable");
-  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>\n    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>\n    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>\n    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>\n    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${o.clicks_all}</strong></td><td>Número total de cliques no anúncio</td></tr>\n    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${o.link_clicks}</strong></td><td>Cliques que levaram ao destino do anúncio</td></tr>\n    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Taxa de cliques (todos os cliques / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Link Click CTR</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Taxa de cliques no link (link clicks / impressões)</td></tr>\n    <tr><td style="color:#7c7cff">Valor Usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Valor total gasto na campanha</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Clique (CPC)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (valor usado / cliques)</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Link Click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por clique no link (valor usado / link clicks)</td></tr>\n    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo por mil impressões</td></tr>\n    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Número de leads gerados</td></tr>\n    <tr><td style="color:#7c7cff">Custo por Lead</td><td><strong>${fmtR(o.cost_per_lead)}</strong></td><td>Custo médio por lead (valor usado / leads)</td></tr>\n  </tbody>`;
-  }
-}
   const o = d.overview;
   const banner = document.getElementById('oceana-banner');
   if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-paused">⏸ PAUSADA</span>`;
@@ -1386,7 +601,7 @@ function renderCasaRioMar(d) {
 function renderCasaRioMar(d) {
   const o = d.overview;
   const banner = document.getElementById('crm-banner');
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-new">● NOVA</span>`;
+  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge status-active">● ATIVA</span>`;
 
   const kpiEl = document.getElementById('crm-kpis');
   if (kpiEl) kpiEl.innerHTML = [
@@ -1400,18 +615,112 @@ function renderCasaRioMar(d) {
     { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
   ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
 
-  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
-    mkChart('crm-chartWeekly', { type: 'bar', data: {
-      labels: d.weekly_breakdown.map(w => w.week),
+  mkChart('crm-chartClicks', { type: 'bar', data: {
+    labels: ['Cliques (todos)', 'Link clicks'],
+    datasets: [{ data: [o.clicks_all, o.link_clicks], backgroundColor: ['#6c63ff','#00d4ff'], borderRadius: 6 }]
+  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+
+  mkChart('crm-chartSpend', { type: 'doughnut', data: {
+    labels: ['Investido', 'Restante estimado'],
+    datasets: [{ data: [o.spend, Math.max(0, 2000 - o.spend)], backgroundColor: ['#6c63ff','#1a1a35'], borderWidth: 0 }]
+  }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
+
+  if (d.gender_breakdown && d.gender_breakdown.length > 0) {
+    const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
+    const gEl = document.getElementById('crm-gender');
+    if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
+      const isM = (g.gender === 'Masculino' || g.gender === 'male');
+      const icon = isM ? '♂' : '♀';
+      const name = isM ? 'Masculino' : 'Feminino';
+      const color = isM ? '#4ade80' : '#ffd166';
+      const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
+      return `<div class="gender-card" style="border-top: 3px solid ${color}">
+        <div class="gender-icon" style="color: ${color}">${icon}</div>
+        <div class="gender-name" style="color: ${color}">${name}</div>
+        <div class="gender-leads" style="color: ${color}">${g.leads}</div>
+        <div class="gender-leads-label">Leads</div>
+        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>
+        <div class="gender-cpl-label">Custo por lead</div>
+        <div class="gender-pct">${pct}% dos leads</div>
+      </div>`;
+    }).join('');
+
+    mkChart('crm-chartGender', { type: 'bar', data: {
+      labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
       datasets: [
-        { label: 'Leads', data: d.weekly_breakdown.map(w => w.leads), backgroundColor: '#00d4ff', borderRadius: 6, yAxisID: 'y' },
-        { label: 'Investimento (R$)', data: d.weekly_breakdown.map(w => w.spend), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false }
+        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderRadius: 6, yAxisID: 'y' },
+        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'rgba(74,222,128,0.3)' : 'rgba(255,209,102,0.3)'), borderColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa' } },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ffd166' } }
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Custo/Lead (R$)', color: '#ffd166', font: { size: 11 } } }
     } } });
+  }
+
+  if (d.age_breakdown && d.age_breakdown.length > 0) {
+    mkChart('crm-chartAge', { type: 'bar', data: {
+      labels: d.age_breakdown.map(a => a.age),
+      datasets: [
+        { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: ['#6c63ff','#4ade80','#ffd166','#ff6b9d','#00d4ff','#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
+        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ff6b9d', pointBorderColor: '#ff6b9d', pointBorderWidth: 2, order: 1 }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
+      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ff6b9d', font: { size: 11 } } }
+    } } });
+  }
+
+  if (d.platform_breakdown && d.platform_breakdown.length > 0) {
+    const plats = d.platform_breakdown;
+    const pLabels = plats.map(p => p.platform.charAt(0).toUpperCase() + p.platform.slice(1));
+    const pColors = plats.map(p => p.platform === 'Facebook' ? '#1877F2' : '#E1306C');
+    mkChart('crm-chartPlatformSpend', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Investimento (R$)', data: plats.map(x => x.spend), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+    mkChart('crm-chartPlatformLeads', { type: 'bar', data: { labels: pLabels, datasets: [{ label: 'Leads', data: plats.map(x => x.leads), backgroundColor: pColors, borderRadius: 6 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+    const tEl = document.getElementById('crm-platformTable');
+    if (tEl) tEl.innerHTML = `<thead><tr><th>Plataforma</th><th>Impressões</th><th>Leads</th><th>Investimento</th><th>CPL</th></tr></thead><tbody>` +
+      plats.map(x => { const c = x.platform === 'Facebook' ? '#1877F2' : '#E1306C'; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join('') + `</tbody>`;
+  }
+
+  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
+    const crvs = d.creative_breakdown;
+    const crvColors = ['#6c63ff','#a855f7','#22c55e','#eab308','#ef4444'];
+    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
+    mkChart('crm-chartCreativePie', { type: 'pie', data: {
+      labels: crvs.map(c => c.name),
+      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: '#1a1a3e' }]
+    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'right', labels: { color: '#ccc', font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace('.',',')} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
+    mkChart('crm-chartCreativeBar', { type: 'bar', data: {
+      labels: crvs.map(c => c.name),
+      datasets: [
+        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y' },
+        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Investimento (R$)', color: '#8888aa' } },
+      y1: { ticks: { color: '#22c55e' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Leads', color: '#22c55e' } }
+    } } });
+  }
+
+  if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
+    const wks = d.weekly_breakdown;
+    mkChart('crm-chartWeekly', { type: 'bar', data: {
+      labels: wks.map(w => w.week),
+      datasets: [
+        { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: ['#6c63ff','#4ade80','#ffd166','#ff6b9d','#00d4ff','#a855f7'], borderRadius: 6, yAxisID: 'y', order: 2 },
+        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ffd166', pointBorderColor: '#ffd166', pointBorderWidth: 2, order: 1 }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'CPL (R$)', color: '#ffd166', font: { size: 11 } } }
+    } } });
+    const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
+    const wTEl = document.getElementById('crm-weeklyTable');
+    if (wTEl) wTEl.innerHTML = `<thead><tr><th>Semana</th><th>Leads</th><th>Investimento</th><th>CPL</th><th>Impressões</th></tr></thead><tbody>` +
+      wks.map(w => `<tr class="${w.cost_per_lead === minCPL ? 'best-week' : ''}"><td>${w.week}</td><td>${w.leads}</td><td>${fmtR(w.spend)}</td><td>${fmtR(w.cost_per_lead)}</td><td>${fmtN(w.impressions)}</td></tr>`).join('') + `</tbody>`;
   }
 
   const fEl = document.getElementById('crm-funnel');
@@ -1421,10 +730,46 @@ function renderCasaRioMar(d) {
       { num: fmtN(o.reach), label: 'Alcance', pct: ((o.reach/o.impressions)*100).toFixed(1) + '%' },
       { num: o.clicks_all, label: 'Cliques', pct: fmtP(o.ctr_all) },
       { num: o.link_clicks, label: 'Link clicks', pct: fmtP(o.link_click_ctr) },
-      { num: o.leads, label: 'Leads', pct: '—' }
+      { num: o.leads, label: 'Leads', pct: o.link_clicks > 0 ? ((o.leads/o.link_clicks)*100).toFixed(1) + '%' : '—' }
     ];
     fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
   }
+
+  const sEl = document.getElementById('crm-strengths');
+  const wEl = document.getElementById('crm-weaknesses');
+  const aEl = document.getElementById('crm-actions');
+  if (sEl) sEl.innerHTML = [
+    { icon: '✅', title: 'CPL Competitivo', text: `Custo por lead de ${fmtR(o.cost_per_lead)} para imóvel de alto padrão — resultado dentro do esperado para o segmento.`, badge: 'Positivo' },
+    { icon: '📊', title: 'CTR Acima da Média', text: `CTR de ${fmtP(o.ctr_all)} demonstra que o criativo está gerando interesse real no público-alvo.`, badge: 'Eficiente' },
+    { icon: '🎯', title: `${o.leads} Leads Gerados`, text: `Volume sólido de cadastros para uma campanha de imóvel de alto padrão no período analisado.`, badge: 'Resultado' }
+  ].map(s => `<div class="analysis-card positive"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-green">${s.badge}</span></div>`).join('');
+  if (wEl) wEl.innerHTML = [
+    { icon: '🔄', title: 'Frequência em Elevação', text: `Frequência de ${Number(o.frequency).toFixed(2)} indica que o público está vendo o anúncio mais de 2 vezes. Monitorar para evitar saturação.`, badge: 'Monitorar' },
+    { icon: '💸', title: 'CPM Elevado', text: `CPM de ${fmtR(o.cpm)} indica audiência competitiva. Considerar ajuste de horários ou públicos para reduzir custo de exibição.`, badge: 'Otimizar' },
+    { icon: '📈', title: 'Campanha em Fase Inicial', text: 'A campanha está em fase inicial. Aguardar mais dados para análises aprofundadas.', badge: 'Atenção' }
+  ].map(s => `<div class="analysis-card warning"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-yellow">${s.badge}</span></div>`).join('');
+  if (aEl) aEl.innerHTML = [
+    { icon: '💡', title: 'Monitorar Desempenho', text: 'Acompanhar de perto as métricas nos próximos dias para identificar tendências e oportunidades de otimização.', badge: 'Ação' },
+    { icon: '📈', title: 'Otimizar Criativos', text: 'Testar diferentes variações de criativos (vídeos, imagens) para encontrar os que geram maior engajamento e leads.', badge: 'Ação' },
+    { icon: '🔄', title: 'Refinar Segmentação', text: 'Com base nos primeiros resultados, ajustar a segmentação de público para focar em perfis com maior probabilidade de conversão.', badge: 'Ação' }
+  ].map(s => `<div class="analysis-card action"><div class="analysis-icon">${s.icon}</div><div class="analysis-title">${s.title}</div><div class="analysis-text">${s.text}</div><span class="analysis-badge badge-blue">${s.badge}</span></div>`).join('');
+
+  const mEl = document.getElementById('crm-metricsTable');
+  if (mEl) mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>
+    <tr><td style="color:#7c7cff">Impressões</td><td><strong>${fmtN(o.impressions)}</strong></td><td>Número de vezes que o anúncio foi exibido na tela</td></tr>
+    <tr><td style="color:#7c7cff">Alcance</td><td><strong>${fmtN(o.reach)}</strong></td><td>Accounts Center accounts que viram o anúncio pelo menos uma vez</td></tr>
+    <tr><td style="color:#7c7cff">Frequência</td><td><strong>${Number(o.frequency).toFixed(2)}</strong></td><td>Média de visualizações por Accounts Center account</td></tr>
+    <tr><td style="color:#7c7cff">Cliques (todos)</td><td><strong>${fmtN(o.clicks_all)}</strong></td><td>Cliques, toques ou deslizamentos no anúncio</td></tr>
+    <tr><td style="color:#7c7cff">Link clicks</td><td><strong>${fmtN(o.link_clicks)}</strong></td><td>Cliques em links que levaram a destinos do anunciante</td></tr>
+    <tr><td style="color:#7c7cff">CTR (todos)</td><td><strong>${fmtP(o.ctr_all)}</strong></td><td>Porcentagem de impressões com clique (todos)</td></tr>
+    <tr><td style="color:#7c7cff">CTR Link clicks</td><td><strong>${fmtP(o.link_click_ctr)}</strong></td><td>Porcentagem de impressões com link click</td></tr>
+    <tr><td style="color:#7c7cff">Valor usado</td><td><strong>${fmtR(o.spend)}</strong></td><td>Investimento total estimado no período</td></tr>
+    <tr><td style="color:#7c7cff">CPM</td><td><strong>${fmtR(o.cpm)}</strong></td><td>Custo médio por 1.000 impressões</td></tr>
+    <tr><td style="color:#7c7cff">CPC (todos)</td><td><strong>${fmtR(o.cpc_all)}</strong></td><td>Custo médio por clique (todos)</td></tr>
+    <tr><td style="color:#7c7cff">Custo por link click</td><td><strong>${fmtR(o.cost_per_link_click)}</strong></td><td>Custo médio por link click</td></tr>
+    <tr><td style="color:#7c7cff">Leads</td><td><strong>${o.leads}</strong></td><td>Cadastros gerados pela campanha</td></tr>
+    <tr><td style="color:#7c7cff">Custo por lead</td><td><strong>${o.leads > 0 ? fmtR(o.cost_per_lead) : '—'}</strong></td><td>Custo médio por lead gerado</td></tr>
+  </tbody>`;
 }
 
 // ─── RENDER OVERVIEW ─────────────────────────────────────────
@@ -1627,7 +972,7 @@ async function init() {
       fetch('data/leads.json').then(r => r.json())
     ]);
     document.getElementById('lastUpdate').textContent = 'Última atualização: ' + new Date().toLocaleDateString('pt-BR');
-   renderCasaRioMar(crm);
+    renderCasaRioMar(crm);
     renderOceana(oceana);
     renderOverview(crm, oceana);
     const leads = leadsData.leads || leadsData;
