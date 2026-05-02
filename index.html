@@ -695,8 +695,8 @@ function renderCasaRioMar(d) {
     mkChart('crm-chartCreativeBar', { type: 'bar', data: {
       labels: crvs.map(c => c.name),
       datasets: [
-        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y' },
-        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
+        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: crvColors, borderRadius: 6, yAxisID: 'y', order: 2 },
+        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2, order: 1 }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
