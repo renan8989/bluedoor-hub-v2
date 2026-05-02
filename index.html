@@ -452,8 +452,8 @@ function renderOceana(d) {
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left' },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right' }
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Custo/Lead (R$)', color: '#ffd166', font: { size: 11 } } }
     } } });
   }
 
@@ -466,8 +466,8 @@ function renderOceana(d) {
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left' },
-      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right' }
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
+      y1: { ticks: { color: '#ff6b9d' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Investimento (R$)', color: '#ff6b9d', font: { size: 11 } } }
     } } });
   }
 
@@ -513,8 +513,8 @@ function renderOceana(d) {
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
-      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left' },
-      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right' }
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Leads', color: '#8888aa', font: { size: 11 } } },
+      y1: { ticks: { color: '#ffd166' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'CPL (R$)', color: '#ffd166', font: { size: 11 } } }
     } } });
     const minCPL = Math.min(...wks.map(w => w.cost_per_lead));
     const wTEl = document.getElementById('o-weeklyTable');
