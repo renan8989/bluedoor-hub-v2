@@ -438,17 +438,27 @@ function renderOceana(d) {
     const total = d.gender_breakdown.reduce((s, g) => s + g.leads, 0);
     const gEl = document.getElementById('oceana-gender');
     if (gEl) gEl.innerHTML = d.gender_breakdown.map(g => {
-      const icon = (g.gender === 'Masculino' || g.gender === 'male') ? '♂' : '♀';
-      const name = (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino';
+      const isM = (g.gender === 'Masculino' || g.gender === 'male');
+      const icon = isM ? '♂' : '♀';
+      const name = isM ? 'Masculino' : 'Feminino';
+      const color = isM ? '#4ade80' : '#ffd166';
       const pct = total > 0 ? ((g.leads / total) * 100).toFixed(0) : 0;
-      return `<div class="gender-card"><div class="gender-icon">${icon}</div><div class="gender-name">${name}</div><div class="gender-leads">${g.leads}</div><div class="gender-leads-label">Leads</div><div class="gender-cpl">${fmtR(g.cost_per_lead)}</div><div class="gender-cpl-label">Custo por lead</div><div class="gender-pct">${pct}% dos leads</div></div>`;
+      return `<div class="gender-card" style="border-top: 3px solid ${color}">
+        <div class="gender-icon" style="color: ${color}">${icon}</div>
+        <div class="gender-name" style="color: ${color}">${name}</div>
+        <div class="gender-leads" style="color: ${color}">${g.leads}</div>
+        <div class="gender-leads-label">Leads</div>
+        <div class="gender-cpl" style="color: ${color}">${fmtR(g.cost_per_lead)}</div>
+        <div class="gender-cpl-label">Custo por lead</div>
+        <div class="gender-pct">${pct}% dos leads</div>
+      </div>`;
     }).join('');
 
     mkChart('o-chartGender', { type: 'bar', data: {
       labels: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? 'Masculino' : 'Feminino'),
       datasets: [
-        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: '#ffd166', borderRadius: 6, yAxisID: 'y1' }
+        { label: 'Leads', data: d.gender_breakdown.map(g => g.leads), backgroundColor: d.gender_breakdown.map(g => (g.gender === 'Masculino' || g.gender === 'male') ? '#4ade80' : '#ffd166'), borderRadius: 6, yAxisID: 'y' },
+        { label: 'CPL (R$)', data: d.gender_breakdown.map(g => g.cost_per_lead), backgroundColor: 'rgba(136, 136, 170, 0.3)', borderColor: '#8888aa', borderWidth: 1, borderRadius: 6, yAxisID: 'y1' }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
