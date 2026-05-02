@@ -313,6 +313,11 @@
     <div class="chart-card"><h3>Leads por Plataforma</h3><canvas id="o-chartPlatformLeads"></canvas></div>
   </div>
   <div class="chart-card" style="margin-bottom:16px;"><h3>Tabela de Plataformas</h3><table class="platform-table" id="o-platformTable"></table></div>
+  <div class="section-title">Distribuição de Orçamento por Criativo</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>% do Investimento por Criativo</h3><canvas id="o-chartCreativePie"></canvas></div>
+    <div class="chart-card"><h3>Investimento vs. Leads por Criativo</h3><canvas id="o-chartCreativeBar"></canvas></div>
+  </div>
   <div class="section-title">Evolução Semanal</div>
   <div class="chart-card" style="margin-bottom:16px;"><h3>Leads e CPL por Semana</h3><canvas id="o-chartWeekly"></canvas></div>
   <div class="chart-card" style="margin-bottom:16px;"><table class="weekly-table" id="o-weeklyTable"></table></div>
@@ -457,7 +462,7 @@ function renderOceana(d) {
       labels: d.age_breakdown.map(a => a.age),
       datasets: [
         { label: 'Leads', data: d.age_breakdown.map(a => a.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
-        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: true, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#ff6b9d' }
+        { label: 'Investimento (R$)', data: d.age_breakdown.map(a => a.spend), type: 'line', borderColor: '#ff6b9d', backgroundColor: 'rgba(255,107,157,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ff6b9d', pointBorderColor: '#ff6b9d', pointBorderWidth: 2 }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
@@ -477,13 +482,34 @@ function renderOceana(d) {
       plats.map(x => { const c = x.platform === 'Facebook' ? '#1877F2' : '#E1306C'; return `<tr><td class="platform-name"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${c};margin-right:7px;vertical-align:middle;"></span>${x.platform}</td><td>${fmtN(x.impressions)}</td><td>${x.leads}</td><td>${fmtR(x.spend)}</td><td>${fmtR(x.cost_per_lead)}</td></tr>`; }).join('') + `</tbody>`;
   }
 
+  if (d.creative_breakdown && d.creative_breakdown.length > 0) {
+    const crvs = d.creative_breakdown;
+    const crvColors = ['#6c63ff','#a855f7','#22c55e','#eab308','#ef4444'];
+    const totalSpend = crvs.reduce((s, c) => s + c.spend, 0);
+    mkChart('o-chartCreativePie', { type: 'pie', data: {
+      labels: crvs.map(c => c.name),
+      datasets: [{ data: crvs.map(c => c.spend), backgroundColor: crvColors, borderWidth: 2, borderColor: '#1a1a3e' }]
+    }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'right', labels: { color: '#ccc', font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw.toFixed(2).replace('.',',')} (${(ctx.raw/totalSpend*100).toFixed(1)}%)` } } } } });
+    mkChart('o-chartCreativeBar', { type: 'bar', data: {
+      labels: crvs.map(c => c.name),
+      datasets: [
+        { label: 'Investimento (R$)', data: crvs.map(c => c.spend), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
+        { label: 'Leads', data: crvs.map(c => c.leads), type: 'line', borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.15)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#22c55e', pointBorderColor: '#22c55e', pointBorderWidth: 2 }
+      ]
+    }, options: { ...CHART_DEFAULTS, scales: {
+      x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
+      y: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' }, position: 'left', title: { display: true, text: 'Investimento (R$)', color: '#8888aa' } },
+      y1: { ticks: { color: '#22c55e' }, grid: { drawOnChartArea: false }, position: 'right', title: { display: true, text: 'Leads', color: '#22c55e' } }
+    } } });
+  }
+
   if (d.weekly_breakdown && d.weekly_breakdown.length > 0) {
     const wks = d.weekly_breakdown;
     mkChart('o-chartWeekly', { type: 'bar', data: {
       labels: wks.map(w => w.week),
       datasets: [
         { label: 'Leads', data: wks.map(w => w.leads), backgroundColor: '#6c63ff', borderRadius: 6, yAxisID: 'y' },
-        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#ffd166' }
+        { label: 'CPL (R$)', data: wks.map(w => w.cost_per_lead), type: 'line', borderColor: '#ffd166', backgroundColor: 'rgba(255,209,102,0.1)', tension: 0.4, yAxisID: 'y1', fill: false, pointRadius: 8, pointHoverRadius: 10, pointBackgroundColor: '#ffd166', pointBorderColor: '#ffd166', pointBorderWidth: 2 }
       ]
     }, options: { ...CHART_DEFAULTS, scales: {
       x: { ticks: { color: '#8888aa' }, grid: { color: 'rgba(42,42,85,0.5)' } },
