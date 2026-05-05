@@ -149,16 +149,7 @@
   .insight-item .i-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
 
   /* COMERCIAL */
-  .com-status-grid { display: grid; grid-template-columns: repe
-  .badge-interest, .badge-campaign { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-right: 5px; white-space: nowrap; }
-  .badge-interest { background: rgba(108,99,255,0.15); color: var(--accent1); border: 1px solid var(--accent1); }
-  .badge-campaign { background: rgba(6,214,160,0.15); color: var(--green); border: 1px solid var(--green); }
-  .badge-comercial-cold { background: rgba(239,71,111,0.15); color: var(--red); border: 1px solid var(--red); }
-  .badge-comercial-warm { background: rgba(255,209,102,0.15); color: var(--accent4); border: 1px solid var(--accent4); }
-  .badge-comercial-hot { background: rgba(6,214,160,0.15); color: var(--green); border: 1px solid var(--green); }
-  .badge-comercial-visit { background: rgba(0,212,255,0.15); color: var(--accent2); border: 1px solid var(--accent2); }
-  .badge-comercial-redirect { background: rgba(108,99,255,0.15); color: var(--accent1); border: 1px solid var(--accent1); }
-at(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .com-status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 8px; }
   .com-status-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; position: relative; overflow: hidden; }
   .com-status-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .com-status-card .cs-count { font-size: 2rem; font-weight: 800; color: var(--text); }
@@ -964,9 +955,9 @@ function renderComercial(leads) {
         return `<tr>
           <td style="font-weight:700">${l.nome}</td>
           <td><span class="lead-badge" style="background:${cfg.bg};color:${cfg.color}">${cfg.label}</span></td>
-          <td><span class="badge-interest">${l.interesse || '—'}</span></td>
+          <td>${l.interesse || '—'}</td>
           <td>${l.data_entrada || '—'}</td>
-          <td><span class="badge-campaign">${l.campanha || '—'}</span></td>
+          <td style="font-size:0.75rem;color:var(--muted)">${l.campanha || '—'}</td>
           <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td>
         </tr>`;
       }).join('') + `</tbody>`;
