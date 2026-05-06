@@ -853,6 +853,7 @@ function renderComercial(leads) {
   };
   const ORDER = ['Visita','Quente','Morno','Negociando','Vendido'];
   const total = leads.length;
+  const totalVisits = leads.reduce((sum, lead) => sum + (lead.visitas || 0), 0);
 
   const counts = {};
   ORDER.forEach(s => counts[s] = 0);
@@ -861,7 +862,8 @@ function renderComercial(leads) {
   // Status cards
   const sgEl = document.getElementById('com-statusGrid');
   if (sgEl) {
-    sgEl.innerHTML = `<div class="com-status-card" style="border-top:3px solid #8888aa"><div class="cs-count">${total}</div><div class="cs-label">Total</div><div class="cs-pct">100%</div></div>` +
+    sgEl.innerHTML = `<div class="com-status-card" style="border-top:3px solid #8888aa"><div class="cs-count">${total}</div><div class="cs-label">Total Leads</div><div class="cs-pct">100%</div></div>
+      <div class="com-status-card" style="border-top:3px solid var(--accent1)"><div class="cs-count">${totalVisits}</div><div class="cs-label">Total Visitas</div><div class="cs-pct">—</div></div>` +
       ORDER.map(s => {
         const cfg = STATUS_CONFIG[s];
         const cnt = counts[s];
@@ -892,11 +894,18 @@ function renderComercial(leads) {
   }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
 
   // Gráfico origem
+  const leadOriginColors = {
+    "Campanha Oceana": "var(--accent2)",
+    "Campanha Rio Mar": "var(--accent3)",
+    "Site": "var(--green)",
+    "Parceria": "var(--accent4)",
+    "Indicação": "var(--accent1)"
+  };
   const origens = {};
   leads.forEach(l => { origens[l.campanha] = (origens[l.campanha] || 0) + 1; });
   mkChart('com-chartOrigin', { type: 'doughnut', data: {
     labels: Object.keys(origens),
-    datasets: [{ data: Object.values(origens), backgroundColor: ['#6c63ff','#00d4ff','#ff6b9d','#ffd166','#06d6a0'], borderWidth: 0 }]
+    datasets: [{ data: Object.values(origens), backgroundColor: Object.keys(origens).map(o => leadOriginColors[o] || 'var(--muted)'), borderWidth: 0 }]
   }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: '#8888aa' } } } } });
 
   // Gráfico semanal
@@ -949,7 +958,7 @@ function renderComercial(leads) {
   // Tabela
   const tEl = document.getElementById('com-leadsTable');
   if (tEl) {
-    tEl.innerHTML = `<thead><tr><th>Nome</th><th>Categoria</th><th>Interesse</th><th>Data de Entrada</th><th>Campanha</th><th>Resumo</th></tr></thead><tbody>` +
+    tEl.innerHTML = `<thead><tr><th>Nome</th><th>Categoria</th><th>Interesse</th><th>Data de Entrada</th><th>Campanha</th><th>Resumo</th><th>Visitas</th></tr></thead><tbody>` +
       [...leads].sort((a,b) => ORDER.indexOf(a.categoria) - ORDER.indexOf(b.categoria)).map(l => {
         const cfg = STATUS_CONFIG[l.categoria] || { color: '#8888aa', bg: 'rgba(136,136,170,0.15)', label: l.categoria };
         return `<tr>
@@ -958,7 +967,7 @@ function renderComercial(leads) {
           <td>${l.interesse || '—'}</td>
           <td>${l.data_entrada || '—'}</td>
           <td style="font-size:0.75rem;color:var(--muted)">${l.campanha || '—'}</td>
-          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td>
+          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td><td>${l.visitas !== undefined ? l.visitas : 0}</td>
         </tr>`;
       }).join('') + `</tbody>`;
   }
