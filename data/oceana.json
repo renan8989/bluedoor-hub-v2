@@ -16,34 +16,34 @@
     "cpc_all": 1.99,
     "cost_per_link_click": 3.04,
     "cpm": 42.30,
-    "leads": 0,
-    "cost_per_lead": 0
+    "leads": 38,
+    "cost_per_lead": 30.56
   },
   "gender_breakdown": [
-    { "gender": "Masculino", "impressions": 16127, "reach": 7335, "spend": 692.43, "link_clicks": 325, "leads": 0, "cost_per_lead": 0 },
-    { "gender": "Feminino", "impressions": 11298, "reach": 4836, "spend": 467.92, "link_clicks": 57, "leads": 0, "cost_per_lead": 0 }
+    { "gender": "Masculino", "impressions": 16127, "reach": 7335, "spend": 692.43, "link_clicks": 325, "leads": 29, "cost_per_lead": 23.88 },
+    { "gender": "Feminino", "impressions": 11298, "reach": 4836, "spend": 467.92, "link_clicks": 57, "leads": 9, "cost_per_lead": 51.99 }
   ],
   "age_breakdown": [
-    { "age": "25-34", "impressions": 6857, "reach": 3030, "spend": 199.32, "link_clicks": 123, "leads": 0 },
-    { "age": "35-44", "impressions": 12137, "reach": 5139, "spend": 539.70, "link_clicks": 267, "leads": 0 },
-    { "age": "45-54", "impressions": 7679, "reach": 3513, "spend": 374.35, "link_clicks": 181, "leads": 0 },
+    { "age": "25-34", "impressions": 6857, "reach": 3030, "spend": 199.32, "link_clicks": 123, "leads": 9 },
+    { "age": "35-44", "impressions": 12137, "reach": 5139, "spend": 539.70, "link_clicks": 267, "leads": 16 },
+    { "age": "45-54", "impressions": 7679, "reach": 3513, "spend": 374.35, "link_clicks": 181, "leads": 13 },
     { "age": "55-64", "impressions": 784, "reach": 355, "spend": 47.80, "link_clicks": 13, "leads": 0 }
   ],
   "platform_breakdown": [
-    { "platform": "Instagram", "impressions": 22990, "reach": 10040, "spend": 1004.15, "link_clicks": 325, "leads": 0, "cost_per_lead": 0 },
-    { "platform": "Facebook", "impressions": 4468, "reach": 2245, "spend": 157.20, "link_clicks": 57, "leads": 0, "cost_per_lead": 0 }
+    { "platform": "Instagram", "impressions": 22990, "reach": 10040, "spend": 1004.15, "link_clicks": 325, "leads": 32, "cost_per_lead": 31.38 },
+    { "platform": "Facebook", "impressions": 4468, "reach": 2245, "spend": 157.20, "link_clicks": 57, "leads": 6, "cost_per_lead": 26.20 }
   ],
   "creative_breakdown": [
-    { "name": "A2", "impressions": 24141, "spend": 1103.73, "leads": 0, "clicks": 532, "ctr": 2.20, "cost_per_lead": 0 },
-    { "name": "A3", "impressions": 1316, "spend": 21.87, "leads": 0, "clicks": 20, "ctr": 1.52, "cost_per_lead": 0 },
-    { "name": "A4", "impressions": 625, "spend": 15.04, "leads": 0, "clicks": 10, "ctr": 1.60, "cost_per_lead": 0 },
-    { "name": "A5", "impressions": 866, "spend": 13.85, "leads": 0, "clicks": 15, "ctr": 1.73, "cost_per_lead": 0 },
-    { "name": "A1", "impressions": 510, "spend": 6.86, "leads": 0, "clicks": 7, "ctr": 1.37, "cost_per_lead": 0 }
+    { "name": "A2", "impressions": 24141, "spend": 1103.73, "leads": 38, "clicks": 532, "ctr": 2.20 },
+    { "name": "A3", "impressions": 1316, "spend": 21.87, "leads": 0, "clicks": 20, "ctr": 1.52 },
+    { "name": "A4", "impressions": 625, "spend": 15.04, "leads": 0, "clicks": 10, "ctr": 1.60 },
+    { "name": "A5", "impressions": 866, "spend": 13.85, "leads": 0, "clicks": 15, "ctr": 1.73 },
+    { "name": "A1", "impressions": 510, "spend": 6.86, "leads": 0, "clicks": 7, "ctr": 1.37 }
   ],
   "weekly_breakdown": [
-    { "week": "09/04 – 15/04", "impressions": 6857, "spend": 199.32, "leads": 0, "cost_per_lead": 0 },
-    { "week": "16/04 – 22/04", "impressions": 8237, "spend": 348.41, "leads": 0, "cost_per_lead": 0 },
-    { "week": "23/04 – 29/04", "impressions": 9614, "spend": 406.47, "leads": 0, "cost_per_lead": 0 },
-    { "week": "30/04 – 02/05", "impressions": 2750, "spend": 207.15, "leads": 0, "cost_per_lead": 0 }
+    { "week": "09/04 – 15/04", "impressions": 6857, "spend": 199.32, "leads": 9, "cost_per_lead": 22.15 },
+    { "week": "16/04 – 22/04", "impressions": 8237, "spend": 348.41, "leads": 12, "cost_per_lead": 29.03 },
+    { "week": "23/04 – 29/04", "impressions": 9614, "spend": 406.47, "leads": 14, "cost_per_lead": 29.03 },
+    { "week": "30/04 – 02/05", "impressions": 2750, "spend": 207.15, "leads": 3, "cost_per_lead": 69.05 }
   ]
 }
