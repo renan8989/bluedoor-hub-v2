@@ -958,7 +958,7 @@ function renderComercial(leads) {
   // Tabela
   const tEl = document.getElementById('com-leadsTable');
   if (tEl) {
-    tEl.innerHTML = `<thead><tr><th>Nome</th><th>Categoria</th><th>Interesse</th><th>Data de Entrada</th><th>Campanha</th><th>Resumo</th><th>Visitas</th></tr></thead><tbody>` +
+    tEl.innerHTML = `<thead><tr><th>Nome</th><th>Categoria</th><th>Interesse</th><th>Data de Entrada</th><th>Campanha</th><th>Visitas</th><th>Resumo</th></tr></thead><tbody>` +
       [...leads].sort((a,b) => ORDER.indexOf(a.categoria) - ORDER.indexOf(b.categoria)).map(l => {
         const cfg = STATUS_CONFIG[l.categoria] || { color: '#8888aa', bg: 'rgba(136,136,170,0.15)', label: l.categoria };
         return `<tr>
@@ -967,7 +967,8 @@ function renderComercial(leads) {
           <td>${l.interesse || '—'}</td>
           <td>${l.data_entrada || '—'}</td>
           <td style="font-size:0.75rem;color:var(--muted)">${l.campanha || '—'}</td>
-          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td><td>${l.visitas !== undefined ? l.visitas : 0}</td>
+          <td>${l.visitas !== undefined ? l.visitas : 0}</td>
+          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td>
         </tr>`;
       }).join('') + `</tbody>`;
   }
