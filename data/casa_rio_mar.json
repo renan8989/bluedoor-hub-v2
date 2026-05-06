@@ -16,29 +16,29 @@
     "cpc_all": 1.06,
     "cost_per_link_click": 1.87,
     "cpm": 23.02,
-    "leads": 12,
-    "cost_per_lead": 13.58
+    "leads": 0,
+    "cost_per_lead": 0
   },
   "gender_breakdown": [
-    { "gender": "Masculino", "impressions": 4006, "reach": 2898, "spend": 87.98, "link_clicks": 39, "leads": 5, "cost_per_lead": 17.60 },
-    { "gender": "Feminino", "impressions": 3057, "reach": 2228, "spend": 74.00, "link_clicks": 48, "leads": 7, "cost_per_lead": 10.57 },
-    { "gender": "Desconhecido", "impressions": 15, "reach": 13, "spend": 0.98, "link_clicks": 0, "leads": 0, "cost_per_lead": null }
+    { "gender": "Masculino", "impressions": 4006, "reach": 2898, "spend": 87.98, "link_clicks": 39, "leads": 0, "cost_per_lead": 0 },
+    { "gender": "Feminino", "impressions": 3057, "reach": 2228, "spend": 74.00, "link_clicks": 48, "leads": 0, "cost_per_lead": 0 },
+    { "gender": "Desconhecido", "impressions": 15, "reach": 13, "spend": 0.98, "link_clicks": 0, "leads": 0, "cost_per_lead": 0 }
   ],
   "age_breakdown": [
-    { "age": "25-34", "impressions": 1616, "reach": 1218, "spend": 26.59, "link_clicks": 8, "leads": 1 },
-    { "age": "35-44", "impressions": 3056, "reach": 2198, "spend": 66.77, "link_clicks": 40, "leads": 5 },
-    { "age": "45-54", "impressions": 2264, "reach": 1567, "spend": 64.43, "link_clicks": 38, "leads": 6 },
+    { "age": "25-34", "impressions": 1616, "reach": 1218, "spend": 26.59, "link_clicks": 8, "leads": 0 },
+    { "age": "35-44", "impressions": 3056, "reach": 2198, "spend": 66.77, "link_clicks": 40, "leads": 0 },
+    { "age": "45-54", "impressions": 2264, "reach": 1567, "spend": 64.43, "link_clicks": 38, "leads": 0 },
     { "age": "55-64", "impressions": 140, "reach": 77, "spend": 5.17, "link_clicks": 2, "leads": 0 }
   ],
   "platform_breakdown": [
-    { "platform": "Instagram", "impressions": 5421, "reach": 3880, "spend": 137.55, "link_clicks": 72, "leads": 12, "cost_per_lead": 11.46 },
-    { "platform": "Facebook", "impressions": 1657, "reach": 1416, "spend": 25.41, "link_clicks": 15, "leads": 0, "cost_per_lead": null }
+    { "platform": "Instagram", "impressions": 5421, "reach": 3880, "spend": 137.55, "link_clicks": 72, "leads": 0, "cost_per_lead": 0 },
+    { "platform": "Facebook", "impressions": 1657, "reach": 1416, "spend": 25.41, "link_clicks": 15, "leads": 0, "cost_per_lead": 0 }
   ],
   "creative_breakdown": [
-    { "name": "A2", "impressions": 4277, "spend": 108.81, "leads": 11, "cost_per_lead": 9.89 },
-    { "name": "A1", "impressions": 2801, "spend": 54.15, "leads": 1, "cost_per_lead": 54.15 }
+    { "name": "A2", "impressions": 4277, "spend": 108.81, "leads": 0, "cost_per_lead": 0 },
+    { "name": "A1", "impressions": 2801, "spend": 54.15, "leads": 0, "cost_per_lead": 0 }
   ],
   "weekly_breakdown": [
-    { "week": "01/05 – 04/05", "impressions": 7078, "spend": 162.96, "leads": 12, "cost_per_lead": 13.58 }
+    { "week": "01/05 – 04/05", "impressions": 7078, "spend": 162.96, "leads": 0, "cost_per_lead": 0 }
   ]
 }
