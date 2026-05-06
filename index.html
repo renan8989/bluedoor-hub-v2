@@ -967,7 +967,7 @@ function renderComercial(leads) {
           <td>${l.interesse || '—'}</td>
           <td>${l.data_entrada || '—'}</td>
           <td style="font-size:0.75rem;color:var(--muted)">${l.campanha || '—'}</td>
-          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td><td>${l.visitas !== undefined ? l.visitas : 0}</td>
+          <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td><td>${l.visitas !== undefined ? l.visitas : 0}</td><td>${l.visitas !== undefined ? l.visitas : 0}</td>
         </tr>`;
       }).join('') + `</tbody>`;
   }
