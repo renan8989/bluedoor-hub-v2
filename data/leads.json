@@ -7,16 +7,46 @@
     "campanha": "Campanha Oceana",
     "data_entrada": "2026-04-30",
     "ultima_interacao": "2026-04-30",
-    "visitas": 0
+    "visitas": 1
   },
   {
     "nome": "Renan Lemos",
     "categoria": "Quente",
     "interesse": "Barra (Epic/Golf)",
     "resumo": "Engajou bem, respondeu com interesse. Está analisando Epic (2.3M) e Greenpark (2.2M).",
-    "campanha": "Campanha Oceana",
+    "campanha": "Campanha Rio Mar",
     "data_entrada": "2026-04-28",
     "ultima_interacao": "2026-04-28",
     "visitas": 0
+  },
+  {
+    "nome": "Novo Lead Site",
+    "categoria": "Morno",
+    "interesse": "Barra",
+    "resumo": "Chegou via site, interessado em imóveis na Barra.",
+    "campanha": "Site",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Lead Parceria",
+    "categoria": "Quente",
+    "interesse": "Zona Sul",
+    "resumo": "Indicação de parceiro, busca imóvel na Zona Sul.",
+    "campanha": "Parceria",
+    "data_entrada": "2026-05-04",
+    "ultima_interacao": "2026-05-04",
+    "visitas": 1
+  },
+  {
+    "nome": "Lead Indicação",
+    "categoria": "Visita",
+    "interesse": "Centro",
+    "resumo": "Indicação direta, visita agendada.",
+    "campanha": "Indicação",
+    "data_entrada": "2026-05-03",
+    "ultima_interacao": "2026-05-03",
+    "visitas": 1
   }
 ]
