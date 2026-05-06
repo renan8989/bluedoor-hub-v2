@@ -846,12 +846,12 @@ function renderComercial(leads) {
     'Visita':       { color: '#7c3aed', bg: 'rgba(124,58,237,0.15)', label: 'Visita Marcada' },
     'Quente':       { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   label: 'Quente' },
     'Morno':        { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  label: 'Morno' },
-    'Redirecionado':{ color: '#eab308', bg: 'rgba(234,179,8,0.15)',   label: 'Redirecionado' },
-    'Frio':         { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  label: 'Frio' },
-    'Perdido':      { color: '#6b7280', bg: 'rgba(107,114,128,0.15)', label: 'Perdido' },
+    'Negociando':{ color: '#eab308', bg: 'rgba(234,179,8,0.15)',   label: 'Negociando' },
+    
+    
     'Vendido':      { color: '#06d6a0', bg: 'rgba(6,214,160,0.15)',   label: 'Vendido' }
   };
-  const ORDER = ['Visita','Quente','Morno','Redirecionado','Frio','Perdido','Vendido'];
+  const ORDER = ['Visita','Quente','Morno','Negociando','Vendido'];
   const total = leads.length;
 
   const counts = {};
@@ -871,8 +871,8 @@ function renderComercial(leads) {
   }
 
   // Métricas
-  const responderam = leads.filter(l => !['Frio'].includes(l.categoria)).length;
-  const qualificados = leads.filter(l => ['Visita','Quente','Morno'].includes(l.categoria)).length;
+  const responderam = leads.length;
+  const qualificados = leads.filter(l => ['Visita','Quente','Morno', 'Negociando'].includes(l.categoria)).length;
   const visitas = counts['Visita'];
   const vendidos = counts['Vendido'];
   const mgEl = document.getElementById('com-metricsGrid');
@@ -880,8 +880,8 @@ function renderComercial(leads) {
     { label: 'Taxa de Resposta', val: fmtP((responderam/total)*100), sub: `${responderam} de ${total} leads responderam` },
     { label: 'Qualificados', val: fmtP((qualificados/total)*100), sub: `${qualificados} leads com interesse real` },
     { label: 'Taxa de Visita', val: fmtP((visitas/total)*100), sub: `${visitas} visita(s) marcada(s)` },
-    { label: 'Redirecionados', val: fmtP((counts['Redirecionado']/total)*100), sub: `${counts['Redirecionado']} leads para outros produtos` },
-    { label: 'Perdidos', val: fmtP((counts['Perdido']/total)*100), sub: `${counts['Perdido']} leads fora do funil` },
+    { label: 'Negociando', val: fmtP((counts['Negociando']/total)*100), sub: `${counts['Negociando']} leads em negociação` },
+    
     { label: 'Vendidos', val: vendidos > 0 ? vendidos : '—', sub: vendidos > 0 ? `${fmtP((vendidos/total)*100)} de conversão` : 'Nenhum fechamento ainda' }
   ].map(m => `<div class="com-metric-card"><div class="com-metric-label">${m.label}</div><div class="com-metric-value">${m.val}</div><div class="com-metric-sub">${m.sub}</div></div>`).join('');
 

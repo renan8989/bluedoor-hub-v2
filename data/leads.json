@@ -1,66 +1,12 @@
 [
   {
-    "nome": "Cícera Maria",
-    "categoria": "Visita",
-    "interesse": "Rio Mar",
-    "resumo": "Solicitou visita para casa no Rio Mar. Visita confirmada para o dia seguinte às 8h.",
-    "campanha": "Orgânico / Direto",
-    "data_entrada": "2026-05-01",
-    "ultima_interacao": "2026-05-01"
-  },
-  {
     "nome": "Abraao",
-    "categoria": "Redirecionado",
+    "categoria": "Negociando",
     "interesse": "Recreio / Tijuca",
     "resumo": "Entrou pela Oceana, mas mudou para Recreio (até 700k) e perguntou sobre Tijuca.",
     "campanha": "Campanha Oceana Golf",
     "data_entrada": "2026-04-30",
     "ultima_interacao": "2026-04-30"
-  },
-  {
-    "nome": "Ricardo",
-    "categoria": "Quente",
-    "interesse": "Barra (4 suítes)",
-    "resumo": "Engajou bem, está analisando o book do Concept (2.6M - 2.8M). Fez perguntas específicas sobre o empreendimento.",
-    "campanha": "Campanha Oceana Golf",
-    "data_entrada": "2026-04-30",
-    "ultima_interacao": "2026-04-30"
-  },
-  {
-    "nome": "Andre Felipe",
-    "categoria": "Redirecionado",
-    "interesse": "Recreio (3 quartos)",
-    "resumo": "Entrou pela Oceana, recebeu indicação de 3 quartos no Recreio Posto 11 por 795k.",
-    "campanha": "Campanha Oceana Golf",
-    "data_entrada": "2026-04-30",
-    "ultima_interacao": "2026-04-30"
-  },
-  {
-    "nome": "Lilia",
-    "categoria": "Frio",
-    "interesse": "Barra / Golf",
-    "resumo": "Recebeu a primeira abordagem, mas nunca respondeu.",
-    "campanha": "Campanha Oceana Golf",
-    "data_entrada": "2026-04-30",
-    "ultima_interacao": "2026-04-30"
-  },
-  {
-    "nome": "Rian Mesquita",
-    "categoria": "Morno",
-    "interesse": "Oceana Golf",
-    "resumo": "Respondeu brevemente ('Funciona', 'Perfeito'). Demonstrou algum interesse mas sem engajamento aprofundado e não confirmou visita.",
-    "campanha": "Campanha Oceana Golf",
-    "data_entrada": "2026-04-29",
-    "ultima_interacao": "2026-04-29"
-  },
-  {
-    "nome": "Simone",
-    "categoria": "Redirecionado",
-    "interesse": "Recreio",
-    "resumo": "Entrou pela Oceana com teto de 800k. Redirecionada para o Edifício Fiori (560k) no Recreio.",
-    "campanha": "Campanha Oceana Golf",
-    "data_entrada": "2026-04-29",
-    "ultima_interacao": "2026-04-29"
   },
   {
     "nome": "Renan Lemos",
@@ -70,68 +16,5 @@
     "campanha": "Campanha Oceana Golf",
     "data_entrada": "2026-04-28",
     "ultima_interacao": "2026-04-28"
-  },
-  {
-    "nome": "Novo Lead 1",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
-  },
-  {
-    "nome": "Novo Lead 2",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
-  },
-  {
-    "nome": "Novo Lead 3",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
-  },
-  {
-    "nome": "Novo Lead 4",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
-  },
-  {
-    "nome": "Novo Lead 5",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
-  },
-  {
-    "nome": "Novo Lead 6",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
-  },
-  {
-    "nome": "Novo Lead 7",
-    "categoria": "Morno",
-    "interesse": "Casa Rio Mar",
-    "resumo": "Lead gerado pela campanha Casa Rio Mar.",
-    "campanha": "Campanha Casa Rio Mar",
-    "data_entrada": "2026-05-04",
-    "ultima_interacao": "2026-05-04"
   }
 ]
