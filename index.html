@@ -843,15 +843,12 @@ function renderOverview(crm, oceana) {
 // ─── RENDER COMERCIAL ─────────────────────────────────────────
 function renderComercial(leads) {
   const STATUS_CONFIG = {
-    'Visita':       { color: '#7c3aed', bg: 'rgba(124,58,237,0.15)', label: 'Visita Marcada' },
     'Quente':       { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   label: 'Quente' },
     'Morno':        { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  label: 'Morno' },
     'Negociando':{ color: '#eab308', bg: 'rgba(234,179,8,0.15)',   label: 'Negociando' },
-    
-    
     'Vendido':      { color: '#06d6a0', bg: 'rgba(6,214,160,0.15)',   label: 'Vendido' }
   };
-  const ORDER = ['Visita','Quente','Morno','Negociando','Vendido'];
+  const ORDER = ['Quente','Morno','Negociando','Vendido'];
   const total = leads.length;
   const totalVisits = leads.reduce((sum, lead) => sum + (lead.visitas || 0), 0);
 
@@ -863,7 +860,7 @@ function renderComercial(leads) {
   const sgEl = document.getElementById('com-statusGrid');
   if (sgEl) {
     sgEl.innerHTML = `<div class="com-status-card" style="border-top:3px solid #8888aa"><div class="cs-count">${total}</div><div class="cs-label">Total Leads</div><div class="cs-pct">100%</div></div>
-      <div class="com-status-card" style="border-top:3px solid var(--accent1)"><div class="cs-count">${totalVisits}</div><div class="cs-label">Total Visitas</div><div class="cs-pct">—</div></div>` +
+      <div class="com-status-card" style="border-top:3px solid var(--accent1)"><div class="cs-count">${totalVisits}</div><div class="cs-label">Total Visitas</div></div>` +
       ORDER.map(s => {
         const cfg = STATUS_CONFIG[s];
         const cnt = counts[s];
