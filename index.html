@@ -875,8 +875,6 @@ function renderComercial(leads) {
   const vendidos = counts['Vendido'];
   const mgEl = document.getElementById('com-metricsGrid');
   if (mgEl) mgEl.innerHTML = [
-    { label: 'Taxa de Resposta', val: fmtP((responderam/total)*100), sub: `${responderam} de ${total} leads responderam` },
-    { label: 'Qualificados', val: fmtP((qualificados/total)*100), sub: `${qualificados} leads com interesse real` },
     { label: 'Taxa de Visita', val: fmtP((visitas/total)*100), sub: `${visitas} visita(s) marcada(s)` },
     { label: 'Negociando', val: fmtP((counts['Negociando']/total)*100), sub: `${counts['Negociando']} leads em negociação` },
     
