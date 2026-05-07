@@ -2,7 +2,7 @@
   {
     "nome": "Abraao",
     "categoria": "Morno",
-    "interesse": "Oceana Golf",
+    "interesse": "Fiori",
     "resumo": "Interessado em unidade próxima à praia; tentando reservar horário.",
     "campanha": "Campanha Oceana",
     "data_entrada": "01/05/2026",
@@ -42,7 +42,7 @@
   {
     "nome": "Joilson",
     "categoria": "Morno",
-    "interesse": "Oceana Golf",
+    "interesse": "Região do Golf",
     "resumo": "Retomará conversa após viagem; foco em Oceana/Golf (etiqueta QZ).",
     "campanha": "Campanha Oceana",
     "data_entrada": "04/05/2026",
@@ -87,6 +87,16 @@
     "campanha": "Parceria",
     "data_entrada": "09/04/2026",
     "ultima_interacao": "09/04/2026",
+    "visitas": 0
+  },
+  {
+    "nome": "Thiago",
+    "categoria": "PediuTempo",
+    "interesse": "Villa Blanca",
+    "resumo": "Pediu tempo para decidir. Interesse em Villa Blanca.",
+    "campanha": "Site",
+    "data_entrada": "01/01/2025",
+    "ultima_interacao": "01/01/2025",
     "visitas": 0
   },
   {

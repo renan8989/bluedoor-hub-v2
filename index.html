@@ -846,9 +846,10 @@ function renderComercial(leads) {
     'Quente':       { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   label: 'Quente' },
     'Morno':        { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  label: 'Morno' },
     'Negociando':   { color: '#eab308', bg: 'rgba(234,179,8,0.15)',   label: 'Negociando' },
+    'PediuTempo':   { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', label: '⏳ Pediu Tempo' },
     'Vendido':      { color: '#06d6a0', bg: 'rgba(6,214,160,0.15)',   label: 'Vendido' }
   };
-  const ORDER = ['Quentissimo','Visita','Quente','Morno','Negociando','Vendido'];
+  const ORDER = ['Quentissimo','Visita','Quente','Morno','Negociando','PediuTempo','Vendido'];
   const total = leads.length;
   const totalVisits = leads.reduce((sum, lead) => sum + (lead.visitas || 0), 0);
 
