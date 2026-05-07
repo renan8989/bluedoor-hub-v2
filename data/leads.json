@@ -17,7 +17,7 @@
     "campanha": "Campanha Oceana",
     "data_entrada": "01/05/2026",
     "ultima_interacao": "05/05/2026",
-    "visitas": 1
+    "visitas": 0
   },
   {
     "nome": "Dr Renato",
@@ -37,7 +37,7 @@
     "campanha": "Campanha Rio Mar",
     "data_entrada": "05/05/2026",
     "ultima_interacao": "05/05/2026",
-    "visitas": 1
+    "visitas": 0
   },
   {
     "nome": "Joilson",
@@ -71,13 +71,13 @@
   },
   {
     "nome": "Patricia",
-    "categoria": "Quente",
+    "categoria": "Visita",
     "interesse": "Lançamentos Barra",
-    "resumo": "Combinado acompanhamento de opções na Barra.",
+    "resumo": "Visita realizada. Acompanhamento de opções na Barra.",
     "campanha": "Campanha Rio Mar",
     "data_entrada": "03/05/2026",
     "ultima_interacao": "05/05/2026",
-    "visitas": 0
+    "visitas": 1
   },
   {
     "nome": "Arnaldo",
