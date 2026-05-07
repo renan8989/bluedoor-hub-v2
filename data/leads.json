@@ -18,5 +18,75 @@
     "data_entrada": "2026-04-28",
     "ultima_interacao": "2026-04-28",
     "visitas": 0
+  },
+  {
+    "nome": "Dr Renato",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "Reação com 👍",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Michelle",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "Pergunta sobre a percepção da casa após a conversa.",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Joilson",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "Confirmação de retomada da conversa após viagem.",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Davi",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "Reação com 👍 (\"3 quartos me atende\").",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Douglas",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "Sugestão de pré-marcar para sexta-feira às 10h.",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Patricia",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "\"Combinado\"",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
+  },
+  {
+    "nome": "Ricardo",
+    "categoria": "Quente",
+    "interesse": "Não especificado",
+    "resumo": "Mensagem sobre retomar conversa sobre lançamentos.",
+    "campanha": "Não especificado",
+    "data_entrada": "2026-05-05",
+    "ultima_interacao": "2026-05-05",
+    "visitas": 0
   }
 ]
