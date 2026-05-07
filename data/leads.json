@@ -5,8 +5,8 @@
     "interesse": "Recreio / Tijuca",
     "resumo": "Entrou pela Oceana, mas mudou para Recreio (até 700k) e perguntou sobre Tijuca.",
     "campanha": "Campanha Oceana",
-    "data_entrada": "2026-04-30",
-    "ultima_interacao": "2026-04-30",
+    "data_entrada": "30/04/2026",
+    "ultima_interacao": "30/04/2026",
     "visitas": 0
   },
   {
@@ -15,8 +15,8 @@
     "interesse": "Barra (Epic/Golf)",
     "resumo": "Engajou bem, respondeu com interesse. Está analisando Epic (2.3M) e Greenpark (2.2M).",
     "campanha": "Campanha Oceana",
-    "data_entrada": "2026-04-28",
-    "ultima_interacao": "2026-04-28",
+    "data_entrada": "28/04/2026",
+    "ultima_interacao": "28/04/2026",
     "visitas": 0
   },
   {
@@ -24,19 +24,19 @@
     "categoria": "Quente",
     "interesse": "Não especificado",
     "resumo": "Reação com 👍",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Meta Ads",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   },
   {
     "nome": "Michelle",
     "categoria": "Quente",
-    "interesse": "Não especificado",
+    "interesse": "Casa no Rio Mar",
     "resumo": "Pergunta sobre a percepção da casa após a conversa.",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Campanha Rio Mar",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   },
   {
@@ -44,29 +44,29 @@
     "categoria": "Quente",
     "interesse": "Não especificado",
     "resumo": "Confirmação de retomada da conversa após viagem.",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Meta Ads",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   },
   {
     "nome": "Davi",
     "categoria": "Quente",
-    "interesse": "Não especificado",
+    "interesse": "3 quartos",
     "resumo": "Reação com 👍 (\"3 quartos me atende\").",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Meta Ads",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   },
   {
     "nome": "Douglas",
     "categoria": "Quente",
-    "interesse": "Não especificado",
+    "interesse": "Oceana Golf",
     "resumo": "Sugestão de pré-marcar para sexta-feira às 10h.",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Campanha Oceana",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   },
   {
@@ -74,19 +74,19 @@
     "categoria": "Quente",
     "interesse": "Não especificado",
     "resumo": "\"Combinado\"",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Meta Ads",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   },
   {
     "nome": "Ricardo",
     "categoria": "Quente",
-    "interesse": "Não especificado",
+    "interesse": "Lançamentos",
     "resumo": "Mensagem sobre retomar conversa sobre lançamentos.",
-    "campanha": "Não especificado",
-    "data_entrada": "2026-05-05",
-    "ultima_interacao": "2026-05-05",
+    "campanha": "Meta Ads",
+    "data_entrada": "05/05/2026",
+    "ultima_interacao": "05/05/2026",
     "visitas": 0
   }
 ]
