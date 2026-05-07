@@ -966,7 +966,7 @@ function renderComercial(leads) {
           <td style="font-weight:700">${l.nome}</td>
           <td><span class="lead-badge" style="background:${cfg.bg};color:${cfg.color}">${cfg.label}</span></td>
           <td>${l.interesse || '—'}</td>
-          <td>${l.data_entrada || '—'}</td>
+          <td>${l.data_entrada ? l.data_entrada.split('-').reverse().join('/') : '—'}</td>
           <td style="font-size:0.75rem;color:var(--muted)">${l.campanha || '—'}</td>
           <td>${l.visitas !== undefined ? l.visitas : 0}</td>
           <td style="font-size:0.75rem;color:var(--muted);max-width:220px">${l.resumo || '—'}</td>
