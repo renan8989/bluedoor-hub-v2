@@ -893,11 +893,11 @@ function renderComercial(leads) {
 
   // Gráfico origem
   const leadOriginColors = {
-    "Campanha Oceana": "var(--accent2)",
-    "Campanha Rio Mar": "var(--accent3)",
-    "Site": "var(--green)",
-    "Parceria": "var(--accent4)",
-    "Indicação": "var(--accent1)"
+    "Campanha Oceana": "#00d4ff",
+    "Campanha Rio Mar": "#ff6b9d",
+    "Site": "#06d6a0",
+    "Parceria": "#ffd166",
+    "Indicação": "#6c63ff"
   };
   const origens = {};
   leads.forEach(l => { origens[l.campanha] = (origens[l.campanha] || 0) + 1; });
