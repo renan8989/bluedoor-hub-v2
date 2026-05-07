@@ -1,7 +1,7 @@
 [
   {
     "nome": "Abraao",
-    "categoria": "Negociando",
+    "categoria": "Morno",
     "interesse": "Oceana Golf",
     "resumo": "Interessado em unidade próxima à praia; tentando reservar horário.",
     "campanha": "Campanha Oceana",
@@ -31,7 +31,7 @@
   },
   {
     "nome": "Michelle",
-    "categoria": "Quente",
+    "categoria": "Morno",
     "interesse": "Casa no Rio Mar",
     "resumo": "Alinhando detalhes sobre a casa (etiqueta QZ).",
     "campanha": "Campanha Rio Mar",
@@ -41,7 +41,7 @@
   },
   {
     "nome": "Joilson",
-    "categoria": "Quente",
+    "categoria": "Morno",
     "interesse": "Oceana Golf",
     "resumo": "Retomará conversa após viagem; foco em Oceana/Golf (etiqueta QZ).",
     "campanha": "Campanha Oceana",
@@ -81,7 +81,7 @@
   },
   {
     "nome": "Arnaldo",
-    "categoria": "Quente",
+    "categoria": "Quentissimo",
     "interesse": "Cobertura",
     "resumo": "Cliente de parceiro, busca cobertura.",
     "campanha": "Parceria",
