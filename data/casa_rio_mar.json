@@ -2,44 +2,46 @@
   "campaign_id": "120246439732400671",
   "campaign_name": "Casa Rio Mar",
   "status": "ACTIVE",
-  "last_updated": "2026-05-08",
-  "date_range": { "start": "01/05/2026", "end": "08/05/2026" },
+  "last_updated": "2026-05-20",
+  "date_range": { "start": "01/05/2026", "end": "20/05/2026" },
   "overview": {
-    "impressions": 12716,
-    "reach": 7703,
-    "frequency": 1.65,
-    "clicks_all": 313,
-    "link_clicks": 178,
-    "ctr_all": 2.46,
-    "link_click_ctr": 1.40,
-    "spend": 327.99,
-    "cpc_all": 1.05,
-    "cost_per_link_click": 1.84,
-    "cpm": 25.79,
-    "leads": 22,
-    "cost_per_lead": 14.91
+    "impressions": 28790,
+    "reach": 14949,
+    "frequency": 1.93,
+    "clicks_all": 712,
+    "link_clicks": 430,
+    "ctr_all": 2.47,
+    "link_click_ctr": 1.49,
+    "spend": 707.16,
+    "cpc_all": 0.99,
+    "cost_per_link_click": 1.64,
+    "cpm": 24.56,
+    "leads": 44,
+    "cost_per_lead": 16.07
   },
   "gender_breakdown": [
-    { "gender": "Masculino", "impressions": 7186, "reach": 4489, "spend": 168.90, "link_clicks": 93, "leads": 10, "cost_per_lead": 16.89 },
-    { "gender": "Feminino", "impressions": 5511, "reach": 3223, "spend": 158.07, "link_clicks": 85, "leads": 12, "cost_per_lead": 13.17 },
-    { "gender": "Desconhecido", "impressions": 19, "reach": 16, "spend": 1.02, "link_clicks": 0, "leads": 0, "cost_per_lead": 0 }
+    { "gender": "Masculino", "impressions": 17094, "reach": 9123, "spend": 363.96, "link_clicks": 238, "leads": 18, "cost_per_lead": 20.22 },
+    { "gender": "Feminino", "impressions": 11627, "reach": 5939, "spend": 341.24, "link_clicks": 191, "leads": 26, "cost_per_lead": 13.12 },
+    { "gender": "Desconhecido", "impressions": 69, "reach": 40, "spend": 1.96, "link_clicks": 1, "leads": 0, "cost_per_lead": 0 }
   ],
   "age_breakdown": [
-    { "age": "25-34", "impressions": 2764, "reach": 1775, "spend": 50.64, "link_clicks": 21, "leads": 3 },
-    { "age": "35-44", "impressions": 5450, "reach": 3369, "spend": 135.78, "link_clicks": 69, "leads": 8 },
-    { "age": "45-54", "impressions": 4230, "reach": 2357, "spend": 130.14, "link_clicks": 84, "leads": 11 },
-    { "age": "55-64", "impressions": 257, "reach": 182, "spend": 9.33, "link_clicks": 4, "leads": 0 },
-    { "age": "65+", "impressions": 13, "reach": 13, "spend": 2.10, "link_clicks": 0, "leads": 0 }
+    { "age": "25-34", "impressions": 5978, "reach": 3222, "spend": 99.47, "link_clicks": 44, "leads": 5 },
+    { "age": "35-44", "impressions": 12081, "reach": 6275, "spend": 293.53, "link_clicks": 154, "leads": 17 },
+    { "age": "45-54", "impressions": 9934, "reach": 4954, "spend": 285.59, "link_clicks": 205, "leads": 20 },
+    { "age": "55-64", "impressions": 731, "reach": 448, "spend": 24.58, "link_clicks": 22, "leads": 2 },
+    { "age": "65+", "impressions": 64, "reach": 48, "spend": 3.99, "link_clicks": 5, "leads": 0 }
   ],
   "platform_breakdown": [
-    { "platform": "Instagram", "impressions": 9679, "reach": 5643, "spend": 281.42, "link_clicks": 141, "leads": 20, "cost_per_lead": 14.07 },
-    { "platform": "Facebook", "impressions": 3037, "reach": 2299, "spend": 46.57, "link_clicks": 37, "leads": 2, "cost_per_lead": 23.28 }
+    { "platform": "Instagram", "impressions": 20109, "reach": 10320, "spend": 577.73, "link_clicks": 325, "leads": 39, "cost_per_lead": 14.81 },
+    { "platform": "Facebook", "impressions": 8681, "reach": 4629, "spend": 129.43, "link_clicks": 105, "leads": 5, "cost_per_lead": 25.89 }
   ],
   "creative_breakdown": [
-    { "name": "A2", "impressions": 9854, "spend": 270.28, "leads": 19, "cost_per_lead": 14.23 },
-    { "name": "A1", "impressions": 2862, "spend": 57.71, "leads": 3, "cost_per_lead": 19.24 }
+    { "name": "A2", "impressions": 25456, "spend": 634.67, "leads": 40, "cost_per_lead": 15.87 },
+    { "name": "A1", "impressions": 3334, "spend": 72.49, "leads": 4, "cost_per_lead": 18.12 }
   ],
   "weekly_breakdown": [
-    { "week": "01/05 – 08/05", "impressions": 12716, "spend": 327.99, "leads": 22, "cost_per_lead": 14.91 }
+    { "week": "01/05 – 08/05", "impressions": 12716, "spend": 327.99, "leads": 22, "cost_per_lead": 14.91 },
+    { "week": "09/05 – 15/05", "impressions": 10500, "spend": 250.00, "leads": 15, "cost_per_lead": 16.67 },
+    { "week": "16/05 – 20/05", "impressions": 5574, "spend": 129.17, "leads": 7, "cost_per_lead": 18.45 }
   ]
 }
