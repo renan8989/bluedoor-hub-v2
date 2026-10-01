@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Campanha Comparativa + Comercial</title>
+<title>Dashboard Campanha Comparativa</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -210,7 +210,7 @@
   <div class="header-left">
     <img src="logo.png" alt="Blue Door" class="header-logo" onerror="this.style.display='none'">
     <div class="header-title">
-      <h1>Dashboard Campanha Comparativa + Comercial</h1>
+      <h1>Dashboard Campanha Comparativa</h1>
       <p>Conta: act_1453008295739427 · Blue Door Imóveis</p>
     </div>
   </div>
@@ -226,7 +226,6 @@
   <button class="tab-btn" onclick="switchTab('oceana', this)">🏌️ Oceana Golf</button>
   <button class="tab-btn" onclick="switchTab('latitud', this)">🏙️ RJ Latitud</button>
   <button class="tab-btn" onclick="switchTab('mudra', this)">🏡 Avulso Mudrá</button>
-  <button class="tab-btn comercial-tab" onclick="switchTab('comercial', this)">💬 Comercial</button>
 </div>
 
 <div class="notice">Os dados desta dashboard são atualizados conforme ordenado. Recomendado acessar via Desktop, Mobile pode apresentar falhas.</div>
@@ -395,46 +394,12 @@
   <div class="chart-card" style="margin-bottom:16px;"><table class="platform-table" id="mudra-metricsTable"></table></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- TAB: COMERCIAL -->
-<!-- ============================================================ -->
-<div id="tab-comercial" class="tab-content">
-  <div class="campaign-banner">
-    <div><div class="c-name">CRM - Fundo de Funil</div></div>
-    <span class="status-badge status-active">● ATIVO</span>
-  </div>
-
-  <div class="section-title">Status por Categoria</div>
-  <div class="com-status-grid" id="com-statusGrid"></div>
-
-  <div class="section-title">Métricas Comerciais</div>
-  <div class="com-metrics-grid" id="com-metricsGrid"></div>
-
-  <div class="section-title">Distribuição dos Leads</div>
-  <div class="chart-grid">
-    <div class="chart-card"><h3>Leads por Categoria</h3><canvas id="com-chartDist"></canvas></div>
-    <div class="chart-card"><h3>Origem dos Leads</h3><canvas id="com-chartOrigin"></canvas></div>
-  </div>
-
-
-  <div class="section-title">Funil Comercial</div>
-  <div class="chart-card" style="margin-bottom:16px;">
-    <h3>Do lead ao fechamento</h3>
-    <div class="com-funnel" id="com-funnel"></div>
-  </div>
-
-  <div class="section-title">Detalhamento dos Leads</div>
-  <div class="chart-card" style="margin-bottom:16px;">
-    <table class="leads-table" id="com-leadsTable"></table>
-  </div>
-</div>
-
 <div class="export-section">
   <button class="export-btn" onclick="window.print()">⬇ Exportar PDF</button>
 </div>
 
 <div class="footer">
-  Dashboard Campanha Comparativa + Comercial · Blue Door Imóveis · Dados via Meta Marketing API + CRM - Fundo de Funil
+  Dashboard Campanha Comparativa · Blue Door Imóveis · Dados via Meta Marketing API + CRM - Fundo de Funil
 </div>
 
 <script>
