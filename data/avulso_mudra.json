@@ -1,0 +1,33 @@
+{
+  "campaign_id": "120250593329140671",
+  "ad_account_id": "1453008295739427",
+  "campaign_name": "V2 AX A201200 - AVULSO MUDRÁ 2Q 79M - BARRA - PDS - SOLUNA",
+  "short_name": "Avulso Mudrá",
+  "status": "WITH_ISSUES",
+  "status_label": "● NÃO VEICULANDO · ERRO",
+  "status_badge_class": "status-paused",
+  "last_updated": "2026-10-01",
+  "date_range": { "start": "16/07/2026", "end": "01/10/2026" },
+  "source_period": "Máximo consultado: 01/09/2023 – 01/10/2026",
+  "overview": {
+    "impressions": 27865,
+    "reach": 16765,
+    "frequency": 1.66,
+    "clicks_all": null,
+    "link_clicks": null,
+    "ctr_all": null,
+    "link_click_ctr": null,
+    "spend": 935.41,
+    "cpc_all": null,
+    "cost_per_link_click": null,
+    "cpm": 33.57,
+    "leads": 17,
+    "cost_per_lead": 55.02,
+    "daily_budget": null
+  },
+  "analysis": [
+    { "icon": "🎯", "title": "17 leads gerados", "text": "A campanha acumulou 17 leads com investimento de R$ 935,41 e custo médio de R$ 55,02 por lead.", "badge": "Resultado" },
+    { "icon": "📊", "title": "Frequência controlada", "text": "Frequência de 1,66 indica que o público foi impactado, em média, menos de duas vezes no período.", "badge": "Saudável" },
+    { "icon": "⚠️", "title": "Erro de veiculação", "text": "A campanha aparece como não veiculando por erro de veiculação. Revisar o diagnóstico antes de tentar reativar.", "badge": "Atenção" }
+  ]
+}

@@ -51,6 +51,7 @@
   .status-active { background: rgba(6,214,160,0.15); border: 1px solid var(--green); color: var(--green); }
   .status-paused { background: rgba(255,209,102,0.15); border: 1px solid var(--accent4); color: var(--accent4); }
   .status-new { background: rgba(0,212,255,0.15); border: 1px solid var(--accent2); color: var(--accent2); }
+  .status-issue { background: rgba(239,71,111,0.15); border: 1px solid var(--red); color: var(--red); }
 
   .section-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
@@ -138,6 +139,8 @@
   .comparison-table .better { color: var(--green); font-weight: 700; }
   .comparison-table .worse { color: var(--red); }
   .comparison-table .neutral { color: var(--muted); }
+  .comparison-scroll { overflow-x: auto; }
+  .comparison-scroll .comparison-table { min-width: 760px; }
   .winner-badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 0.65rem; font-weight: 700; margin-left: 6px; background: rgba(6,214,160,0.15); color: var(--green); }
 
   .overview-insight { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
@@ -221,6 +224,8 @@
   <button class="tab-btn overview-tab active" onclick="switchTab('overview', this)">📊 Visão Geral</button>
   <button class="tab-btn" onclick="switchTab('casa_rio_mar', this)">🏠 Casa Rio Mar</button>
   <button class="tab-btn" onclick="switchTab('oceana', this)">🏌️ Oceana Golf</button>
+  <button class="tab-btn" onclick="switchTab('latitud', this)">🏙️ RJ Latitud</button>
+  <button class="tab-btn" onclick="switchTab('mudra', this)">🏡 Avulso Mudrá</button>
   <button class="tab-btn comercial-tab" onclick="switchTab('comercial', this)">💬 Comercial</button>
 </div>
 
@@ -230,13 +235,13 @@
 <!-- TAB: VISÃO GERAL -->
 <!-- ============================================================ -->
 <div id="tab-overview" class="tab-content active">
-  <div class="section-title">Resumo das Campanhas Ativas</div>
+  <div class="section-title">Resumo das Campanhas</div>
   <div class="overview-hero" id="overviewHero"></div>
 
   <div class="section-title">Comparativo de Indicadores</div>
   <div class="chart-card" style="margin-bottom:16px;">
-    <h3>Métricas Lado a Lado — Casa Rio Mar vs. Oceana Golf</h3>
-    <table class="comparison-table" id="comparisonTable"></table>
+    <h3>Métricas Lado a Lado — campanhas da conta MICHEL–FIORI</h3>
+    <div class="comparison-scroll"><table class="comparison-table" id="comparisonTable"></table></div>
   </div>
 
   <div class="section-title">Comparativo Visual</div>
@@ -251,7 +256,7 @@
 
   <div class="section-title">Totais Consolidados</div>
   <div class="overview-insight">
-    <h3>Soma de todas as campanhas ativas</h3>
+    <h3>Soma das campanhas no comparativo</h3>
     <div class="insight-grid" id="consolidatedGrid"></div>
   </div>
 
@@ -349,6 +354,48 @@
 </div>
 
 <!-- ============================================================ -->
+<!-- TAB: RJ LATITUD -->
+<!-- ============================================================ -->
+<div id="tab-latitud" class="tab-content">
+  <div class="campaign-banner" id="latitud-banner"></div>
+  <div class="notice" id="latitud-source"></div>
+  <div class="section-title">Indicadores Principais</div>
+  <div class="kpi-grid" id="latitud-kpis"></div>
+  <div class="section-title">Visão de Entrega</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>Impressões vs. Alcance</h3><canvas id="latitud-chartReach"></canvas></div>
+    <div class="chart-card"><h3>Leads e Investimento</h3><canvas id="latitud-chartOutcome"></canvas></div>
+  </div>
+  <div class="section-title">Funil de Conversão</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Jornada do Público — Impressões até Lead</h3><div class="funnel" id="latitud-funnel"></div></div>
+  <div class="section-title">Leitura Rápida</div>
+  <div class="analysis-grid" id="latitud-analysis"></div>
+  <div class="section-title">Métricas Detalhadas</div>
+  <div class="chart-card" style="margin-bottom:16px;"><table class="platform-table" id="latitud-metricsTable"></table></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB: AVULSO MUDRÁ -->
+<!-- ============================================================ -->
+<div id="tab-mudra" class="tab-content">
+  <div class="campaign-banner" id="mudra-banner"></div>
+  <div class="notice" id="mudra-source"></div>
+  <div class="section-title">Indicadores Principais</div>
+  <div class="kpi-grid" id="mudra-kpis"></div>
+  <div class="section-title">Visão de Entrega</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>Impressões vs. Alcance</h3><canvas id="mudra-chartReach"></canvas></div>
+    <div class="chart-card"><h3>Leads e Investimento</h3><canvas id="mudra-chartOutcome"></canvas></div>
+  </div>
+  <div class="section-title">Funil de Conversão</div>
+  <div class="chart-card" style="margin-bottom:16px;"><h3>Jornada do Público — Impressões até Lead</h3><div class="funnel" id="mudra-funnel"></div></div>
+  <div class="section-title">Leitura Rápida</div>
+  <div class="analysis-grid" id="mudra-analysis"></div>
+  <div class="section-title">Métricas Detalhadas</div>
+  <div class="chart-card" style="margin-bottom:16px;"><table class="platform-table" id="mudra-metricsTable"></table></div>
+</div>
+
+<!-- ============================================================ -->
 <!-- TAB: COMERCIAL -->
 <!-- ============================================================ -->
 <div id="tab-comercial" class="tab-content">
@@ -400,9 +447,9 @@ function switchTab(name, btn) {
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────
-const fmtN = n => n >= 1000 ? (n/1000).toFixed(1) + 'K' : String(n);
-const fmtR = n => 'R$ ' + Number(n).toFixed(2).replace('.', ',');
-const fmtP = n => Number(n).toFixed(2).replace('.', ',') + '%';
+const fmtN = n => n === null || n === undefined ? '—' : n >= 1000 ? (n/1000).toFixed(1) + 'K' : String(n);
+const fmtR = n => n === null || n === undefined ? '—' : 'R$ ' + Number(n).toFixed(2).replace('.', ',');
+const fmtP = n => n === null || n === undefined ? '—' : Number(n).toFixed(2).replace('.', ',') + '%';
 
 const CHART_DEFAULTS = {
   responsive: true, maintainAspectRatio: true,
@@ -771,14 +818,88 @@ function renderCasaRioMar(d) {
   </tbody>`;
 }
 
+// ─── RENDER CAMPAIGN SNAPSHOT TABS ────────────────────────────
+function renderCampaignSnapshot(d, prefix) {
+  const o = d.overview || {};
+  const banner = document.getElementById(prefix + '-banner');
+  const statusClass = d.status_badge_class || (d.status === 'ACTIVE' ? 'status-active' : 'status-paused');
+  const statusLabel = d.status_label || (d.status === 'ACTIVE' ? '● ATIVA' : '⏸ PAUSADA');
+  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge ${statusClass}">${statusLabel}</span>`;
+
+  const sourceEl = document.getElementById(prefix + '-source');
+  if (sourceEl) sourceEl.textContent = `${d.source_period || 'Período consultado'} · Conta de anúncios ${d.ad_account_id || '—'}`;
+
+  const kpiEl = document.getElementById(prefix + '-kpis');
+  if (kpiEl) kpiEl.innerHTML = [
+    { label: 'Impressões', val: fmtN(o.impressions), sub: 'Exibições do anúncio', c: 'c1' },
+    { label: 'Alcance', val: fmtN(o.reach), sub: 'Contas alcançadas', c: 'c2' },
+    { label: 'Frequência', val: o.frequency === null || o.frequency === undefined ? '—' : Number(o.frequency).toFixed(2), sub: 'Visualizações por conta', c: 'c3' },
+    { label: 'Leads', val: o.leads === null || o.leads === undefined ? '—' : o.leads, sub: 'Cadastros gerados', c: 'c4' },
+    { label: 'Valor Usado', val: fmtR(o.spend), sub: 'Investimento total (BRL)', c: 'c5' },
+    { label: 'Custo por Lead', val: fmtR(o.cost_per_lead), sub: 'Por cadastro (BRL)', c: 'c6' },
+    { label: 'CPM', val: fmtR(o.cpm), sub: 'Custo por 1.000 impressões', c: 'c7' },
+    { label: 'CTR (todos)', val: fmtP(o.ctr_all), sub: 'Taxa de cliques', c: 'c8' }
+  ].map(k => `<div class="kpi-card ${k.c}"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
+
+  const numeric = value => value === null || value === undefined || Number.isNaN(Number(value)) ? 0 : Number(value);
+  mkChart(prefix + '-chartReach', { type: 'bar', data: {
+    labels: ['Impressões', 'Alcance'],
+    datasets: [{ data: [numeric(o.impressions), numeric(o.reach)], backgroundColor: ['#6c63ff', '#00d4ff'], borderRadius: 6 }]
+  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+
+  mkChart(prefix + '-chartOutcome', { type: 'bar', data: {
+    labels: ['Leads', 'Investimento (R$)'],
+    datasets: [{ data: [numeric(o.leads), numeric(o.spend)], backgroundColor: ['#06d6a0', '#ffd166'], borderRadius: 6 }]
+  }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+
+  const fEl = document.getElementById(prefix + '-funnel');
+  if (fEl) {
+    const steps = [
+      { num: fmtN(o.impressions), label: 'Impressões', pct: '' },
+      { num: fmtN(o.reach), label: 'Alcance', pct: o.impressions > 0 ? ((o.reach / o.impressions) * 100).toFixed(1) + '%' : '' },
+      { num: fmtN(o.leads), label: 'Leads', pct: o.reach > 0 && o.leads !== null && o.leads !== undefined ? ((o.leads / o.reach) * 100).toFixed(1) + '%' : '' }
+    ];
+    fEl.innerHTML = steps.map((s, i) => `${i > 0 ? '<div class="funnel-arrow">›</div>' : ''}<div class="funnel-step"><div class="funnel-box"><div class="funnel-num">${s.num}</div><div class="funnel-label">${s.label}</div></div>${s.pct ? `<div class="funnel-pct">${s.pct}</div>` : ''}</div>`).join('');
+  }
+
+  const aEl = document.getElementById(prefix + '-analysis');
+  if (aEl) aEl.innerHTML = (d.analysis || []).map((item, idx) => {
+    const tone = idx === 0 ? 'positive' : idx === 1 ? 'warning' : 'action';
+    const badge = idx === 0 ? 'badge-green' : idx === 1 ? 'badge-yellow' : 'badge-blue';
+    return `<div class="analysis-card ${tone}"><div class="analysis-icon">${item.icon}</div><div class="analysis-title">${item.title}</div><div class="analysis-text">${item.text}</div><span class="analysis-badge ${badge}">${item.badge}</span></div>`;
+  }).join('');
+
+  const mEl = document.getElementById(prefix + '-metricsTable');
+  if (mEl) {
+    const rows = [
+      ['Campanha', d.campaign_name, 'Nome no Meta Ads Manager'],
+      ['ID da campanha', d.campaign_id, 'Identificador da campanha'],
+      ['Período da campanha', `${d.date_range.start} – ${d.date_range.end}`, 'Período usado para a leitura desta aba'],
+      ['Status', statusLabel.replace(/^[^A-Z0-9À-Ú]+/i, ''), 'Status observado no Meta Ads Manager'],
+      ['Orçamento diário', fmtR(o.daily_budget), 'Orçamento diário informado pela campanha'],
+      ['Impressões', fmtN(o.impressions), 'Número de vezes que o anúncio foi exibido'],
+      ['Alcance', fmtN(o.reach), 'Contas alcançadas pelo anúncio'],
+      ['Frequência', o.frequency === null || o.frequency === undefined ? '—' : Number(o.frequency).toFixed(2), 'Média de visualizações por conta'],
+      ['Leads', o.leads === null || o.leads === undefined ? '—' : o.leads, 'Cadastros atribuídos à campanha'],
+      ['Valor usado', fmtR(o.spend), 'Investimento total no período consultado'],
+      ['Custo por lead', fmtR(o.cost_per_lead), 'Custo médio por lead gerado'],
+      ['CPM', fmtR(o.cpm), 'Custo médio por 1.000 impressões'],
+      ['CTR (todos)', fmtP(o.ctr_all), 'Taxa de cliques; não exibida na visão consolidada quando ausente']
+    ];
+    mEl.innerHTML = `<thead><tr><th>Métrica</th><th>Valor</th><th>Definição</th></tr></thead><tbody>` + rows.map(r => `<tr><td style="color:#7c7cff">${r[0]}</td><td><strong>${r[1]}</strong></td><td>${r[2]}</td></tr>`).join('') + `</tbody>`;
+  }
+}
+
 // ─── RENDER OVERVIEW ─────────────────────────────────────────
-function renderOverview(crm, oceana) {
+function renderOverview(campaigns) {
   const heroEl = document.getElementById('overviewHero');
-  [crm, oceana].forEach((d, idx) => { // crm=0(Casa Rio Mar), oceana=1
+  heroEl.innerHTML = '';
+  campaigns.forEach((d, idx) => {
     const o = d.overview;
     const div = document.createElement('div');
     div.className = 'overview-campaign-card';
-    const statusHtml = idx === 0 ? '<span class="status-badge status-new">● NOVA</span>' : '<span class="status-badge status-paused">⏸ PAUSADA</span>';
+    const fallbackClass = idx === 0 ? 'status-new' : 'status-paused';
+    const statusHtml = `<span class="status-badge ${d.status_badge_class || fallbackClass}">${d.status_label || (idx === 0 ? '● NOVA' : '⏸ PAUSADA')}</span>`;
     div.innerHTML = `
       <div class="oc-header">
         <div><div class="oc-name">${d.campaign_name}</div><div class="oc-period">${d.date_range.start} – ${d.date_range.end}</div></div>
@@ -795,46 +916,52 @@ function renderOverview(crm, oceana) {
     heroEl.appendChild(div);
   });
 
-  const oo = oceana.overview, co = crm.overview;
   const rows = [
-    { metric: 'Leads', o: oo.leads, c: co.leads, fmt: v => v, higherBetter: true },
-    { metric: 'Investimento', o: oo.spend, c: co.spend, fmt: fmtR, higherBetter: false },
-    { metric: 'Custo por Lead', o: oo.cost_per_lead, c: co.cost_per_lead > 0 ? co.cost_per_lead : null, fmt: v => v ? fmtR(v) : '—', higherBetter: false },
-    { metric: 'CPM', o: oo.cpm, c: co.cpm, fmt: fmtR, higherBetter: false },
-    { metric: 'CTR (todos)', o: oo.ctr_all, c: co.ctr_all, fmt: fmtP, higherBetter: true },
-    { metric: 'Impressões', o: oo.impressions, c: co.impressions, fmt: fmtN, higherBetter: true },
-    { metric: 'Alcance', o: oo.reach, c: co.reach, fmt: fmtN, higherBetter: true },
-    { metric: 'Frequência', o: oo.frequency, c: co.frequency, fmt: v => Number(v).toFixed(2), higherBetter: false }
+    { metric: 'Leads', get: d => d.overview.leads, fmt: v => v === null || v === undefined ? '—' : v, higherBetter: true },
+    { metric: 'Investimento', get: d => d.overview.spend, fmt: fmtR, higherBetter: false },
+    { metric: 'Custo por Lead', get: d => d.overview.cost_per_lead > 0 ? d.overview.cost_per_lead : null, fmt: fmtR, higherBetter: false },
+    { metric: 'CPM', get: d => d.overview.cpm, fmt: fmtR, higherBetter: false },
+    { metric: 'CTR (todos)', get: d => d.overview.ctr_all, fmt: fmtP, higherBetter: true },
+    { metric: 'Impressões', get: d => d.overview.impressions, fmt: fmtN, higherBetter: true },
+    { metric: 'Alcance', get: d => d.overview.reach, fmt: fmtN, higherBetter: true },
+    { metric: 'Frequência', get: d => d.overview.frequency, fmt: v => v === null || v === undefined ? '—' : Number(v).toFixed(2), higherBetter: false }
   ];
   const tEl = document.getElementById('comparisonTable');
-  tEl.innerHTML = `<thead><tr><th>Métrica</th><th>🏠 Casa Rio Mar</th><th>🏌️ Oceana Golf</th></tr></thead><tbody>` +
+  tEl.innerHTML = `<thead><tr><th>Métrica</th>${campaigns.map(d => `<th>${d.short_name || d.campaign_name}</th>`).join('')}</tr></thead><tbody>` +
     rows.map(r => {
-      const oBetter = r.c !== null && (r.higherBetter ? r.o > r.c : r.o < r.c);
-      const cBetter = r.c !== null && (r.higherBetter ? r.c > r.o : r.c < r.o);
+      const values = campaigns.map(r.get);
+      const valid = values.filter(v => v !== null && v !== undefined && !Number.isNaN(Number(v)));
+      const best = valid.length > 1 ? (r.higherBetter ? Math.max(...valid) : Math.min(...valid)) : null;
       return `<tr>
         <td class="metric-name">${r.metric}</td>
-        <td class="${cBetter ? 'better' : oBetter ? 'worse' : 'neutral'}">${r.fmt(r.c)}${cBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
-        <td class="${oBetter ? 'better' : cBetter ? 'worse' : 'neutral'}">${r.fmt(r.o)}${oBetter ? '<span class="winner-badge">✓</span>' : ''}</td>
+        ${values.map(value => {
+          const isBest = best !== null && value === best;
+          const isWorse = best !== null && value !== null && value !== undefined && value !== best;
+          return `<td class="${isBest ? 'better' : isWorse ? 'worse' : 'neutral'}">${r.fmt(value)}${isBest ? '<span class="winner-badge">✓</span>' : ''}</td>`;
+        }).join('')}
       </tr>`;
     }).join('') + `</tbody>`;
 
-  const campaigns = ['Casa Rio Mar', 'Oceana Golf'];
-  const colors = ['#00d4ff', '#6c63ff'];
-  mkChart('ov-chartLeads', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.leads, oo.leads], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-  mkChart('ov-chartSpend', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.spend, oo.spend], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-  mkChart('ov-chartCPL', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.cost_per_lead, oo.cost_per_lead], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
-  mkChart('ov-chartCTR', { type: 'bar', data: { labels: campaigns, datasets: [{ data: [co.ctr_all, oo.ctr_all], backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  const labels = campaigns.map(d => d.short_name || d.campaign_name);
+  const colors = ['#00d4ff', '#6c63ff', '#06d6a0', '#ff9f43'];
+  const values = key => campaigns.map(d => d.overview[key] === null || d.overview[key] === undefined ? 0 : d.overview[key]);
+  mkChart('ov-chartLeads', { type: 'bar', data: { labels, datasets: [{ data: values('leads'), backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartSpend', { type: 'bar', data: { labels, datasets: [{ data: values('spend'), backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartCPL', { type: 'bar', data: { labels, datasets: [{ data: values('cost_per_lead'), backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
+  mkChart('ov-chartCTR', { type: 'bar', data: { labels, datasets: [{ data: values('ctr_all'), backgroundColor: colors, borderRadius: 8 }] }, options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } } });
 
-  const totalLeads = oo.leads + co.leads;
-  const totalSpend = oo.spend + co.spend;
+  const totalLeads = campaigns.reduce((sum, d) => sum + (Number(d.overview.leads) || 0), 0);
+  const totalSpend = campaigns.reduce((sum, d) => sum + (Number(d.overview.spend) || 0), 0);
+  const totalImpressions = campaigns.reduce((sum, d) => sum + (Number(d.overview.impressions) || 0), 0);
+  const totalReach = campaigns.reduce((sum, d) => sum + (Number(d.overview.reach) || 0), 0);
   const cGrid = document.getElementById('consolidatedGrid');
   if (cGrid) cGrid.innerHTML = [
     { label: 'Total de Leads', value: totalLeads, sub: 'Todas as campanhas' },
     { label: 'Total Investido', value: fmtR(totalSpend), sub: 'Todas as campanhas' },
     { label: 'CPL Médio Geral', value: totalLeads > 0 ? fmtR(totalSpend / totalLeads) : '—', sub: 'Média ponderada' },
-    { label: 'Total de Impressões', value: fmtN(oo.impressions + co.impressions), sub: 'Todas as campanhas' },
-    { label: 'Alcance Total', value: fmtN(oo.reach + co.reach), sub: 'Accounts Center accounts' },
-    { label: 'Campanhas Ativas', value: '2', sub: 'Casa Rio Mar + Oceana Golf' }
+    { label: 'Total de Impressões', value: fmtN(totalImpressions), sub: 'Todas as campanhas' },
+    { label: 'Alcance Total', value: fmtN(totalReach), sub: 'Contas alcançadas' },
+    { label: 'Campanhas no comparativo', value: String(campaigns.length), sub: 'Casa Rio Mar + Oceana + RJ Latitud + Avulso Mudrá' }
   ].map(i => `<div class="insight-item"><div class="i-label">${i.label}</div><div class="i-value">${i.value}</div><div class="i-sub">${i.sub}</div></div>`).join('');
 }
 
@@ -974,15 +1101,19 @@ function renderComercial(leads) {
 // ─── INIT ─────────────────────────────────────────────────────
 async function init() {
   try {
-    const [crm, oceana, leadsData] = await Promise.all([
+    const [crm, oceana, latitud, mudra, leadsData] = await Promise.all([
       fetch('data/casa_rio_mar.json').then(r => r.json()),
       fetch('data/oceana.json').then(r => r.json()),
+      fetch('data/latitud.json').then(r => r.json()),
+      fetch('data/avulso_mudra.json').then(r => r.json()),
       fetch('data/leads.json').then(r => r.json())
     ]);
     document.getElementById('lastUpdate').textContent = 'Última atualização: ' + new Date().toLocaleDateString('pt-BR');
     renderCasaRioMar(crm);
     renderOceana(oceana);
-    renderOverview(crm, oceana);
+    renderCampaignSnapshot(latitud, 'latitud');
+    renderCampaignSnapshot(mudra, 'mudra');
+    renderOverview([crm, oceana, latitud, mudra]);
     const leads = leadsData.leads || leadsData;
     renderComercial(leads);
   } catch(e) {

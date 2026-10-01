@@ -1,0 +1,33 @@
+{
+  "campaign_id": "120252016407550671",
+  "ad_account_id": "1453008295739427",
+  "campaign_name": "RJ | Barra | Latitud | Leads Premium WhatsApp | R$1k-mês",
+  "short_name": "RJ Latitud",
+  "status": "ACTIVE",
+  "status_label": "● ATIVA · SEM ENTREGA",
+  "status_badge_class": "status-active",
+  "last_updated": "2026-10-01",
+  "date_range": { "start": "30/09/2026", "end": "01/10/2026" },
+  "source_period": "Máximo consultado: 01/09/2023 – 01/10/2026",
+  "overview": {
+    "impressions": 0,
+    "reach": 0,
+    "frequency": null,
+    "clicks_all": null,
+    "link_clicks": null,
+    "ctr_all": null,
+    "link_click_ctr": null,
+    "spend": 0,
+    "cpc_all": null,
+    "cost_per_link_click": null,
+    "cpm": null,
+    "leads": 0,
+    "cost_per_lead": null,
+    "daily_budget": 33
+  },
+  "analysis": [
+    { "icon": "🟢", "title": "Campanha recém-criada", "text": "A campanha foi criada em 30/09/2026 e está ativa, mas ainda não registrou entrega, investimento ou leads no período consultado.", "badge": "Acompanhar" },
+    { "icon": "💰", "title": "Orçamento diário definido", "text": "O orçamento configurado é de R$ 33,00 por dia. Acompanhar a primeira entrega antes de avaliar performance.", "badge": "Orçamento" },
+    { "icon": "📌", "title": "Próximo passo", "text": "Validar a entrega do conjunto e do criativo antes de comparar eficiência com campanhas já maduras.", "badge": "Ação" }
+  ]
+}
