@@ -224,8 +224,8 @@
   <button class="tab-btn overview-tab active" onclick="switchTab('overview', this)">📊 Visão Geral</button>
   <button class="tab-btn" onclick="switchTab('casa_rio_mar', this)">🏠 Casa Rio Mar</button>
   <button class="tab-btn" onclick="switchTab('oceana', this)">🏌️ Oceana Golf</button>
-  <button class="tab-btn" onclick="switchTab('latitud', this)">🏙️ RJ Latitud</button>
-  <button class="tab-btn" onclick="switchTab('mudra', this)">🏡 Avulso Mudrá</button>
+  <button class="tab-btn" onclick="switchTab('latitud', this)">🏙️ Latitud 7A</button>
+  <button class="tab-btn" onclick="switchTab('mudra', this)">🏡 Mudrá Isabella</button>
 </div>
 
 <div class="notice">Os dados desta dashboard são atualizados conforme ordenado. Recomendado acessar via Desktop, Mobile pode apresentar falhas.</div>
@@ -786,10 +786,11 @@ function renderCasaRioMar(d) {
 // ─── RENDER CAMPAIGN SNAPSHOT TABS ────────────────────────────
 function renderCampaignSnapshot(d, prefix) {
   const o = d.overview || {};
+  const displayName = d.short_name || d.campaign_name;
   const banner = document.getElementById(prefix + '-banner');
   const statusClass = d.status_badge_class || (d.status === 'ACTIVE' ? 'status-active' : 'status-paused');
   const statusLabel = d.status_label || (d.status === 'ACTIVE' ? '● ATIVA' : '⏸ PAUSADA');
-  if (banner) banner.innerHTML = `<div><div class="c-name">${d.campaign_name}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge ${statusClass}">${statusLabel}</span>`;
+  if (banner) banner.innerHTML = `<div><div class="c-name">${displayName}</div><div class="c-period">${d.date_range.start} – ${d.date_range.end}</div></div><span class="status-badge ${statusClass}">${statusLabel}</span>`;
 
   const sourceEl = document.getElementById(prefix + '-source');
   if (sourceEl) sourceEl.textContent = `${d.source_period || 'Período consultado'} · Conta de anúncios ${d.ad_account_id || '—'}`;
@@ -861,13 +862,14 @@ function renderOverview(campaigns) {
   heroEl.innerHTML = '';
   campaigns.forEach((d, idx) => {
     const o = d.overview;
+    const displayName = d.short_name || d.campaign_name;
     const div = document.createElement('div');
     div.className = 'overview-campaign-card';
     const fallbackClass = idx === 0 ? 'status-new' : 'status-paused';
     const statusHtml = `<span class="status-badge ${d.status_badge_class || fallbackClass}">${d.status_label || (idx === 0 ? '● NOVA' : '⏸ PAUSADA')}</span>`;
     div.innerHTML = `
       <div class="oc-header">
-        <div><div class="oc-name">${d.campaign_name}</div><div class="oc-period">${d.date_range.start} – ${d.date_range.end}</div></div>
+        <div><div class="oc-name">${displayName}</div><div class="oc-period">${d.date_range.start} – ${d.date_range.end}</div></div>
         ${statusHtml}
       </div>
       <div class="oc-kpis">
@@ -926,7 +928,7 @@ function renderOverview(campaigns) {
     { label: 'CPL Médio Geral', value: totalLeads > 0 ? fmtR(totalSpend / totalLeads) : '—', sub: 'Média ponderada' },
     { label: 'Total de Impressões', value: fmtN(totalImpressions), sub: 'Todas as campanhas' },
     { label: 'Alcance Total', value: fmtN(totalReach), sub: 'Contas alcançadas' },
-    { label: 'Campanhas no comparativo', value: String(campaigns.length), sub: 'Casa Rio Mar + Oceana + RJ Latitud + Avulso Mudrá' }
+    { label: 'Campanhas no comparativo', value: String(campaigns.length), sub: 'Casa Rio Mar + Oceana + Latitud 7A + Mudrá Isabella' }
   ].map(i => `<div class="insight-item"><div class="i-label">${i.label}</div><div class="i-value">${i.value}</div><div class="i-sub">${i.sub}</div></div>`).join('');
 }
 
