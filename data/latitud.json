@@ -1,105 +1,54 @@
 {
-  
   "campaign_id": "120252016407550671",
-  
   "ad_account_id": "1453008295739427",
-  
   "campaign_name": "RJ | Barra | Latitud | Leads Premium WhatsApp | R$1k-mês",
-  
   "short_name": "Latitud 7A",
-  
   "status": "ACTIVE",
-  
   "status_label": "● ATIVA · COM ENTREGA",
-  
   "status_badge_class": "status-active",
-  
-  "last_updated": "2026-10-05",
-  
-  "date_range": { "start": "30/09/2026", "end": "05/10/2026" },
-  
-  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 05/10/2026",
-  
-  "overview": {
-    
-    "impressions": 10677,
-    
-    "reach": 5446,
-    
-    "frequency": 1.96,
-    
-    "clicks_all": 99,
-    
-    "link_clicks": 90,
-    
-    "ctr_all": 0.93,
-    
-    "link_click_ctr": 0.84,
-    
-    "spend": 153.42,
-    
-    "cpc_all": 1.55,
-    
-    "cost_per_link_click": 1.70,
-    
-    "cpm": 14.37,
-    
-    "leads": 1,
-    
-    "lead_metric": "Leads atribuídos no Meta",
-    
-    "cost_per_lead": 153.42,
-    
-    "whatsapp_conversations": 6,
-    
-    "cost_per_whatsapp_conversation": 25.57,
-    
-    "daily_budget": 33
-    
+  "last_updated": "2026-10-06",
+  "date_range": {
+    "start": "30/09/2026",
+    "end": "06/10/2026"
   },
-  
+  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 06/10/2026",
+  "overview": {
+    "impressions": 12188,
+    "reach": 6032,
+    "frequency": 2.02,
+    "clicks_all": 113,
+    "link_clicks": 104,
+    "ctr_all": 0.93,
+    "link_click_ctr": 0.85,
+    "spend": 175.09,
+    "cpc_all": 1.55,
+    "cost_per_link_click": 1.68,
+    "cpm": 14.37,
+    "leads": 1,
+    "lead_metric": "Leads atribuídos no Meta",
+    "cost_per_lead": 175.09,
+    "whatsapp_conversations": 8,
+    "cost_per_whatsapp_conversation": 21.89,
+    "daily_budget": 33
+  },
   "analysis": [
-    
-    { "icon": "🟢", "title": "Campanha com entrega", "text": "A campanha está ativa e já registra 10.677 impressões, alcance de 5.446 contas e investimento de R$ 153,42 no período consultado.", "badge": "Em veiculação" },
-    
-    { "icon": "💬", "title": "6 conversas iniciadas no WhatsApp", "text": "Foram registradas 6 conversas iniciadas no WhatsApp, a R$ 25,57 por conversa. O Meta também atribui 1 lead, com custo de R$ 153,42.", "badge": "Conversão" },
-    
-    { "icon": "📊", "title": "Evolução inicial", "text": "A campanha acumulou 90 link clicks, CTR de link de 0,84% e frequência de 1,96. Continuar acompanhando antes de ampliar o orçamento.", "badge": "Acompanhar" }
-    
+    {
+      "icon": "🟢",
+      "title": "Campanha com entrega",
+      "text": "A campanha está ativa e já registra 12.188 impressões, alcance de 6.032 contas e investimento de R$ 175,09 no período consultado.",
+      "badge": "Em veiculação"
+    },
+    {
+      "icon": "💬",
+      "title": "8 conversas iniciadas no WhatsApp",
+      "text": "Foram registradas 8 conversas iniciadas no WhatsApp, a R$ 21,89 por conversa. O Meta também atribui 1 lead, com custo de R$ 175,09.",
+      "badge": "Conversão"
+    },
+    {
+      "icon": "📊",
+      "title": "Evolução inicial",
+      "text": "A campanha acumulou 104 link clicks, CTR de link de 0,85% e frequência de 2,02. Continuar acompanhando antes de ampliar o orçamento.",
+      "badge": "Acompanhar"
+    }
   ]
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
