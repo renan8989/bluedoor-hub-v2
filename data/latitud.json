@@ -6,48 +6,48 @@
   "status": "ACTIVE",
   "status_label": "● ATIVA · COM ENTREGA",
   "status_badge_class": "status-active",
-  "last_updated": "2026-10-06",
+  "last_updated": "2026-10-07",
   "date_range": {
     "start": "30/09/2026",
-    "end": "06/10/2026"
+    "end": "07/10/2026"
   },
-  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 06/10/2026",
+  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 07/10/2026",
   "overview": {
-    "impressions": 12188,
-    "reach": 6032,
-    "frequency": 2.02,
-    "clicks_all": 113,
-    "link_clicks": 104,
+    "impressions": 12936,
+    "reach": 6307,
+    "frequency": 2.05,
+    "clicks_all": 120,
+    "link_clicks": 110,
     "ctr_all": 0.93,
     "link_click_ctr": 0.85,
-    "spend": 175.09,
-    "cpc_all": 1.55,
-    "cost_per_link_click": 1.68,
-    "cpm": 14.37,
+    "spend": 187.84,
+    "cpc_all": 1.57,
+    "cost_per_link_click": 1.71,
+    "cpm": 14.52,
     "leads": 1,
     "lead_metric": "Leads atribuídos no Meta",
-    "cost_per_lead": 175.09,
-    "whatsapp_conversations": 8,
-    "cost_per_whatsapp_conversation": 21.89,
+    "cost_per_lead": 187.84,
+    "whatsapp_conversations": 9,
+    "cost_per_whatsapp_conversation": 20.87,
     "daily_budget": 33
   },
   "analysis": [
     {
       "icon": "🟢",
       "title": "Campanha com entrega",
-      "text": "A campanha está ativa e já registra 12.188 impressões, alcance de 6.032 contas e investimento de R$ 175,09 no período consultado.",
+      "text": "A campanha está ativa e já registra 12.936 impressões, alcance de 6.307 contas e investimento de R$ 187,84 no período consultado.",
       "badge": "Em veiculação"
     },
     {
       "icon": "💬",
-      "title": "8 conversas iniciadas no WhatsApp",
-      "text": "Foram registradas 8 conversas iniciadas no WhatsApp, a R$ 21,89 por conversa. O Meta também atribui 1 lead, com custo de R$ 175,09.",
+      "title": "9 conversas iniciadas no WhatsApp",
+      "text": "Foram registradas 9 conversas iniciadas no WhatsApp, a R$ 20,87 por conversa. O Meta também atribui 1 lead, com custo de R$ 187,84.",
       "badge": "Conversão"
     },
     {
       "icon": "📊",
       "title": "Evolução inicial",
-      "text": "A campanha acumulou 104 link clicks, CTR de link de 0,85% e frequência de 2,02. Continuar acompanhando antes de ampliar o orçamento.",
+      "text": "A campanha acumulou 110 link clicks, CTR de link de 0,85% e frequência de 2,05. Continuar acompanhando antes de ampliar o orçamento.",
       "badge": "Acompanhar"
     }
   ]
