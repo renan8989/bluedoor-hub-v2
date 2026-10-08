@@ -6,27 +6,27 @@
   "status": "ACTIVE",
   "status_label": "● ATIVA · COM ENTREGA",
   "status_badge_class": "status-active",
-  "last_updated": "2026-10-07",
+  "last_updated": "2026-10-08",
   "date_range": {
     "start": "30/09/2026",
-    "end": "07/10/2026"
+    "end": "08/10/2026"
   },
-  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 07/10/2026",
+  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 08/10/2026",
   "overview": {
-    "impressions": 12936,
-    "reach": 6307,
+    "impressions": 12937,
+    "reach": 6312,
     "frequency": 2.05,
     "clicks_all": 120,
     "link_clicks": 110,
     "ctr_all": 0.93,
     "link_click_ctr": 0.85,
-    "spend": 187.84,
+    "spend": 187.85,
     "cpc_all": 1.57,
     "cost_per_link_click": 1.71,
     "cpm": 14.52,
     "leads": 1,
     "lead_metric": "Leads atribuídos no Meta",
-    "cost_per_lead": 187.84,
+    "cost_per_lead": 187.85,
     "whatsapp_conversations": 9,
     "cost_per_whatsapp_conversation": 20.87,
     "daily_budget": 33
@@ -35,13 +35,13 @@
     {
       "icon": "🟢",
       "title": "Campanha com entrega",
-      "text": "A campanha está ativa e já registra 12.936 impressões, alcance de 6.307 contas e investimento de R$ 187,84 no período consultado.",
+      "text": "A campanha está ativa e já registra 12.937 impressões, alcance de 6.312 contas e investimento de R$ 187,85 no período consultado.",
       "badge": "Em veiculação"
     },
     {
       "icon": "💬",
       "title": "9 conversas iniciadas no WhatsApp",
-      "text": "Foram registradas 9 conversas iniciadas no WhatsApp, a R$ 20,87 por conversa. O Meta também atribui 1 lead, com custo de R$ 187,84.",
+      "text": "Foram registradas 9 conversas iniciadas no WhatsApp, a R$ 20,87 por conversa. O Meta também atribui 1 lead, com custo de R$ 187,85.",
       "badge": "Conversão"
     },
     {
