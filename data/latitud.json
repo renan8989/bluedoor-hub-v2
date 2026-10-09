@@ -6,12 +6,12 @@
   "status": "ACTIVE",
   "status_label": "● ATIVA · COM ENTREGA",
   "status_badge_class": "status-active",
-  "last_updated": "2026-10-08",
+  "last_updated": "2026-10-09",
   "date_range": {
     "start": "30/09/2026",
-    "end": "08/10/2026"
+    "end": "09/10/2026"
   },
-  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 08/10/2026",
+  "source_period": "Meta Ads Manager · máximo consultado: 05/08/2025 – 09/10/2026",
   "overview": {
     "impressions": 12937,
     "reach": 6312,
